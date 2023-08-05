@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqn2aa1freajd"]
+
+[ext_resource type="Shader" path="res://Scenes/main.gdshader" id="1_xvivj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywe27"]
+shader = ExtResource("1_xvivj")
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ywe27")
+offset_left = 987.0
+offset_top = 494.0
+offset_right = 1072.0
+offset_bottom = 579.0
