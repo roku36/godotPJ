@@ -4,6 +4,28 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywe27"]
 shader = ExtResource("1_xvivj")
+shader_parameter/border_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/centre_color = Color(0, 0, 0, 1)
+shader_parameter/mark_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/hour_hand_color = Color(0, 0, 0, 1)
+shader_parameter/minute_hand_color = Color(0, 0, 0, 1)
+shader_parameter/second_hand_color = Color(1, 0, 0, 1)
+shader_parameter/show_edges = false
+shader_parameter/border_width = 0.1
+shader_parameter/centre_width = 0.1
+shader_parameter/mark_width = 0.02
+shader_parameter/marks_outer = 0.85
+shader_parameter/marks_minor_inner = 0.75
+shader_parameter/marks_major_inner = 0.7
+shader_parameter/hour_hand_length = 0.6
+shader_parameter/hour_hand_width = 0.006
+shader_parameter/minute_hand_length = 0.8
+shader_parameter/minute_hand_width = 0.004
+shader_parameter/second_hand_length = 0.7
+shader_parameter/second_hand_width = 0.002
+shader_parameter/hours = 12
+shader_parameter/minutes = 0
+shader_parameter/seconds = 0
 
 [node name="Main" type="Node2D"]
 
