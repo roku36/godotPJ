@@ -6,7 +6,7 @@ uniform int iteration_times = 3;
 uniform float speed = 0.1;
 uniform vec4 color : source_color = vec4(0.0, .35, .5, 1.0);
 uniform float intensity = .005;
- 
+
 void fragment() 
 {
 	lowp vec2 p = mod(UV*TAU, TAU)-250.0;

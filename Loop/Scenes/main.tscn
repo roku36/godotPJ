@@ -7,7 +7,7 @@
 shader = ExtResource("1_2wayo")
 shader_parameter/iteration_times = 3
 shader_parameter/speed = 0.1
-shader_parameter/color = Color(0, 0.35, 0.5, 1)
+shader_parameter/color = Color(0, 0.0470588, 0.0784314, 1)
 shader_parameter/intensity = 0.005
 
 [node name="Main" type="Node2D"]

@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_kjkuf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqwoq"]
-radius = 48.0
-height = 184.0
+radius = 27.0
+height = 102.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hn671")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.78125, 1.45312)
+scale = Vector2(0.421875, 0.796875)
 texture = ExtResource("1_kjkuf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
