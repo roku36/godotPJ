@@ -15,7 +15,7 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		update_road_line()
 	else:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().reload_current_scene()
 	
 	queue_redraw()
