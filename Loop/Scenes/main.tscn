@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=5 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
@@ -7,8 +7,15 @@
 shader = ExtResource("1_2wayo")
 shader_parameter/iteration_times = 3
 shader_parameter/speed = 0.1
-shader_parameter/color = Color(0, 0.0470588, 0.0784314, 1)
+shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
+shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
 shader_parameter/intensity = 0.005
+
+[sub_resource type="Curve2D" id="Curve2D_m06sm"]
+_data = {
+"points": PackedVector2Array(3.1748, 139.691, -3.1748, -139.691, -192, 163, -218.268, 17.4614, 218.268, -17.4614, 50, -66, -133.342, -73.8141, 133.342, 73.8141, 366, 93, -56.3527, -172.233, 56.3527, 172.233, 619, 82, 228.12, 128.516, -228.12, -128.516, 453, 273, 122.23, 77.7826, -122.23, -77.7826, -98, 493, 0, 114.293, 0, -114.293, -192, 163)
+}
+point_count = 7
 
 [node name="Main" type="Node2D"]
 
@@ -18,8 +25,12 @@ offset_left = -132.0
 offset_top = -269.0
 offset_right = 1315.0
 offset_bottom = 1178.0
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(173, 118)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_m06sm")
