@@ -11,7 +11,7 @@ shader_parameter/intensity = 0.005
 
 [node name="Main" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0q4tg")
 offset_left = -391.0
 offset_top = -208.0
