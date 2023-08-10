@@ -29,11 +29,12 @@ fill_from = Vector2(0, 0.327957)
 fill_to = Vector2(1, 0.674731)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_brpr4"]
+noise_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_on4ni"]
 seamless = true
 as_normal_map = true
-bump_strength = 3.8
+bump_strength = 17.4
 noise = SubResource("FastNoiseLite_brpr4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvebd"]
@@ -42,11 +43,12 @@ shader_parameter/ripple_count = 5.0
 shader_parameter/ripple_strength = 0.1
 shader_parameter/speed = 2.0
 shader_parameter/distortion_strength = 0.1
+shader_parameter/noise_aspect_ratio = Vector2(1, 1)
 shader_parameter/gradient_path = SubResource("GradientTexture2D_bj71q")
 shader_parameter/rough_noise = SubResource("NoiseTexture2D_on4ni")
 
 [sub_resource type="Curve" id="Curve_t3qhw"]
-_data = [Vector2(0, 0.468237), 0.0, 0.0, 0, 0, Vector2(0.41482, 0.155896), 0.0, 0.0, 0, 0, Vector2(1, 0.230011), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.41482, 0.155896), 0.0, 0.0, 0, 0, Vector2(1, 0.230011), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Main" type="Node2D"]
@@ -55,10 +57,10 @@ script = ExtResource("1_pd7es")
 [node name="bg" type="ColorRect" parent="."]
 z_index = -3
 material = SubResource("ShaderMaterial_0q4tg")
-offset_left = -1161.0
-offset_top = -1261.0
-offset_right = 2342.0
-offset_bottom = 2242.0
+offset_left = -1168.0
+offset_top = -1228.0
+offset_right = 2335.0
+offset_bottom = 2275.0
 
 [node name="Path2D" type="Path2D" parent="."]
 visible = false
