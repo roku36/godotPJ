@@ -1,26 +1,27 @@
 extends CharacterBody2D
 
+@export var acceleration: float = 500.0
+@export var max_speed: float = 1000.0
+@export var turn_speed: float = 0.3
+@export var restrict_force: float = 150.0
 
-const turn_spd : float = 0.03
-const SPEED = 30.0
+var mousex_delta = 0.0
 
-var direction : float = 0
-
-func _physics_process(delta):
-	var input_vector = Vector2.ZERO
-	var handle_input = Input.get_axis("ui_left", "ui_right")
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	velocity = Vector2.ZERO
 	
-	direction += turn_spd * handle_input
-
-	self.rotation = direction
-
-	# move toward direction vector
-	if Input.is_action_pressed("ui_accept"):
-		input_vector = Vector2.UP.rotated(direction)
-		# velocity = velocity.move_toward(input_vector, SPEED)
-		velocity += input_vector * SPEED 
-
-	# damp velocity
+func _physics_process(delta):    
+	velocity = velocity.limit_length(max_speed)
 	velocity *= 0.95
-
+	update_rotation(mousex_delta, delta)
+	
 	move_and_slide()
+	mousex_delta = 0
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mousex_delta = event.relative.x
+
+func update_rotation(turn_input: float, delta: float) -> void:
+	rotation += turn_input * turn_speed * delta
