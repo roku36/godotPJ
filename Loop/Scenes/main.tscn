@@ -33,6 +33,7 @@ shader = ExtResource("4_vpwma")
 shader_parameter/ripple_count = 5.0
 shader_parameter/ripple_strength = 0.1
 shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 100.0
 shader_parameter/gradient_path = SubResource("GradientTexture2D_bj71q")
 
 [sub_resource type="Curve" id="Curve_t3qhw"]
