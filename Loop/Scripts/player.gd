@@ -15,6 +15,7 @@ func _physics_process(delta):
 	velocity = velocity.limit_length(max_speed)
 	velocity *= 0.95
 	update_rotation(mousex_delta, delta)
+	var nearest_offset = get_parent().nearest_offset
 	
 	move_and_slide()
 	mousex_delta = 0
