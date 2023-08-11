@@ -9,6 +9,8 @@ radius = 74.0068
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.305882, 0.231373, 1)
+position = Vector2(-72, 0)
+scale = Vector2(0.382812, 1.48438)
 texture = ExtResource("1_mpq3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
