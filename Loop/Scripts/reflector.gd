@@ -1,4 +1,4 @@
-# @tool
+@tool
 extends Area2D
 
 @onready var road_path: Path2D = $"../Path2D"

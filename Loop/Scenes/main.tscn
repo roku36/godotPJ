@@ -58,6 +58,7 @@ point_count = 3
 script = ExtResource("1_pd7es")
 
 [node name="bg" type="ColorRect" parent="."]
+light_mask = 0
 z_index = -3
 material = SubResource("ShaderMaterial_0q4tg")
 offset_left = -1220.0
@@ -94,7 +95,7 @@ texture_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
-position = Vector2(471, -146)
+position = Vector2(399, -293)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
