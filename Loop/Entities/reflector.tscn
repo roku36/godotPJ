@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0xfurce5ygwk"]
+
+[ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_mpq3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_leiu6"]
+radius = 74.0068
+
+[node name="Reflector" type="Area2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0.305882, 0.231373, 1)
+texture = ExtResource("1_mpq3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_leiu6")
