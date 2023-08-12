@@ -51,7 +51,7 @@ func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
 
 
-func _on_reflector_out_dir(angle) -> void:
-	print("reflect")
-	# self.rotation = angle
+func _on_reflector_out_dir(angle, pos) -> void:
+	self.rotation = lerp_angle(self.rotation, angle + Vector2.DOWN.angle(), 1)
+	self.position = pos
 	velocity = Vector2.RIGHT.rotated(angle) * 1000

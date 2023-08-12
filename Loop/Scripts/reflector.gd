@@ -6,7 +6,7 @@ extends Area2D
 @export var segment_num: int = 5
 
 var point_out_angle: float = 0.0
-signal out_dir(angle)
+signal out_dir(angle, pos)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,5 +25,4 @@ func _process(_delta: float) -> void:
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	print("emitted!!")
-	out_dir.emit(point_out_angle)
+	out_dir.emit(self.rotation, self.position)
