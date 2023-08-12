@@ -34,7 +34,7 @@ shape = SubResource("CapsuleShape2D_tqwoq")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(4, 4)
-energy = 4.2
+energy = 7.43
 texture = SubResource("GradientTexture2D_fc17j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
