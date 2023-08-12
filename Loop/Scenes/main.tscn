@@ -70,6 +70,7 @@ offset_bottom = 2420.0
 curve = SubResource("Curve2D_m06sm")
 
 [node name="Bouncer" type="PathFollow2D" parent="Path2D"]
+visible = false
 position = Vector2(235.357, 510.945)
 rotation = 3.01863
 progress = 3938.93
@@ -78,6 +79,7 @@ progress = 3938.93
 texture = ExtResource("3_aaxum")
 
 [node name="Dash" type="PathFollow2D" parent="Path2D"]
+visible = false
 position = Vector2(537.263, 143.672)
 rotation = 0.790767
 progress = 1351.35
