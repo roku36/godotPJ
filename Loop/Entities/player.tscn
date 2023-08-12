@@ -7,8 +7,8 @@
 diffuse_texture = ExtResource("1_kjkuf")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqwoq"]
-radius = 27.0
-height = 102.0
+radius = 9.0
+height = 18.0
 
 [sub_resource type="Gradient" id="Gradient_ipi8e"]
 interpolation_mode = 2
@@ -30,10 +30,16 @@ scale = Vector2(0.421875, 0.796875)
 texture = SubResource("CanvasTexture_tnsii")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_tqwoq")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(4, 4)
 energy = 4.2
 texture = SubResource("GradientTexture2D_fc17j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -27.0
+offset_top = -51.0
+offset_right = 27.0
+offset_bottom = -31.0
+color = Color(0.537255, 0, 0, 1)
