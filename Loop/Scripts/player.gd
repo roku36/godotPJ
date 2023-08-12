@@ -49,3 +49,9 @@ func move_foward() -> void:
 
 func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
+
+
+func _on_reflector_out_dir(angle) -> void:
+	print("reflect")
+	# self.rotation = angle
+	velocity = Vector2.RIGHT.rotated(angle) * 1000

@@ -11,8 +11,9 @@ radius = 27.0
 height = 102.0
 
 [sub_resource type="Gradient" id="Gradient_ipi8e"]
-offsets = PackedFloat32Array(0, 0.64572)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.402247, 0.71236)
+colors = PackedColorArray(1, 1, 1, 1, 0.229535, 0.229535, 0.229535, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fc17j"]
 gradient = SubResource("Gradient_ipi8e")

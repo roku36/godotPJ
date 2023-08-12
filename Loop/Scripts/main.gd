@@ -37,7 +37,7 @@ func _draw() -> void:
 func update_road_line():
 	road_line.clear_points()
 	var points = road_path.curve.get_baked_points()
-	
+
 	for point in points:
 		var global_point = road_path.to_global(Vector2(point.x, point.y))
 		var local_point = road_line.to_local(global_point)

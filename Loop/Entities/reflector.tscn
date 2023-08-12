@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0xfurce5ygwk"]
+[gd_scene load_steps=6 format=3 uid="uid://b0xfurce5ygwk"]
 
+[ext_resource type="Script" path="res://Scripts/reflector.gd" id="1_8mfd5"]
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_mpq3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_leiu6"]
-radius = 74.0068
+radius = 32.0624
+
+[sub_resource type="Gradient" id="Gradient_m6nej"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.332584, 0.647191)
+colors = PackedColorArray(1, 1, 1, 1, 0.322917, 0.322917, 0.322917, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k7q7e"]
+gradient = SubResource("Gradient_m6nej")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Reflector" type="Area2D"]
+script = ExtResource("1_8mfd5")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.305882, 0.231373, 1)
@@ -14,5 +26,12 @@ scale = Vector2(0.382812, 1.48438)
 texture = ExtResource("1_mpq3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_leiu6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-55, 0)
+scale = Vector2(5.9375, 5.9375)
+energy = 3.19
+texture = SubResource("GradientTexture2D_k7q7e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
