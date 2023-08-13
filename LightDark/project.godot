@@ -16,11 +16,13 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=200
-window/size/viewport_height=150
-window/size/window_width_override=1600
-window/size/window_height_override=1200
+window/size/viewport_width=300
+window/size/viewport_height=200
+window/size/window_width_override=2400
+window/size/window_height_override=1600
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://cursor.png"
+mouse_cursor/tooltip_position_offset=Vector2(2.08165e-12, 2.08165e-12)
 
 [rendering]
 
