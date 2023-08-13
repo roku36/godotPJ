@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyq322y6avext"]
+
+[ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
+[ext_resource type="Texture2D" uid="uid://5oeyhrr2f84i" path="res://bayer44.png" id="2_06shi"]
+
+[sub_resource type="Gradient" id="Gradient_1lcw2"]
+offsets = PackedFloat32Array(0, 0.648387)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87bvn"]
+gradient = SubResource("Gradient_1lcw2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
+shader = ExtResource("1_6yypp")
+shader_parameter/bayerTexture = ExtResource("2_06shi")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -438.0
+offset_top = -196.0
+offset_right = 884.0
+offset_bottom = 529.0
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 168.0
+offset_top = 157.0
+offset_right = 784.0
+offset_bottom = 197.0
+color = Color(1, 0.529412, 0.529412, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(110, 66)
+scale = Vector2(1.21094, 1.21094)
+energy = 14.71
+texture = SubResource("GradientTexture2D_87bvn")
+
+[node name="Filter" type="ColorRect" parent="."]
+light_mask = 0
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5nopj")
+offset_left = 98.0
+offset_top = 1.0
+offset_right = 280.0
+offset_bottom = 151.0
