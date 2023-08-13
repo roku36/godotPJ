@@ -1,14 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=15 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
 [ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://bayer8.png" id="2_2osrw"]
+[ext_resource type="Script" path="res://Scripts/Filter.gd" id="3_k2mia"]
 
 [sub_resource type="Gradient" id="Gradient_k7auy"]
-offsets = PackedFloat32Array(0, 0.155925, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.683077, 0.683077, 0.683077, 1, 0.737193, 0.737193, 0.737193, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.305613, 0.577963)
+colors = PackedColorArray(0.334744, 0.334744, 0.334743, 1, 0.44275, 0.44275, 0.44275, 1, 0.539001, 0.539, 0.539, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s1ndj"]
-frequency = 0.0139
+frequency = 0.2469
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cagy2"]
 color_ramp = SubResource("Gradient_k7auy")
@@ -16,7 +18,7 @@ noise = SubResource("FastNoiseLite_s1ndj")
 
 [sub_resource type="Gradient" id="Gradient_ofqry"]
 offsets = PackedFloat32Array(0, 0.648387)
-colors = PackedColorArray(0.0233718, 0.0233718, 0.0233718, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f1ejy"]
 gradient = SubResource("Gradient_ofqry")
@@ -25,7 +27,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_8p7ca"]
 offsets = PackedFloat32Array(0, 0.683992)
-colors = PackedColorArray(0.0233718, 0.0233718, 0.0233718, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_87bvn"]
 gradient = SubResource("Gradient_8p7ca")
@@ -41,10 +43,12 @@ gradient = SubResource("Gradient_ux3bd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
 shader = ExtResource("1_6yypp")
+shader_parameter/gamma1 = 5.0
+shader_parameter/gamma2 = -0.38
 shader_parameter/bayerTexture = ExtResource("2_2osrw")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
-polygon = PackedVector2Array(160, 93, 175, 93, 175, 106)
+polygon = PackedVector2Array(160, 93, 175, 93, 164, 131)
 
 [node name="Node2D" type="Node2D"]
 
@@ -64,22 +68,22 @@ texture = SubResource("NoiseTexture2D_cagy2")
 stretch_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(214, 120)
-scale = Vector2(3.09375, 3.09375)
-energy = 16.0
+position = Vector2(153, 126)
+scale = Vector2(5.51562, 5.51562)
+energy = 1.9
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_f1ejy")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(324, 118)
-scale = Vector2(2.78125, 2.78125)
-energy = 12.96
+position = Vector2(380, 124)
+scale = Vector2(4.28125, 4.28125)
+energy = 0.76
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_87bvn")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(459, 155)
+position = Vector2(596, -5)
 scale = Vector2(2, 2)
 energy = 2.01
 blend_mode = 1
@@ -95,8 +99,9 @@ offset_left = -11.0
 offset_top = -11.0
 offset_right = 651.0
 offset_bottom = 452.0
+script = ExtResource("3_k2mia")
 metadata/_edit_lock_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(-97, -30)
+position = Vector2(42, 32)
 occluder = SubResource("OccluderPolygon2D_5xvha")
