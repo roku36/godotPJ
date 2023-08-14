@@ -14,7 +14,7 @@ offsets = PackedFloat32Array(0, 0.305613, 0.577963)
 colors = PackedColorArray(0.334744, 0.334744, 0.334743, 1, 0.44275, 0.44275, 0.44275, 1, 0.539001, 0.539, 0.539, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s1ndj"]
-frequency = 0.2469
+frequency = 0.0856
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cagy2"]
 color_ramp = SubResource("Gradient_k7auy")
@@ -49,6 +49,12 @@ size = Vector2(20, 10.42)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_haw04"]
 gradient = SubResource("Gradient_tf1t3")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
+shader = ExtResource("1_6yypp")
+shader_parameter/gamma1 = 5.0
+shader_parameter/gamma2 = -0.38
+shader_parameter/bayerTexture = ExtResource("2_2osrw")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
@@ -56,12 +62,6 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("7_eq056")
 shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
-shader = ExtResource("1_6yypp")
-shader_parameter/gamma1 = 5.0
-shader_parameter/gamma2 = -0.38
-shader_parameter/bayerTexture = ExtResource("2_2osrw")
 
 [node name="Node2D" type="Node2D"]
 
@@ -78,13 +78,6 @@ physics_object_picking = true
 physics_object_picking_sort = true
 size = Vector2i(1200, 800)
 render_target_update_mode = 4
-
-[node name="bg" type="ColorRect" parent="SubViewportContainer/SubViewport"]
-offset_left = -251.0
-offset_top = -126.0
-offset_right = 457.0
-offset_bottom = 342.0
-color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
 offset_left = -34.0
@@ -136,6 +129,17 @@ offset_right = 611.0
 offset_bottom = 27.0
 texture = SubResource("GradientTexture2D_haw04")
 
+[node name="Filter" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+light_mask = 0
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5nopj")
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 2670.0
+offset_bottom = 1768.0
+script = ExtResource("3_k2mia")
+
 [node name="StaticBox2" type="StaticBody2D" parent="."]
 position = Vector2(200.1, 147.05)
 
@@ -156,14 +160,3 @@ offset_left = 11.0
 offset_top = 485.0
 offset_right = 642.0
 offset_bottom = 904.0
-
-[node name="Filter" type="ColorRect" parent="."]
-light_mask = 0
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_5nopj")
-offset_left = -11.0
-offset_top = -11.0
-offset_right = 2670.0
-offset_bottom = 1768.0
-script = ExtResource("3_k2mia")
