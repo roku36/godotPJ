@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=16 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
+[ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="1_fex3h"]
 [ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://bayer8.png" id="2_2osrw"]
 [ext_resource type="Script" path="res://Scripts/Filter.gd" id="3_k2mia"]
 
@@ -34,21 +35,19 @@ gradient = SubResource("Gradient_8p7ca")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_ux3bd"]
-offsets = PackedFloat32Array(0, 0.754678, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.754678, 0.754678, 0.754678, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_tf1t3"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3pfwm"]
-gradient = SubResource("Gradient_ux3bd")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_haw04"]
+gradient = SubResource("Gradient_tf1t3")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
+polygon = PackedVector2Array(344, 223, 364, 223, 364, 233, 344, 233)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
 shader = ExtResource("1_6yypp")
 shader_parameter/gamma1 = 5.0
 shader_parameter/gamma2 = -0.38
 shader_parameter/bayerTexture = ExtResource("2_2osrw")
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
-polygon = PackedVector2Array(160, 93, 175, 93, 164, 131)
 
 [node name="Node2D" type="Node2D"]
 
@@ -75,20 +74,28 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_f1ejy")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(380, 124)
+position = Vector2(219, 216)
 scale = Vector2(4.28125, 4.28125)
 energy = 0.76
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_87bvn")
 
-[node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(596, -5)
-scale = Vector2(2, 2)
-energy = 2.01
-blend_mode = 1
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_3pfwm")
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 376.0
+offset_top = -37.0
+offset_right = 611.0
+offset_bottom = 27.0
+texture = SubResource("GradientTexture2D_haw04")
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(186, 143)
+texture = ExtResource("1_fex3h")
+metadata/_edit_group_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Box"]
+position = Vector2(-354, -228)
+occluder = SubResource("OccluderPolygon2D_5xvha")
 
 [node name="Filter" type="ColorRect" parent="."]
 light_mask = 0
@@ -101,7 +108,3 @@ offset_right = 651.0
 offset_bottom = 452.0
 script = ExtResource("3_k2mia")
 metadata/_edit_lock_ = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(42, 32)
-occluder = SubResource("OccluderPolygon2D_5xvha")
