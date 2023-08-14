@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=28 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
 [ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="1_fex3h"]
@@ -9,20 +9,38 @@
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_s1o0o"]
 
-[sub_resource type="Gradient" id="Gradient_k7auy"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.305613, 0.577963)
-colors = PackedColorArray(0.334744, 0.334744, 0.334743, 1, 0.44275, 0.44275, 0.44275, 1, 0.539001, 0.539, 0.539, 1)
+[sub_resource type="Gradient" id="Gradient_ucg3v"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.454524, 0.454524, 0.454524, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_s1ndj"]
-frequency = 0.0856
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xrmiv"]
+gradient = SubResource("Gradient_ucg3v")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cagy2"]
-color_ramp = SubResource("Gradient_k7auy")
-noise = SubResource("FastNoiseLite_s1ndj")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_40wd6"]
+seed = 123
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lxayo"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.3
+noise = SubResource("FastNoiseLite_40wd6")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ihwhm"]
+diffuse_texture = SubResource("GradientTexture2D_xrmiv")
+normal_texture = SubResource("NoiseTexture2D_lxayo")
+
+[sub_resource type="Gradient" id="Gradient_y8sbo"]
+offsets = PackedFloat32Array(0, 0.648387)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o353g"]
+gradient = SubResource("Gradient_y8sbo")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_ofqry"]
-offsets = PackedFloat32Array(0, 0.648387)
+offsets = PackedFloat32Array(0.451143, 0.648387)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f1ejy"]
@@ -86,25 +104,32 @@ physics_object_picking_sort = true
 size = Vector2i(1200, 800)
 render_target_update_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
-offset_left = -34.0
-offset_top = -142.0
-offset_right = 938.0
-offset_bottom = 488.0
-texture = SubResource("NoiseTexture2D_cagy2")
-stretch_mode = 1
+[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+offset_left = -67.0
+offset_top = -96.0
+offset_right = 905.0
+offset_bottom = 534.0
+texture = SubResource("CanvasTexture_ihwhm")
+
+[node name="EnvLight" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(177.24, 436.98)
+scale = Vector2(106.736, 106.736)
+energy = 0.18
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_o353g")
 
 [node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(177.24, 126)
 scale = Vector2(5.51562, 5.51562)
-energy = 1.9
+energy = 1.81
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_f1ejy")
+height = 35.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(219, 216)
+position = Vector2(516.54, 216)
 scale = Vector2(4.28125, 4.28125)
-energy = 0.76
+energy = 16.0
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_87bvn")
