@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=24 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
 [ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="1_fex3h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgxdkkysa3mxo" path="res://Scenes/player.tscn" id="5_b1ob5"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="6_dwhrn"]
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_s1o0o"]
 
 [sub_resource type="Gradient" id="Gradient_k7auy"]
 interpolation_mode = 1
@@ -38,6 +39,10 @@ gradient = SubResource("Gradient_8p7ca")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_ltvl7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
 polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
 
@@ -49,12 +54,6 @@ size = Vector2(20, 10.42)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_haw04"]
 gradient = SubResource("Gradient_tf1t3")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
-shader = ExtResource("1_6yypp")
-shader_parameter/gamma1 = 5.0
-shader_parameter/gamma2 = -0.38
-shader_parameter/bayerTexture = ExtResource("2_2osrw")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
@@ -62,6 +61,14 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("7_eq056")
 shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
+shader = ExtResource("1_6yypp")
+shader_parameter/gamma1 = 5.0
+shader_parameter/gamma2 = -0.38
+shader_parameter/color1 = Color(0.0745098, 0.141176, 0.0745098, 1)
+shader_parameter/color2 = Color(0.454902, 0.658824, 0.443137, 1)
+shader_parameter/bayerTexture = ExtResource("2_2osrw")
 
 [node name="Node2D" type="Node2D"]
 
@@ -107,7 +114,15 @@ modulate = Color(1, 0.498039, 0.764706, 1)
 position = Vector2(243.56, 145)
 script = ExtResource("6_dwhrn")
 
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Player"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(74, 81)
+direction = Vector2(2.08165e-12, -1)
+gravity = Vector2(2.08165e-12, -10)
+initial_velocity_min = 21.0
+initial_velocity_max = 21.0
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_ltvl7")
 
 [node name="StaticBox" type="StaticBody2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(200.1, 173.42)
@@ -129,17 +144,6 @@ offset_right = 611.0
 offset_bottom = 27.0
 texture = SubResource("GradientTexture2D_haw04")
 
-[node name="Filter" type="ColorRect" parent="SubViewportContainer/SubViewport"]
-light_mask = 0
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_5nopj")
-offset_left = -11.0
-offset_top = -11.0
-offset_right = 2670.0
-offset_bottom = 1768.0
-script = ExtResource("3_k2mia")
-
 [node name="StaticBox2" type="StaticBody2D" parent="."]
 position = Vector2(200.1, 147.05)
 
@@ -160,3 +164,19 @@ offset_left = 11.0
 offset_top = 485.0
 offset_right = 642.0
 offset_bottom = 904.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(243.56, 145)
+script = ExtResource("8_s1o0o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Filter" type="ColorRect" parent="CanvasLayer"]
+light_mask = 0
+texture_filter = 1
+material = SubResource("ShaderMaterial_5nopj")
+offset_left = -190.0
+offset_top = -76.0
+offset_right = 1514.0
+offset_bottom = 860.0
+script = ExtResource("3_k2mia")

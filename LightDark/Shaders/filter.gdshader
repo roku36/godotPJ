@@ -4,6 +4,8 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_disable, filter_n
 uniform sampler2D bayerTexture;
 uniform float gamma1 = 2.2;
 uniform float gamma2 = 0.004;
+uniform vec4 color1: source_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform vec4 color2: source_color = vec4(0.0, 1.0, 0.0, 1.0);
 
 void fragment() {
 	 // sample the texture
@@ -20,12 +22,15 @@ void fragment() {
     vec2 bayerUV = mod(FRAGCOORD.xy, 4.0) / 4.0;
     float bayerValue = texture(bayerTexture, bayerUV).r + 0.01;
     
-        // output
+    // output
+
+    // if bayerValue is 0, use the green, otherwize red
     vec4 dithered = vec4(
             step(bayerValue,col.r),
-            step(bayerValue,col.g),
-            step(bayerValue,col.b),
+            step(bayerValue,col.r),
+            step(bayerValue,col.r),
             col.a);
 
-    COLOR.rgb = dithered.rgb * 0.5 + vec3(0.2);
+    vec4 col2 = (dithered.r <= 0.5) ? color1 : color2;
+    COLOR = col2;
 }
