@@ -46,29 +46,30 @@ gradient = SubResource("Gradient_tf1t3")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
 polygon = PackedVector2Array(344, 223, 364, 223, 364, 233, 344, 233)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qbejv"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
 shader = ExtResource("1_6yypp")
 shader_parameter/gamma1 = 5.0
 shader_parameter/gamma2 = -0.38
 shader_parameter/bayerTexture = ExtResource("2_2osrw")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qj2qv"]
+resource_local_to_scene = true
 shader = ExtResource("7_eq056")
+shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -24.0
-offset_top = -18.0
-offset_right = 758.0
-offset_bottom = 494.0
+offset_right = 400.0
+offset_bottom = 300.0
+metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(782, 512)
+size = Vector2i(600, 400)
 render_target_update_mode = 4
 
 [node name="bg" type="ColorRect" parent="SubViewportContainer/SubViewport"]
@@ -87,7 +88,7 @@ texture = SubResource("NoiseTexture2D_cagy2")
 stretch_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(153, 126)
+position = Vector2(177.24, 126)
 scale = Vector2(5.51562, 5.51562)
 energy = 1.9
 shadow_enabled = true
@@ -109,20 +110,13 @@ offset_bottom = 27.0
 texture = SubResource("GradientTexture2D_haw04")
 
 [node name="Box" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(185.94, 143)
+position = Vector2(193.21, 132.79)
 texture = ExtResource("1_fex3h")
 metadata/_edit_group_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/Box"]
 position = Vector2(-354, -228)
 occluder = SubResource("OccluderPolygon2D_5xvha")
-
-[node name="SubViewTexture" type="TextureRect" parent="."]
-offset_left = 977.0
-offset_top = 10.0
-offset_right = 1759.0
-offset_bottom = 522.0
-texture = SubResource("ViewportTexture_qbejv")
 
 [node name="Filter" type="ColorRect" parent="."]
 light_mask = 0
@@ -137,10 +131,13 @@ script = ExtResource("3_k2mia")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("5_b1ob5")]
-position = Vector2(267, 174)
+modulate = Color(1, 0.498039, 0.764706, 1)
+position = Vector2(171, 145)
 script = ExtResource("6_dwhrn")
 
 [node name="Movable" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_qj2qv")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 11.0
+offset_top = 485.0
+offset_right = 642.0
+offset_bottom = 904.0
