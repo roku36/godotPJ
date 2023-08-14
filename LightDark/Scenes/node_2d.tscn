@@ -112,11 +112,11 @@ offset_bottom = 534.0
 texture = SubResource("CanvasTexture_ihwhm")
 
 [node name="EnvLight" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(177.24, 436.98)
+position = Vector2(177.24, 690.55)
 scale = Vector2(106.736, 106.736)
-energy = 0.18
-shadow_enabled = true
+energy = 1.16
 texture = SubResource("GradientTexture2D_o353g")
+height = 80.0
 
 [node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(177.24, 126)
@@ -133,6 +133,8 @@ energy = 16.0
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_87bvn")
+texture_scale = 1.5
+height = 15.0
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_b1ob5")]
 modulate = Color(1, 0.498039, 0.764706, 1)
