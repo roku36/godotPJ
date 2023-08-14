@@ -1,9 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=21 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
 [ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="1_fex3h"]
 [ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://bayer8.png" id="2_2osrw"]
 [ext_resource type="Script" path="res://Scripts/Filter.gd" id="3_k2mia"]
+[ext_resource type="PackedScene" uid="uid://c0qr0nkw67tdn" path="res://Scenes/player.tscn" id="5_b1ob5"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="6_dwhrn"]
+[ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
 
 [sub_resource type="Gradient" id="Gradient_k7auy"]
 interpolation_mode = 1
@@ -43,22 +46,39 @@ gradient = SubResource("Gradient_tf1t3")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
 polygon = PackedVector2Array(344, 223, 364, 223, 364, 233, 344, 233)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_qbejv"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
 shader = ExtResource("1_6yypp")
 shader_parameter/gamma1 = 5.0
 shader_parameter/gamma2 = -0.38
 shader_parameter/bayerTexture = ExtResource("2_2osrw")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj2qv"]
+shader = ExtResource("7_eq056")
+
 [node name="Node2D" type="Node2D"]
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -24.0
+offset_top = -18.0
+offset_right = 758.0
+offset_bottom = 494.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(782, 512)
+render_target_update_mode = 4
+
+[node name="bg" type="ColorRect" parent="SubViewportContainer/SubViewport"]
 offset_left = -251.0
 offset_top = -126.0
 offset_right = 457.0
 offset_bottom = 342.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
 offset_left = -34.0
 offset_top = -142.0
 offset_right = 938.0
@@ -66,14 +86,14 @@ offset_bottom = 488.0
 texture = SubResource("NoiseTexture2D_cagy2")
 stretch_mode = 1
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(153, 126)
 scale = Vector2(5.51562, 5.51562)
 energy = 1.9
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_f1ejy")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(219, 216)
 scale = Vector2(4.28125, 4.28125)
 energy = 0.76
@@ -81,21 +101,28 @@ blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_87bvn")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport"]
 offset_left = 376.0
 offset_top = -37.0
 offset_right = 611.0
 offset_bottom = 27.0
 texture = SubResource("GradientTexture2D_haw04")
 
-[node name="Box" type="Sprite2D" parent="."]
-position = Vector2(186, 143)
+[node name="Box" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(185.94, 143)
 texture = ExtResource("1_fex3h")
 metadata/_edit_group_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Box"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/Box"]
 position = Vector2(-354, -228)
 occluder = SubResource("OccluderPolygon2D_5xvha")
+
+[node name="SubViewTexture" type="TextureRect" parent="."]
+offset_left = 977.0
+offset_top = 10.0
+offset_right = 1759.0
+offset_bottom = 522.0
+texture = SubResource("ViewportTexture_qbejv")
 
 [node name="Filter" type="ColorRect" parent="."]
 light_mask = 0
@@ -108,3 +135,12 @@ offset_right = 651.0
 offset_bottom = 452.0
 script = ExtResource("3_k2mia")
 metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("5_b1ob5")]
+position = Vector2(267, 174)
+script = ExtResource("6_dwhrn")
+
+[node name="Movable" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qj2qv")
+offset_right = 40.0
+offset_bottom = 40.0
