@@ -1,27 +1,32 @@
 [gd_scene load_steps=3 format=3 uid="uid://dt2kpb02fv5b3"]
 
-[sub_resource type="Gradient" id="Gradient_ofqry"]
-offsets = PackedFloat32Array(0.0810811, 0.648387)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f1ejy"]
-gradient = SubResource("Gradient_ofqry")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://y8rl7e2gvg74" path="res://Images/lightcore.png" id="1_titdk"]
+[ext_resource type="Texture2D" uid="uid://dfcgh5q1jntb1" path="res://Images/light60.svg" id="2_odwip"]
 
 [node name="Light" type="Node2D"]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(5.51562, 5.51562)
-energy = 1.81
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_f1ejy")
-height = 35.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="."]
 visible = false
-offset_left = -320.0
-offset_top = -320.0
-offset_right = 320.0
-offset_bottom = 320.0
-color = Color(0.141176, 0.141176, 0.141176, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -756.0
+offset_top = -755.0
+offset_right = 755.0
+offset_bottom = 756.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.333333, 0.027451, 0.12549, 1)
+
+[node name="Lightcore" type="Sprite2D" parent="."]
+texture = ExtResource("1_titdk")
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(5, 5)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("2_odwip")
+height = 50.0

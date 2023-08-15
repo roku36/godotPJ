@@ -107,16 +107,16 @@ shader_parameter/bayerTexture = ExtResource("8_sbrcu")
 
 [node name="SubNode" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(243.56, 145)
-script = ExtResource("1_0hhlk")
-
 [node name="TextureRect3" type="TextureRect" parent="."]
 offset_left = -67.0
 offset_top = -96.0
 offset_right = 905.0
 offset_bottom = 534.0
 texture = SubResource("CanvasTexture_ihwhm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(25, 175)
+script = ExtResource("1_0hhlk")
 
 [node name="EnvLight" type="PointLight2D" parent="."]
 position = Vector2(147, 651)
@@ -126,7 +126,7 @@ texture = SubResource("GradientTexture2D_o353g")
 height = 80.0
 
 [node name="Light" parent="." instance=ExtResource("2_88g2m")]
-position = Vector2(148, 42)
+position = Vector2(145, 47)
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(516.54, 216)
@@ -152,6 +152,9 @@ height = 15.0
 modulate = Color(1, 0.498039, 0.764706, 1)
 position = Vector2(25, 175)
 script = ExtResource("3_n755i")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(74, 81)
