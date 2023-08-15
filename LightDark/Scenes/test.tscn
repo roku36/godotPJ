@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg7lnxk0in2ic"]
+
+[ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://icon.svg" id="1_euqam"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_53s3m"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="test" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -48.0
+offset_top = 121.0
+offset_right = 552.0
+offset_bottom = 633.0
+scale = Vector2(1.33, 1.33)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(600, 512)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SubViewportContainer/SubViewport"]
+remote_path = NodePath("../../../Icon")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 761.0
+offset_top = 107.0
+offset_right = 1361.0
+offset_bottom = 619.0
+texture = SubResource("ViewportTexture_53s3m")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(63, 214)
+texture = ExtResource("1_euqam")

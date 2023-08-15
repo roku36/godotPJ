@@ -1,6 +1,6 @@
 extends Camera2D
 
-var spd: float = 1
+var spd: float = 1.3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

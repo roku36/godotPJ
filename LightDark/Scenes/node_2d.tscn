@@ -1,76 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=6 format=3 uid="uid://cyq322y6avext"]
 
-[ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="1_6yypp"]
-[ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="1_fex3h"]
-[ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://bayer8.png" id="2_2osrw"]
-[ext_resource type="Script" path="res://Scripts/Filter.gd" id="3_k2mia"]
-[ext_resource type="PackedScene" uid="uid://dgxdkkysa3mxo" path="res://Scenes/player.tscn" id="5_b1ob5"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="6_dwhrn"]
+[ext_resource type="PackedScene" uid="uid://dn1et87sephl5" path="res://Scenes/sub_node.tscn" id="1_3i6js"]
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
-[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_s1o0o"]
-
-[sub_resource type="Gradient" id="Gradient_ucg3v"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.454524, 0.454524, 0.454524, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xrmiv"]
-gradient = SubResource("Gradient_ucg3v")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_40wd6"]
-seed = 123
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lxayo"]
-seamless = true
-as_normal_map = true
-bump_strength = 1.3
-noise = SubResource("FastNoiseLite_40wd6")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ihwhm"]
-diffuse_texture = SubResource("GradientTexture2D_xrmiv")
-normal_texture = SubResource("NoiseTexture2D_lxayo")
-
-[sub_resource type="Gradient" id="Gradient_y8sbo"]
-offsets = PackedFloat32Array(0, 0.648387)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o353g"]
-gradient = SubResource("Gradient_y8sbo")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_ofqry"]
-offsets = PackedFloat32Array(0.451143, 0.648387)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f1ejy"]
-gradient = SubResource("Gradient_ofqry")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_8p7ca"]
-offsets = PackedFloat32Array(0, 0.683992)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_87bvn"]
-gradient = SubResource("Gradient_8p7ca")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Curve" id="Curve_ltvl7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5xvha"]
-polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn8m6"]
-size = Vector2(20, 10.42)
-
-[sub_resource type="Gradient" id="Gradient_tf1t3"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_haw04"]
-gradient = SubResource("Gradient_tf1t3")
+[ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://icon.svg" id="10_8p4un"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -80,20 +12,13 @@ resource_local_to_scene = true
 shader = ExtResource("7_eq056")
 shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5nopj"]
-shader = ExtResource("1_6yypp")
-shader_parameter/gamma1 = 5.0
-shader_parameter/gamma2 = -0.38
-shader_parameter/color1 = Color(0.0745098, 0.141176, 0.0745098, 1)
-shader_parameter/color2 = Color(0.454902, 0.658824, 0.443137, 1)
-shader_parameter/bayerTexture = ExtResource("2_2osrw")
-
 [node name="Node2D" type="Node2D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
-offset_right = 1200.0
-offset_bottom = 800.0
+offset_right = 600.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -101,88 +26,10 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 physics_object_picking = true
 physics_object_picking_sort = true
-size = Vector2i(1200, 800)
+size = Vector2i(600, 400)
 render_target_update_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport"]
-offset_left = -67.0
-offset_top = -96.0
-offset_right = 905.0
-offset_bottom = 534.0
-texture = SubResource("CanvasTexture_ihwhm")
-
-[node name="EnvLight" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(177.24, 690.55)
-scale = Vector2(106.736, 106.736)
-energy = 1.16
-texture = SubResource("GradientTexture2D_o353g")
-height = 80.0
-
-[node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(177.24, 126)
-scale = Vector2(5.51562, 5.51562)
-energy = 1.81
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_f1ejy")
-height = 35.0
-
-[node name="PointLight2D2" type="PointLight2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(516.54, 216)
-scale = Vector2(4.28125, 4.28125)
-energy = 16.0
-blend_mode = 1
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_87bvn")
-texture_scale = 1.5
-height = 15.0
-
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_b1ob5")]
-modulate = Color(1, 0.498039, 0.764706, 1)
-position = Vector2(243.56, 145)
-script = ExtResource("6_dwhrn")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(74, 81)
-direction = Vector2(2.08165e-12, -1)
-gravity = Vector2(2.08165e-12, -10)
-initial_velocity_min = 21.0
-initial_velocity_max = 21.0
-scale_amount_min = 0.0
-scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_ltvl7")
-
-[node name="StaticBox" type="StaticBody2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(200.1, 173.42)
-
-[node name="Box" type="Sprite2D" parent="SubViewportContainer/SubViewport/StaticBox"]
-texture = ExtResource("1_fex3h")
-metadata/_edit_group_ = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="SubViewportContainer/SubViewport/StaticBox"]
-occluder = SubResource("OccluderPolygon2D_5xvha")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/StaticBox"]
-shape = SubResource("RectangleShape2D_nn8m6")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport"]
-offset_left = 376.0
-offset_top = -37.0
-offset_right = 611.0
-offset_bottom = 27.0
-texture = SubResource("GradientTexture2D_haw04")
-
-[node name="StaticBox2" type="StaticBody2D" parent="."]
-position = Vector2(200.1, 147.05)
-
-[node name="Box" type="Sprite2D" parent="StaticBox2"]
-texture = ExtResource("1_fex3h")
-metadata/_edit_group_ = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBox2"]
-occluder = SubResource("OccluderPolygon2D_5xvha")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBox2"]
-shape = SubResource("RectangleShape2D_nn8m6")
+[node name="SubNode" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_3i6js")]
 
 [node name="VisualizeMovable" type="ColorRect" parent="."]
 visible = false
@@ -192,18 +39,9 @@ offset_top = 485.0
 offset_right = 642.0
 offset_bottom = 904.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(243.56, 145)
-script = ExtResource("8_s1o0o")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Filter" type="ColorRect" parent="CanvasLayer"]
-light_mask = 0
-texture_filter = 1
-material = SubResource("ShaderMaterial_5nopj")
-offset_left = -190.0
-offset_top = -76.0
-offset_right = 1514.0
-offset_bottom = 860.0
-script = ExtResource("3_k2mia")
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(243.56, 145)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("10_8p4un")

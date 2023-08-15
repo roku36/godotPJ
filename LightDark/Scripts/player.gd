@@ -2,7 +2,7 @@
 extends CharacterBody2D
 
 # @onready var subViewport = $"../SubViewportContainer/SubViewport"
-@onready var subViewport = $".."
+@onready var subViewport = $"../.."
 var image: Image
 var spd: float = 50
 
@@ -17,15 +17,13 @@ func _process(delta: float) -> void:
 		velocity = direction * spd
 		
 
-	
-
 	var texture :ViewportTexture = subViewport.get_texture()
 	image = texture.get_image()
 	var color = image.get_pixelv(self.position)
 	
 	# reset modulation
 	self.modulate = Color(1, 1, 1)
-	print(color)
+	# print(color)
 	
 	if color.r > 0.7:
 		self.modulate = Color(1, 0, 0)

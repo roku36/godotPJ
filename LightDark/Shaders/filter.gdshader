@@ -6,6 +6,7 @@ uniform float gamma1 = 2.2;
 uniform float gamma2 = 0.004;
 uniform vec4 color1: source_color = vec4(1.0, 0.0, 0.0, 1.0);
 uniform vec4 color2: source_color = vec4(0.0, 1.0, 0.0, 1.0);
+uniform vec2 rectPos;
 
 void fragment() {
 	 // sample the texture
@@ -19,7 +20,7 @@ void fragment() {
     
     // find bayer matrix entry based on fragment position
     // float bayerValue = bayerIndex[int(FRAGCOORD.x) % 4][int(FRAGCOORD.y) % 4];
-    vec2 bayerUV = mod(FRAGCOORD.xy, 4.0) / 4.0;
+    vec2 bayerUV = mod(FRAGCOORD.xy, 4.0) /4.0;
     float bayerValue = texture(bayerTexture, bayerUV).r + 0.01;
     
     // output
