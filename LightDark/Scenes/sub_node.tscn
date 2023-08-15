@@ -127,9 +127,19 @@ height = 80.0
 
 [node name="Light" parent="." instance=ExtResource("2_88g2m")]
 position = Vector2(145, 47)
+lightScale = 1.53
+enerty = 28
+height = 72.65
+
+[node name="Light2" parent="." instance=ExtResource("2_88g2m")]
+position = Vector2(193, 237)
+rotation = -1.03784
+lightScale = 1.96
+enerty = -40
+height = 48.06
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(516.54, 216)
+position = Vector2(462, 288)
 scale = Vector2(4.28125, 4.28125)
 energy = 16.0
 blend_mode = 1
@@ -167,11 +177,11 @@ scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_ltvl7")
 
 [node name="StaticBox" type="StaticBody2D" parent="."]
-position = Vector2(200.1, 173.42)
+position = Vector2(274, 184)
+metadata/_edit_group_ = true
 
 [node name="Box" type="Sprite2D" parent="StaticBox"]
 texture = ExtResource("5_cqjlm")
-metadata/_edit_group_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBox"]
 occluder = SubResource("OccluderPolygon2D_5xvha")
