@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djupvm04e5ju4"
-path="res://.godot/imported/bayer8.png-9f30e17d895bd2a8caaac4ab8f09919f.ctex"
+uid="uid://5oeyhrr2f84i"
+path="res://.godot/imported/bayer44.png-80a47d138e8528b93f551b3ecbd9d55f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bayer8.png"
-dest_files=["res://.godot/imported/bayer8.png-9f30e17d895bd2a8caaac4ab8f09919f.ctex"]
+source_file="res://Images/bayer44.png"
+dest_files=["res://.godot/imported/bayer44.png-80a47d138e8528b93f551b3ecbd9d55f.ctex"]
 
 [params]
 

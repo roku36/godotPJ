@@ -1,12 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://dn1et87sephl5"]
+[gd_scene load_steps=31 format=3 uid="uid://dn1et87sephl5"]
 
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_0hhlk"]
+[ext_resource type="PackedScene" uid="uid://dt2kpb02fv5b3" path="res://Scenes/light.tscn" id="2_88g2m"]
 [ext_resource type="PackedScene" uid="uid://dgxdkkysa3mxo" path="res://Scenes/player.tscn" id="2_xaw0s"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_n755i"]
-[ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://box.png" id="4_j7ouc"]
-[ext_resource type="Texture2D" uid="uid://xpkirel2v4eg" path="res://blocks.png" id="5_ygx1p"]
+[ext_resource type="Texture2D" uid="uid://chsr241wsfhc3" path="res://Images/box.png" id="5_cqjlm"]
+[ext_resource type="Texture2D" uid="uid://xpkirel2v4eg" path="res://Images/blocks.png" id="6_381vs"]
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="6_ugquj"]
-[ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://bayer8.png" id="7_iw5eu"]
+[ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://Images/bayer8.png" id="8_sbrcu"]
 [ext_resource type="Script" path="res://Scripts/Filter.gd" id="8_ypb4f"]
 
 [sub_resource type="Gradient" id="Gradient_ucg3v"]
@@ -36,15 +37,6 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o353g"]
 gradient = SubResource("Gradient_y8sbo")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_ofqry"]
-offsets = PackedFloat32Array(0.451143, 0.648387)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f1ejy"]
-gradient = SubResource("Gradient_ofqry")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -87,7 +79,7 @@ bump_strength = 32.0
 noise = SubResource("FastNoiseLite_1x7el")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_18qrt"]
-diffuse_texture = ExtResource("5_ygx1p")
+diffuse_texture = ExtResource("6_381vs")
 normal_texture = SubResource("NoiseTexture2D_4l52o")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0qvu"]
@@ -111,7 +103,7 @@ shader_parameter/gamma2 = -0.38
 shader_parameter/color1 = Color(0.0745098, 0.141176, 0.0745098, 1)
 shader_parameter/color2 = Color(0.454902, 0.658824, 0.443137, 1)
 shader_parameter/rectPos = null
-shader_parameter/bayerTexture = ExtResource("7_iw5eu")
+shader_parameter/bayerTexture = ExtResource("8_sbrcu")
 
 [node name="SubNode" type="Node2D"]
 
@@ -127,19 +119,14 @@ offset_bottom = 534.0
 texture = SubResource("CanvasTexture_ihwhm")
 
 [node name="EnvLight" type="PointLight2D" parent="."]
-position = Vector2(177.24, 690.55)
+position = Vector2(147, 651)
 scale = Vector2(106.736, 106.736)
 energy = 1.16
 texture = SubResource("GradientTexture2D_o353g")
 height = 80.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(177.24, 126)
-scale = Vector2(5.51562, 5.51562)
-energy = 1.81
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_f1ejy")
-height = 35.0
+[node name="Light" parent="." instance=ExtResource("2_88g2m")]
+position = Vector2(148, 42)
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(516.54, 216)
@@ -163,12 +150,8 @@ height = 15.0
 
 [node name="Player" parent="." instance=ExtResource("2_xaw0s")]
 modulate = Color(1, 0.498039, 0.764706, 1)
-position = Vector2(243.56, 145)
+position = Vector2(25, 175)
 script = ExtResource("3_n755i")
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../../../../Icon")
-update_scale = false
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(74, 81)
@@ -184,7 +167,7 @@ scale_amount_curve = SubResource("Curve_ltvl7")
 position = Vector2(200.1, 173.42)
 
 [node name="Box" type="Sprite2D" parent="StaticBox"]
-texture = ExtResource("4_j7ouc")
+texture = ExtResource("5_cqjlm")
 metadata/_edit_group_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBox"]
@@ -214,3 +197,4 @@ offset_top = -158.0
 offset_right = 1524.0
 offset_bottom = 778.0
 script = ExtResource("8_ypb4f")
+metadata/_edit_lock_ = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rr3uogmih8m8"
-path="res://.godot/imported/bayer16tile2.png-bb1e5436fdad897097a3bab0e9c6676c.ctex"
+uid="uid://diynwwuoypo52"
+path="res://.godot/imported/palette_moonlight.png-d3fd27ee0faa3d8efdd88ff580fcd008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bayer16tile2.png"
-dest_files=["res://.godot/imported/bayer16tile2.png-bb1e5436fdad897097a3bab0e9c6676c.ctex"]
+source_file="res://Images/palette_moonlight.png"
+dest_files=["res://.godot/imported/palette_moonlight.png-d3fd27ee0faa3d8efdd88ff580fcd008.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg7lnxk0in2ic"]
 
-[ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://icon.svg" id="1_euqam"]
+[ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://Images/icon.svg" id="1_euqam"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_53s3m"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")

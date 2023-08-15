@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diynwwuoypo52"
-path="res://.godot/imported/palette_moonlight.png-7ca4aef49b982e96abc0ead60f32e05d.ctex"
+uid="uid://cns2wvy0lllib"
+path="res://.godot/imported/cursor.png-e2783060d73e14915b2f4ad8c619f242.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palette_moonlight.png"
-dest_files=["res://.godot/imported/palette_moonlight.png-7ca4aef49b982e96abc0ead60f32e05d.ctex"]
+source_file="res://Images/cursor.png"
+dest_files=["res://.godot/imported/cursor.png-e2783060d73e14915b2f4ad8c619f242.ctex"]
 
 [params]
 

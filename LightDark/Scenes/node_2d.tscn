@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=5 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="PackedScene" uid="uid://dn1et87sephl5" path="res://Scenes/sub_node.tscn" id="1_3i6js"]
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
-[ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://icon.svg" id="10_8p4un"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -40,8 +39,3 @@ offset_right = 642.0
 offset_bottom = 904.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(243.56, 145)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("10_8p4un")
