@@ -11,4 +11,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	icon.position = player.position
+	# modulate icon to black if health = 0, red if else
+	if player.health == 0:
+		icon.modulate = Color(1, 0, 0)
+	else:
+		icon.modulate = Color(1, 1, 1)
+	
 	# print(player.global_position)

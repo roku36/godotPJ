@@ -8,9 +8,9 @@
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 
 [node name="Player" type="CharacterBody2D"]
-visible = false
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_37w6b")
 
@@ -18,4 +18,5 @@ texture = ExtResource("1_37w6b")
 shape = SubResource("RectangleShape2D_smk1d")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource("OccluderPolygon2D_0haik")
