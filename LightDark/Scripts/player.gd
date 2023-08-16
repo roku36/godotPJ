@@ -15,21 +15,22 @@ func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var direction = (mouse_pos - self.position).normalized()
 		velocity = direction * spd
-		
 
-	var texture :ViewportTexture = subViewport.get_texture()
-	image = texture.get_image()
-	var color = image.get_pixelv(self.position)
-	
-	# reset modulation
-	self.modulate = Color(1, 1, 1)
-	# print(color)
-	
-	if color.r > 0.7:
-		self.modulate = Color(1, 0, 0)
-	
-	if color.r < 0.3:
-		self.modulate = Color(0, 1, 0)
+	# read_col()
 
 	move_and_slide()
 
+func read_col() -> void:
+	var texture :ViewportTexture = subViewport.get_texture()
+	image = texture.get_image()
+	var color = image.get_pixelv(self.position)
+
+	# reset modulation
+	self.modulate = Color(1, 1, 1)
+	# print(color)
+
+	if color.r > 0.7:
+		self.modulate = Color(1, 0, 0)
+
+	if color.r < 0.3:
+		self.modulate = Color(0, 1, 0)

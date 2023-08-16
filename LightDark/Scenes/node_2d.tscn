@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=11 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="PackedScene" uid="uid://dn1et87sephl5" path="res://Scenes/sub_node.tscn" id="1_3i6js"]
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_bi2nx"]
 [ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://Images/icon.svg" id="4_ddxti"]
+[ext_resource type="Shader" uid="uid://bf6vnm8xku55n" path="res://Scenes/node_2d.tres" id="5_5jb2q"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_scuoo"]
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
 
@@ -16,6 +17,9 @@ resource_local_to_scene = true
 shader = ExtResource("7_eq056")
 shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooin0"]
+shader = ExtResource("5_5jb2q")
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bi2nx")
 
@@ -23,11 +27,11 @@ script = ExtResource("1_bi2nx")
 texture_filter = 1
 offset_right = 600.0
 offset_bottom = 400.0
-scale = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+screen_space_aa = 1
 canvas_item_default_texture_filter = 0
 physics_object_picking = true
 physics_object_picking_sort = true
@@ -38,19 +42,19 @@ render_target_update_mode = 4
 material = SubResource("ShaderMaterial_u4us4")
 
 [node name="VisualizeMovable" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_qj2qv")
-offset_left = 11.0
-offset_top = 485.0
-offset_right = 642.0
-offset_bottom = 904.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset_left = 1.0
+offset_top = 626.0
+offset_right = 632.0
+offset_bottom = 1045.0
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(600, 400)
-scale = Vector2(0.34, 0.34)
+material = SubResource("ShaderMaterial_ooin0")
+position = Vector2(25, 175)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_ddxti")
 
 [node name="Camera2D" type="Camera2D" parent="Icon"]
+scale = Vector2(2.94118, 2.94118)
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("5_scuoo")
