@@ -1,7 +1,7 @@
 # @tool
 extends CharacterBody2D
 
-# @onready var subViewport = $"../SubViewportContainer/SubViewport"
+@onready var filter: ColorRect = $"../Filter"
 @onready var subViewport = $"../.."
 var image: Image
 var spd: float = 100
@@ -14,7 +14,9 @@ func _process(delta: float) -> void:
 
 	# generate image if input up
 	if Input.is_action_just_pressed("ui_up"):
+		filter.visible = false
 		generate_image()
+		filter.visible = true
 
 	var mouse_pos = get_global_mouse_position()
 	# clip health from 0 to 100
@@ -40,16 +42,6 @@ func get_intensity() -> float:
 	var color = image.get_pixelv(self.position)
 	return color.r
 
-	# # reset modulation
-	# self.modulate = Color(1, 1, 1)
-	# # print(color)
-	#
-	# if color.r > 0.7:
-	# 	self.modulate = Color(1, 0, 0)
-	#
-	# if color.r < 0.3:
-	# 	self.modulate = Color(0, 1, 0)
-	
 
 func generate_image() -> void:
 	var texture :ViewportTexture = subViewport.get_texture()

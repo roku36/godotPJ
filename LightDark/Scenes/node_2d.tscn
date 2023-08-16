@@ -1,11 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyq322y6avext"]
+[gd_scene load_steps=15 format=3 uid="uid://cyq322y6avext"]
 
 [ext_resource type="PackedScene" uid="uid://dn1et87sephl5" path="res://Scenes/sub_node.tscn" id="1_3i6js"]
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_bi2nx"]
 [ext_resource type="Texture2D" uid="uid://d2ahodp06tkvm" path="res://Images/icon.svg" id="4_ddxti"]
 [ext_resource type="Shader" uid="uid://bf6vnm8xku55n" path="res://Scenes/node_2d.tres" id="5_5jb2q"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_scuoo"]
+[ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="7_dtm7c"]
 [ext_resource type="Shader" path="res://Shaders/movable.gdshader" id="7_eq056"]
+[ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://Images/bayer8.png" id="8_fkidn"]
+[ext_resource type="Script" path="res://Scripts/Filter.gd" id="9_u0i1j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u4us4"]
 
@@ -16,6 +19,15 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("7_eq056")
 shader_parameter/subTexture = SubResource("ViewportTexture_lphdy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_copwk"]
+shader = ExtResource("7_dtm7c")
+shader_parameter/gamma1 = 5.0
+shader_parameter/gamma2 = -0.38
+shader_parameter/color1 = Color(0.0745098, 0.141176, 0.0745098, 1)
+shader_parameter/color2 = Color(0.454902, 0.658824, 0.443137, 1)
+shader_parameter/rectPos = null
+shader_parameter/bayerTexture = ExtResource("8_fkidn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ooin0"]
 shader = ExtResource("5_5jb2q")
@@ -48,6 +60,18 @@ offset_left = 5.0
 offset_top = 905.0
 offset_right = 552.0
 offset_bottom = 1324.0
+
+[node name="Filter" type="ColorRect" parent="."]
+visible = false
+light_mask = 0
+texture_filter = 1
+material = SubResource("ShaderMaterial_copwk")
+offset_left = -180.0
+offset_top = -158.0
+offset_right = 1524.0
+offset_bottom = 778.0
+script = ExtResource("9_u0i1j")
+metadata/_edit_lock_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ooin0")

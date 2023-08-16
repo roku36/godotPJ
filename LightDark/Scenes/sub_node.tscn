@@ -164,7 +164,6 @@ texture_scale = 1.5
 height = 15.0
 
 [node name="Player" parent="." instance=ExtResource("2_xaw0s")]
-visible = true
 modulate = Color(1, 0.498039, 0.764706, 1)
 position = Vector2(25, 175)
 script = ExtResource("3_n755i")
@@ -205,6 +204,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65538, 0, 0, 65539, 0, 0, 131075, 0, 0, 262147, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 458757, 0, 0, 524293, 0, 0, 720903, 0, 0, 720904, 0, 0, 786442, 0, 0, 851978, 0, 0, 917514, 0, 0, 983050, 0, 0, 983051, 0, 0, 1048587, 0, 0, 524296, 0, 0, 262156, 0, 0, 786459, 0, 0, 1048605, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 458782, 0, 0, 458783, 0, 0, 458784, 0, 0, 458785, 0, 0, 458786, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 524327, 0, 0, 524328, 0, 0)
 
 [node name="Filter" type="ColorRect" parent="."]
+visible = false
 light_mask = 0
 texture_filter = 1
 material = SubResource("ShaderMaterial_5nopj")
