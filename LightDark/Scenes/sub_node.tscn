@@ -1,6 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://dn1et87sephl5"]
+[gd_scene load_steps=32 format=3 uid="uid://dn1et87sephl5"]
 
-[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_0hhlk"]
+[ext_resource type="Shader" path="res://Shaders/filter_self.gdshader" id="1_mxouw"]
 [ext_resource type="PackedScene" uid="uid://dt2kpb02fv5b3" path="res://Scenes/light.tscn" id="2_88g2m"]
 [ext_resource type="PackedScene" uid="uid://dgxdkkysa3mxo" path="res://Scenes/player.tscn" id="2_xaw0s"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_n755i"]
@@ -9,6 +9,14 @@
 [ext_resource type="Shader" path="res://Shaders/filter.gdshader" id="6_ugquj"]
 [ext_resource type="Texture2D" uid="uid://djupvm04e5ju4" path="res://Images/bayer8.png" id="8_sbrcu"]
 [ext_resource type="Script" path="res://Scripts/Filter.gd" id="8_ypb4f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhq7w"]
+shader = ExtResource("1_mxouw")
+shader_parameter/gamma1 = 2.2
+shader_parameter/gamma2 = 0.004
+shader_parameter/color1 = Color(1, 0, 0, 1)
+shader_parameter/color2 = Color(0, 1, 0, 1)
+shader_parameter/rectPos = null
 
 [sub_resource type="Gradient" id="Gradient_ucg3v"]
 offsets = PackedFloat32Array(0)
@@ -106,6 +114,7 @@ shader_parameter/rectPos = null
 shader_parameter/bayerTexture = ExtResource("8_sbrcu")
 
 [node name="SubNode" type="Node2D"]
+material = SubResource("ShaderMaterial_jhq7w")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 offset_left = -67.0
@@ -113,10 +122,6 @@ offset_top = -96.0
 offset_right = 905.0
 offset_bottom = 534.0
 texture = SubResource("CanvasTexture_ihwhm")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(25, 175)
-script = ExtResource("1_0hhlk")
 
 [node name="EnvLight" type="PointLight2D" parent="."]
 position = Vector2(147, 651)
@@ -159,12 +164,10 @@ texture_scale = 1.5
 height = 15.0
 
 [node name="Player" parent="." instance=ExtResource("2_xaw0s")]
+visible = true
 modulate = Color(1, 0.498039, 0.764706, 1)
 position = Vector2(25, 175)
 script = ExtResource("3_n755i")
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(74, 81)

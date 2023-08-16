@@ -8,6 +8,7 @@
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 
 [node name="Player" type="CharacterBody2D"]
+visible = false
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

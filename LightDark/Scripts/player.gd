@@ -4,7 +4,7 @@ extends CharacterBody2D
 # @onready var subViewport = $"../SubViewportContainer/SubViewport"
 @onready var subViewport = $"../.."
 var image: Image
-var spd: float = 50
+var spd: float = 100
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
