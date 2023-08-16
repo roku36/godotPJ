@@ -14,9 +14,7 @@ func _process(delta: float) -> void:
 
 	# generate image if input up
 	if Input.is_action_just_pressed("ui_up"):
-		filter.visible = false
 		generate_image()
-		filter.visible = true
 
 	var mouse_pos = get_global_mouse_position()
 	# clip health from 0 to 100
@@ -44,5 +42,8 @@ func get_intensity() -> float:
 
 
 func generate_image() -> void:
+	filter.visible = false
+	await get_tree().process_frame
 	var texture :ViewportTexture = subViewport.get_texture()
 	image = texture.get_image()
+	filter.visible = true
