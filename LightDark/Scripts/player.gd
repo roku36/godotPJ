@@ -42,8 +42,6 @@ func get_intensity() -> float:
 
 
 func generate_image() -> void:
-	filter.visible = false
 	await get_tree().process_frame
 	var texture :ViewportTexture = subViewport.get_texture()
-	filter.visible = true
 	image = texture.get_image()

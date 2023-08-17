@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var icon: Sprite2D = $Icon
-@onready var player : Node2D = $SubViewportContainer/SubViewport/SubNode/Player
+@onready var icon: Sprite2D = $SubViewportContainer2/SubViewport/Icon
+@onready var player: Node2D = $SubViewportContainer2/SubViewport/SubViewportContainer/SubViewport/SubNode/Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

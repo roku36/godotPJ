@@ -9,9 +9,7 @@ uniform vec4 color2: source_color = vec4(0.0, 1.0, 0.0, 1.0);
 uniform vec2 rectPos;
 
 void fragment() {
-	 // sample the texture
-	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
-	// vec2 iResolution = vec2(200, 150);
+	vec2 iResolution = 1.0 / (SCREEN_PIXEL_SIZE);
     vec2 uv = FRAGCOORD.xy/iResolution.xy;
     vec4 col = texture(SCREEN_TEXTURE,uv);
     

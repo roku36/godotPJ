@@ -12,7 +12,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u4us4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lphdy"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
+viewport_path = NodePath("SubViewportContainer2/SubViewport/SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qj2qv"]
 resource_local_to_scene = true
@@ -34,13 +34,29 @@ shader = ExtResource("5_5jb2q")
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bi2nx")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(25, 175)
+scale = Vector2(0.2, 0.2)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = ExtResource("5_scuoo")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(2000, 3000)
+render_target_update_mode = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewportContainer2/SubViewport"]
 texture_filter = 1
-offset_right = 600.0
-offset_bottom = 400.0
+offset_right = 2000.0
+offset_bottom = 3000.0
 metadata/_edit_lock_ = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2/SubViewport/SubViewportContainer"]
 handle_input_locally = false
 screen_space_aa = 1
 canvas_item_default_texture_filter = 0
@@ -49,10 +65,10 @@ physics_object_picking_sort = true
 size = Vector2i(2000, 3000)
 render_target_update_mode = 4
 
-[node name="SubNode" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_3i6js")]
+[node name="SubNode" parent="SubViewportContainer2/SubViewport/SubViewportContainer/SubViewport" instance=ExtResource("1_3i6js")]
 material = SubResource("ShaderMaterial_u4us4")
 
-[node name="VisualizeMovable" type="ColorRect" parent="."]
+[node name="VisualizeMovable" type="ColorRect" parent="SubViewportContainer2/SubViewport"]
 visible = false
 material = SubResource("ShaderMaterial_qj2qv")
 offset_left = 5.0
@@ -60,8 +76,7 @@ offset_top = 905.0
 offset_right = 552.0
 offset_bottom = 1324.0
 
-[node name="Filter" type="ColorRect" parent="."]
-visible = false
+[node name="Filter" type="ColorRect" parent="SubViewportContainer2/SubViewport"]
 light_mask = 0
 texture_filter = 1
 material = SubResource("ShaderMaterial_copwk")
@@ -71,14 +86,11 @@ offset_right = 1524.0
 offset_bottom = 778.0
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="SubViewportContainer2/SubViewport"]
 material = SubResource("ShaderMaterial_ooin0")
 position = Vector2(25, 175)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_ddxti")
 
-[node name="Camera2D" type="Camera2D" parent="Icon"]
-scale = Vector2(2.94118, 2.94118)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-script = ExtResource("5_scuoo")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SubViewportContainer2/SubViewport/Icon"]
+remote_path = NodePath("../../../../Camera2D")
