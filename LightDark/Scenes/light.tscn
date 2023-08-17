@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://y8rl7e2gvg74" path="res://Images/lightcore.png" id="1_titdk"]
 [ext_resource type="Texture2D" uid="uid://dfcgh5q1jntb1" path="res://Images/light60.svg" id="2_odwip"]
 
-[node name="Light" type="Node2D"]
+[node name="Light" type="Node2D" groups=["lights"]]
 script = ExtResource("1_s1yxg")
 
 [node name="bg" type="ColorRect" parent="."]
