@@ -19,19 +19,12 @@ void fragment() {
     col = vec4(pow(col.rgb,vec3(gamma1)) - gamma2,col.a);
     
     // find bayer matrix entry based on fragment position
-    // float bayerValue = bayerIndex[int(FRAGCOORD.x) % 4][int(FRAGCOORD.y) % 4];
     vec2 bayerUV = mod(FRAGCOORD.xy, 4.0) /4.0;
     float bayerValue = texture(bayerTexture, bayerUV).r + 0.01;
     
-    // output
-
     // if bayerValue is 0, use the green, otherwize red
-    vec4 dithered = vec4(
-            step(bayerValue,col.r),
-            step(bayerValue,col.r),
-            step(bayerValue,col.r),
-            col.a);
+    float dithered = step(bayerValue,col.r);
 
-    vec4 col2 = (dithered.r <= 0.5) ? color1 : color2;
+    vec4 col2 = (dithered <= 0.5) ? color1 : color2;
     COLOR = col2;
 }

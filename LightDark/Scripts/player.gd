@@ -45,5 +45,5 @@ func generate_image() -> void:
 	filter.visible = false
 	await get_tree().process_frame
 	var texture :ViewportTexture = subViewport.get_texture()
-	image = texture.get_image()
 	filter.visible = true
+	image = texture.get_image()
