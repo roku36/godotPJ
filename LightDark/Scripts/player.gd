@@ -69,5 +69,6 @@ func move_light() -> void:
 		holding_index = lights.find(light)
 	
 	if light.global_position.distance_to(self.global_position) < 20:
-		light.global_position = self.global_position
-		light.rotation = direction.angle()
+		light.global_position = lerp(light.global_position, self.global_position, 0.8)
+		light.global_rotation = lerp_angle(light.global_rotation, direction.angle(), 0.2)
+		

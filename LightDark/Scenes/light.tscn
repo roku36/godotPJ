@@ -23,6 +23,7 @@ grow_vertical = 2
 color = Color(0.333333, 0.027451, 0.12549, 1)
 
 [node name="Lightcore" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("1_titdk")
 metadata/_edit_lock_ = true
 
