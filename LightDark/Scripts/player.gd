@@ -6,6 +6,7 @@ extends CharacterBody2D
 var image: Image
 var spd: float = 100
 var health: int = 100
+var direction: Vector2
 
 func _ready() -> void:
 	generate_image()
@@ -16,6 +17,8 @@ func _process(delta: float) -> void:
 		generate_image()
 
 	var mouse_pos = get_global_mouse_position()
+	direction = (mouse_pos - self.position).normalized()
+
 	# clip health from 0 to 100
 	health = clamp(health, 0, 100)
 
@@ -23,7 +26,6 @@ func _process(delta: float) -> void:
 	# use move_and_slide
 	velocity = Vector2.ZERO
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		var direction = (mouse_pos - self.position).normalized()
 		velocity = direction * spd
 
 	move_and_slide()
@@ -35,7 +37,9 @@ func _process(delta: float) -> void:
 	if get_intensity() < 0.3:
 		health = 0
 	
-	move_light()
+	# if pressing space
+	if Input.is_action_pressed("ui_accept"):
+		move_light()
 
 func get_intensity() -> float:
 	var color = image.get_pixelv(self.position)
@@ -53,3 +57,4 @@ func move_light() -> void:
 	for light in lights:
 		if light.global_position.distance_to(self.global_position) < 20:
 			light.global_position = self.global_position
+			light.rotation = direction.angle()
