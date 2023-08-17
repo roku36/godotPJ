@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var filter: ColorRect = $"../Filter"
 @onready var subViewport = $"../.."
 var image: Image
-var spd: float = 100
+var spd: float = 10
 var health: int = 100
 var direction: Vector2
 var holding_index: int
@@ -18,7 +18,8 @@ func _process(delta: float) -> void:
 		generate_image()
 
 	var mouse_pos = get_global_mouse_position()
-	direction = (mouse_pos - self.position).normalized()
+	direction = (mouse_pos - self.position)
+	direction = direction.limit_length(10.0)
 
 	# clip health from 0 to 100
 	health = clamp(health, 0, 100)
@@ -27,13 +28,15 @@ func _process(delta: float) -> void:
 	# use move_and_slide
 	velocity = Vector2.ZERO
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		# velocity = direction * spd
+		# instead of constant speed, leap and clam
 		velocity = direction * spd
+		
 
 	move_and_slide()
 
 	health = 100
-
-	print(get_intensity())
+	# print(get_intensity())
 
 	if get_intensity() < 0.3:
 		health = 0

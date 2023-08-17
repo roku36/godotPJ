@@ -12,7 +12,7 @@ polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 script = ExtResource("1_m66cu")
 
 [node name="Icon" type="Sprite2D" parent="."]
-visible = false
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_37w6b")
 
