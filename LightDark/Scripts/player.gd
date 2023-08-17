@@ -7,6 +7,7 @@ var image: Image
 var spd: float = 100
 var health: int = 100
 var direction: Vector2
+var holding_index: int
 
 func _ready() -> void:
 	generate_image()
@@ -40,6 +41,8 @@ func _process(delta: float) -> void:
 	# if pressing space
 	if Input.is_action_pressed("ui_accept"):
 		move_light()
+	else:
+		holding_index = -1
 
 func get_intensity() -> float:
 	var color = image.get_pixelv(self.position)
@@ -54,7 +57,17 @@ func generate_image() -> void:
 # detect "Light" instance and move it to self position if near to player
 func move_light() -> void:
 	var lights = get_tree().get_nodes_in_group("lights")
-	for light in lights:
-		if light.global_position.distance_to(self.global_position) < 20:
-			light.global_position = self.global_position
-			light.rotation = direction.angle()
+	# pick closest light from player
+	var light = lights[0]
+	# if holding_index is not -1
+	if holding_index != -1:
+		light = lights[holding_index]
+	else:
+		for l in lights:
+			if l.global_position.distance_to(self.global_position) < light.global_position.distance_to(self.global_position):
+				light = l
+		holding_index = lights.find(light)
+	
+	if light.global_position.distance_to(self.global_position) < 20:
+		light.global_position = self.global_position
+		light.rotation = direction.angle()
