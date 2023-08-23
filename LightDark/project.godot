@@ -20,8 +20,6 @@ config/icon="res://Images/icon.svg"
 
 window/size/viewport_width=1200
 window/size/viewport_height=800
-window/size/window_width_override=2400
-window/size/window_height_override=1600
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://Images/cursor.png"
 mouse_cursor/tooltip_position_offset=Vector2(2.08165e-12, 2.08165e-12)

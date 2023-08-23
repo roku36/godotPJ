@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=15 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="3_aaxum"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
-[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_wlde4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -99,12 +98,12 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(399, -293)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
 position = Vector2(607, -272)
 rotation = 1.94397
 segment_num = 2
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("7_wlde4")
 
 [connection signal="out_dir" from="Reflector" to="Player" method="_on_reflector_out_dir"]
