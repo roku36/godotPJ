@@ -36,7 +36,7 @@ script = ExtResource("1_bi2nx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(400, 240)
-scale = Vector2(0.2, 0.2)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 3000
@@ -51,6 +51,7 @@ offset_bottom = 2000.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(3000, 2000)
 render_target_update_mode = 4
 
