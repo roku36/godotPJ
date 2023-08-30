@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=18 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="3_aaxum"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
-[ext_resource type="Script" path="res://Shaders/number.gd" id="7_llb6t"]
+[ext_resource type="Shader" path="res://Shaders/number.gdshader" id="7_wnaa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -54,6 +54,10 @@ shader_parameter/rough_noise = SubResource("NoiseTexture2D_on4ni")
 bake_resolution = 50
 _data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.418566, 0.150602), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
+shader = ExtResource("7_wnaa8")
+shader_parameter/blur_width = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_o53ck"]
 font_size = 120
@@ -114,12 +118,12 @@ rotation = 1.94397
 segment_num = 2
 
 [node name="Label" type="Label" parent="."]
+material = SubResource("ShaderMaterial_gdr3f")
 offset_left = -383.0
 offset_top = -154.0
 offset_right = -176.0
 offset_bottom = 14.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
-script = ExtResource("7_llb6t")
 
 [connection signal="out_dir" from="Reflector" to="Player" method="_on_reflector_out_dir"]
