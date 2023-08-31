@@ -16,6 +16,8 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=600
+window/size/viewport_height=400
 window/size/mode=2
 window/size/resizable=false
 window/size/borderless=true
@@ -23,7 +25,6 @@ window/size/always_on_top=true
 window/size/transparent=true
 window/size/no_focus=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
 window/per_pixel_transparency/allowed=true
 
 [rendering]

@@ -25,6 +25,7 @@ uniform float second_hand_width : hint_range(0.001, 0.01) = 0.002;
 uniform int hours : hint_range(1, 12, 1) = 12;
 uniform int minutes : hint_range(0, 59, 1) = 0;
 uniform int seconds : hint_range(0, 59, 1) = 0;
+uniform float opacity : hint_range(0, 1) = 0.5;
 
 float greater_than(float x, float y) {
   return max(sign(x - y), 0.0);
@@ -64,4 +65,7 @@ void fragment() {
 //	If you always want the edges to be transparent replace the following line of code with:
 //	COLOR.a *= greater_than(1.0, l);
 	COLOR.a *= max(sign(1.0 - l), float(show_edges));
+
+	// opacity 0.5
+	COLOR.a *= opacity;
 }

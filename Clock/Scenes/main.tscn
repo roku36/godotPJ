@@ -25,13 +25,13 @@ shader_parameter/second_hand_length = 0.7
 shader_parameter/second_hand_width = 0.002
 shader_parameter/hours = 12
 shader_parameter/minutes = 0
-shader_parameter/seconds = 0
+shader_parameter/seconds = 26
 
 [node name="Main" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ywe27")
-offset_left = 987.0
-offset_top = 494.0
-offset_right = 1072.0
-offset_bottom = 579.0
+offset_left = 100.0
+offset_right = 500.0
+offset_bottom = 400.0
+size_flags_horizontal = 0
