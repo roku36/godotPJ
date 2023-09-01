@@ -27,14 +27,14 @@ shader_parameter/second_hand_width = 0.002
 shader_parameter/hours = 12
 shader_parameter/minutes = 0
 shader_parameter/seconds = 26
-shader_parameter/opacity = 0.23
+shader_parameter/opacity = 0.1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qjgex")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ywe27")
-offset_left = 100.0
-offset_right = 500.0
-offset_bottom = 400.0
+offset_left = 35.0
+offset_right = 125.0
+offset_bottom = 90.0
 size_flags_horizontal = 0
