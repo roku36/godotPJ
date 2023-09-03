@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://mljt322ncc7"]
+[gd_scene load_steps=3 format=3 uid="uid://mljt322ncc7"]
+
+[ext_resource type="Script" path="res://Scripts/title.gd" id="1_unw2j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc6hs"]
 font_size = 80
 
 [node name="Title" type="Node2D"]
+script = ExtResource("1_unw2j")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 470.0
@@ -12,3 +15,12 @@ offset_right = 510.0
 offset_bottom = 114.0
 text = "Loop"
 label_settings = SubResource("LabelSettings_wc6hs")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 549.0
+offset_top = 415.0
+offset_right = 612.0
+offset_bottom = 446.0
+text = "stage 1"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
