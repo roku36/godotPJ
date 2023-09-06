@@ -104,7 +104,7 @@ position = Vector2(607, -272)
 rotation = 1.94397
 segment_num = 0
 
-[node name="Label" type="Label" parent="."]
+[node name="TimeLabel" type="Label" parent="."]
 material = SubResource("ShaderMaterial_gdr3f")
 offset_left = -432.0
 offset_top = -294.0

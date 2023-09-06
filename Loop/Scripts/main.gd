@@ -4,8 +4,7 @@ extends Node2D
 @onready var road_path: Path2D = $Path2D
 @onready var road_line: Line2D = $Line2D
 @onready var player: CharacterBody2D = $Player
-
-signal rap_goal(raptime)
+@onready var time_label: Label = $TimeLabel
 
 var raptime:float = 0.0
 var bestRaptime:float = 1000
@@ -18,11 +17,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if Engine.is_editor_hint():
 		update_road_line()
 	else:
 		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().reload_current_scene()
+		# update time
+		raptime += delta
+		time_label.text = "%04.2f" % raptime
 			
 	nearest_offset = road_path.curve.get_closest_offset(player.position)
 	queue_redraw()
