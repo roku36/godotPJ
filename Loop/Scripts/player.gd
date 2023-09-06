@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
 @export var turn_speed: float = 0.3
+var impact = preload("res://Scenes/impact.tscn")
 
 var mousex_delta:float = 0.0
 var nearest_offset:float = 0.0
@@ -40,6 +41,10 @@ func _input(event):
 			print("Closest enemy distance: " + str(closest_reflector_distance))
 			print("Closest enemy rotation: " + str(closest_reflector.rotation))
 			reflection_to(closest_reflector.rotation, closest_reflector.global_position)
+			# add impact instance to the position
+			var impact_instance = impact.instantiate()
+			impact_instance.global_position = closest_reflector.global_position
+			get_parent().add_child(impact_instance)
 
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
