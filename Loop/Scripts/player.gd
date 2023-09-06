@@ -27,7 +27,6 @@ func _physics_process(delta):
 	nearest_point = road_path.curve.sample_baked(nearest_offset)
 	forward_point = road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
-
 	mousex_delta = 0
 	move_and_slide()
 
@@ -35,27 +34,26 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		mousex_delta = event.relative.x
-
 	if event.is_action_pressed("ui_accept"):
-		if closest_reflector != null:
+		# if distance is < 100
+		if closest_reflector != null and closest_reflector_distance < 100:
 			print("Closest enemy distance: " + str(closest_reflector_distance))
-			print("Closest enemy rotation: " + str(closest_reflector.rotation_degrees))
-			reflection_to(closest_reflector.rotation_degrees, closest_reflector.global_position)
+			print("Closest enemy rotation: " + str(closest_reflector.rotation))
+			reflection_to(closest_reflector.rotation, closest_reflector.global_position)
 
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
 	var push_force = (100/ center_dist) + 10
 	var restrict_force = center_dist / 3 ** 2
-
 	# get direction to forward road
 	var road_dir : float = nearest_point.angle_to_point(forward_point)
 	road_dir += PI / 2
-
 	# rotate if close to center
 	self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
 	push_force = clampf(push_force, 5, 100)
 	self.velocity += self.position.direction_to(nearest_point) * restrict_force
 	self.velocity += Vector2.UP.rotated(self.rotation) * push_force
+
 
 func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
@@ -70,7 +68,6 @@ func reflection_to(angle, pos) -> void:
 func check_closest_reflector():
 	closest_reflector= null
 	closest_reflector_distance = INF
-
 	for reflector in get_tree().get_nodes_in_group("Reflector"):
 		var distance = reflector.global_position.distance_to(global_position)
 		if distance < closest_reflector_distance:
