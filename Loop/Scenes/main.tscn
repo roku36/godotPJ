@@ -102,7 +102,7 @@ position_smoothing_enabled = true
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
 position = Vector2(607, -272)
 rotation = 1.94397
-segment_num = 2
+segment_num = 0
 
 [node name="Label" type="Label" parent="."]
 material = SubResource("ShaderMaterial_gdr3f")
@@ -112,5 +112,3 @@ offset_right = -225.0
 offset_bottom = -126.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
-
-[connection signal="out_dir" from="Reflector" to="Player" method="_on_reflector_out_dir"]

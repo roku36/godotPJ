@@ -12,7 +12,6 @@ extends Area2D
 		return segment_num
 
 var point_out_angle: float = 0.0
-signal out_dir(angle, pos)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,7 +37,3 @@ func set_segment_num(value: int) -> int:
 	self.rotation = point_out_angle
 	
 	return value
-
-func _on_body_entered(body: Node2D) -> void:
-	print("signal: reflection!!")
-	out_dir.emit(self.rotation, self.position)

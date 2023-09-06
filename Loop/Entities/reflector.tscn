@@ -16,7 +16,7 @@ gradient = SubResource("Gradient_m6nej")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Reflector" type="Area2D"]
+[node name="Reflector" type="Area2D" groups=["Reflector"]]
 script = ExtResource("1_8mfd5")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -33,5 +33,3 @@ position = Vector2(-55, 0)
 scale = Vector2(5.9375, 5.9375)
 energy = 3.19
 texture = SubResource("GradientTexture2D_k7q7e")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

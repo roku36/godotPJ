@@ -11,11 +11,15 @@ var nearest_offset:float = 0.0
 var nearest_point = Vector2.ZERO
 var forward_point = Vector2.ZERO
 
+var closest_reflector = null
+var closest_reflector_distance = INF
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
-	
+
 func _physics_process(delta):    
+	check_closest_reflector()
 	velocity = velocity.limit_length(max_speed)
 	velocity *= 0.95
 	update_rotation(mousex_delta, delta)
@@ -23,7 +27,7 @@ func _physics_process(delta):
 	nearest_point = road_path.curve.sample_baked(nearest_offset)
 	forward_point = road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
-	
+
 	mousex_delta = 0
 	move_and_slide()
 
@@ -32,15 +36,21 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mousex_delta = event.relative.x
 
+	if event.is_action_pressed("ui_accept"):
+		if closest_reflector != null:
+			print("Closest enemy distance: " + str(closest_reflector_distance))
+			print("Closest enemy rotation: " + str(closest_reflector.rotation_degrees))
+			reflection_to(closest_reflector.rotation_degrees, closest_reflector.global_position)
+
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
 	var push_force = (100/ center_dist) + 10
 	var restrict_force = center_dist / 3 ** 2
-		
+
 	# get direction to forward road
 	var road_dir : float = nearest_point.angle_to_point(forward_point)
 	road_dir += PI / 2
-	
+
 	# rotate if close to center
 	self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
 	push_force = clampf(push_force, 5, 100)
@@ -51,7 +61,18 @@ func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
 
 
-func _on_reflector_out_dir(angle, pos) -> void:
+func reflection_to(angle, pos) -> void:
 	self.rotation = lerp_angle(self.rotation, angle + Vector2.DOWN.angle(), 1)
 	self.position = pos
 	velocity = Vector2.RIGHT.rotated(angle) * velocity.length()
+
+
+func check_closest_reflector():
+	closest_reflector= null
+	closest_reflector_distance = INF
+
+	for reflector in get_tree().get_nodes_in_group("Reflector"):
+		var distance = reflector.global_position.distance_to(global_position)
+		if distance < closest_reflector_distance:
+			closest_reflector_distance = distance
+			closest_reflector=reflector 
