@@ -50,7 +50,6 @@ shader_parameter/gradient_path = SubResource("GradientTexture2D_bj71q")
 shader_parameter/rough_noise = SubResource("NoiseTexture2D_on4ni")
 
 [sub_resource type="Curve" id="Curve_t3qhw"]
-bake_resolution = 50
 _data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.418566, 0.150602), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -101,9 +100,9 @@ position = Vector2(399, -293)
 position_smoothing_enabled = true
 
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
-position = Vector2(1282, 168)
-rotation = 1.63727
-segment_num = 4
+position = Vector2(607, -272)
+rotation = 1.94397
+segment_num = 2
 
 [node name="Label" type="Label" parent="."]
 material = SubResource("ShaderMaterial_gdr3f")
@@ -113,3 +112,5 @@ offset_right = -225.0
 offset_bottom = -126.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
+
+[connection signal="out_dir" from="Reflector" to="Player" method="_on_reflector_out_dir"]

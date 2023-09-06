@@ -2,6 +2,7 @@
 extends Area2D
 
 @onready var road_path: Path2D = $"../Path2D"
+@onready var player: CharacterBody2D = $"../Player"
 
 # bigger than 0
 @export_range(0, 100, 1) var segment_num: int = 5:
@@ -19,6 +20,11 @@ func _ready() -> void:
 
 
 func set_segment_num(value: int) -> int:
+	# if road_path is invalid (returns null), return 0 
+	if road_path == null:
+		return 0
+	
+	# if value larger than points
 	if value >= road_path.curve.get_point_count():
 		value = 0
 		print("out of range")
@@ -34,4 +40,5 @@ func set_segment_num(value: int) -> int:
 	return value
 
 func _on_body_entered(body: Node2D) -> void:
+	print("signal: reflection!!")
 	out_dir.emit(self.rotation, self.position)
