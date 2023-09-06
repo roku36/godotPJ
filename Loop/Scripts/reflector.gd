@@ -1,5 +1,5 @@
 @tool
-extends Area2D
+extends Node2D
 
 @onready var road_path: Path2D = $"../Path2D"
 @onready var player: CharacterBody2D = $"../Player"

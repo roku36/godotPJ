@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0xfurce5ygwk"]
+[gd_scene load_steps=5 format=3 uid="uid://b0xfurce5ygwk"]
 
 [ext_resource type="Script" path="res://Scripts/reflector.gd" id="1_8mfd5"]
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_mpq3y"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_leiu6"]
-radius = 32.0624
 
 [sub_resource type="Gradient" id="Gradient_m6nej"]
 interpolation_mode = 2
@@ -16,8 +13,21 @@ gradient = SubResource("Gradient_m6nej")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Reflector" type="Area2D" groups=["Reflector"]]
+[node name="Reflector" type="Node2D" groups=["Reflector"]]
 script = ExtResource("1_8mfd5")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-23, 23)
+texture = ExtResource("1_mpq3y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -115.0
+offset_top = -56.0
+offset_right = 107.0
+offset_bottom = -37.0
+color = Color(0.0745098, 1, 0.0745098, 1)
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.305882, 0.231373, 1)
@@ -25,11 +35,9 @@ position = Vector2(-72, 0)
 scale = Vector2(0.382812, 1.48438)
 texture = ExtResource("1_mpq3y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_leiu6")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-55, 0)
 scale = Vector2(5.9375, 5.9375)
 energy = 3.19
 texture = SubResource("GradientTexture2D_k7q7e")
+metadata/_edit_lock_ = true
