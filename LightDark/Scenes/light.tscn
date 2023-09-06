@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt2kpb02fv5b3"]
+[gd_scene load_steps=5 format=3 uid="uid://dt2kpb02fv5b3"]
 
 [ext_resource type="Script" path="res://Scripts/light.gd" id="1_s1yxg"]
 [ext_resource type="Texture2D" uid="uid://y8rl7e2gvg74" path="res://Images/lightcore.png" id="1_titdk"]
 [ext_resource type="Texture2D" uid="uid://dfcgh5q1jntb1" path="res://Images/light60.svg" id="2_odwip"]
+[ext_resource type="Script" path="res://Scripts/primitive.gd" id="4_bgkr5"]
 
 [node name="Light" type="Node2D" groups=["lights"]]
 script = ExtResource("1_s1yxg")
@@ -23,12 +24,17 @@ grow_vertical = 2
 color = Color(0.333333, 0.027451, 0.12549, 1)
 
 [node name="Lightcore" type="Sprite2D" parent="."]
+visible = false
 light_mask = 0
 texture = ExtResource("1_titdk")
 metadata/_edit_lock_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 energy = 10.0
 shadow_enabled = true
 texture = ExtResource("2_odwip")
 height = 20.0
+
+[node name="primitive" type="Node2D" parent="."]
+script = ExtResource("4_bgkr5")
