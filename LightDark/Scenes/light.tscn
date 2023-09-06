@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt2kpb02fv5b3"]
+[gd_scene load_steps=8 format=3 uid="uid://dt2kpb02fv5b3"]
 
 [ext_resource type="Script" path="res://Scripts/light.gd" id="1_s1yxg"]
 [ext_resource type="Texture2D" uid="uid://y8rl7e2gvg74" path="res://Images/lightcore.png" id="1_titdk"]
-[ext_resource type="Texture2D" uid="uid://dfcgh5q1jntb1" path="res://Images/light60.svg" id="2_odwip"]
+[ext_resource type="Shader" path="res://Shaders/lightsector.gdshader" id="3_limd6"]
 [ext_resource type="Script" path="res://Scripts/primitive.gd" id="4_bgkr5"]
+[ext_resource type="Script" path="res://Scripts/testPng.gd" id="5_0dr0c"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_c3m5m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_063wg"]
+shader = ExtResource("3_limd6")
+shader_parameter/radius = 0.79
 
 [node name="Light" type="Node2D" groups=["lights"]]
 script = ExtResource("1_s1yxg")
@@ -33,8 +40,14 @@ metadata/_edit_lock_ = true
 visible = false
 energy = 10.0
 shadow_enabled = true
-texture = ExtResource("2_odwip")
+texture = SubResource("ImageTexture_c3m5m")
 height = 20.0
 
 [node name="primitive" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_063wg")
 script = ExtResource("4_bgkr5")
+type = 2
+radius = 256.7
+
+[node name="testPng" type="Node2D" parent="."]
+script = ExtResource("5_0dr0c")
