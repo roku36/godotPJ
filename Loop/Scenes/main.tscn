@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=17 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="3_aaxum"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
-[ext_resource type="Shader" path="res://Shaders/number.gdshader" id="7_wnaa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -56,8 +55,6 @@ _data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.418566, 0.150
 point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
-shader = ExtResource("7_wnaa8")
-shader_parameter/blur_width = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_o53ck"]
 font_size = 120
@@ -79,17 +76,7 @@ offset_bottom = 2420.0
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_m06sm")
 
-[node name="Bouncer" type="PathFollow2D" parent="Path2D"]
-visible = false
-position = Vector2(219.98, 512.424)
-rotation = 3.07383
-progress = 3938.93
-
-[node name="Icon" type="Sprite2D" parent="Path2D/Bouncer"]
-texture = ExtResource("3_aaxum")
-
 [node name="Dash" type="PathFollow2D" parent="Path2D"]
-visible = false
 position = Vector2(551.281, 141.939)
 rotation = 0.73714
 progress = 1351.35
@@ -104,6 +91,7 @@ points = PackedVector2Array(-72, -50, -72.0872, -53.2669, -72.1994, -56.5194, -7
 width = 300.0
 width_curve = SubResource("Curve_t3qhw")
 texture_mode = 2
+joint_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
@@ -113,17 +101,15 @@ position = Vector2(399, -293)
 position_smoothing_enabled = true
 
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
-position = Vector2(607, -272)
-rotation = 1.94397
-segment_num = 2
+position = Vector2(1282, 168)
+rotation = 1.63727
+segment_num = 4
 
 [node name="Label" type="Label" parent="."]
 material = SubResource("ShaderMaterial_gdr3f")
-offset_left = -383.0
-offset_top = -154.0
-offset_right = -176.0
-offset_bottom = 14.0
+offset_left = -432.0
+offset_top = -294.0
+offset_right = -225.0
+offset_bottom = -126.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
-
-[connection signal="out_dir" from="Reflector" to="Player" method="_on_reflector_out_dir"]
