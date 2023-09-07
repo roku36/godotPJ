@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="3_aaxum"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
+[ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="7_teclx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -60,6 +61,9 @@ font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
+font_size = 30
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
@@ -95,6 +99,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(399, -293)
+turn_speed = 0.6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -112,3 +117,14 @@ offset_right = -225.0
 offset_bottom = -126.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TestLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "test label"
+label_settings = SubResource("LabelSettings_5b1x8")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
+visible = false

@@ -16,7 +16,7 @@ var closest_reflector = null
 var closest_reflector_distance = INF
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
 
 func _physics_process(delta):    
