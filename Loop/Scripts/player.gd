@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var road_path: Path2D = $"../Path2D"
+@onready var test_label: Label = $"../CanvasLayer/TestLabel"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -28,13 +29,14 @@ func _physics_process(delta):
 	nearest_point = road_path.curve.sample_baked(nearest_offset)
 	forward_point = road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
-	mousex_delta = 0
 	move_and_slide()
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mousex_delta = event.relative.x
+		mousex_delta += event.relative.x
+		# update test_label text to mousex_delta
+		test_label.text = str(mousex_delta)
 	if event.is_action_pressed("ui_accept"):
 		# if distance is < 100
 		if closest_reflector != null and closest_reflector_distance < 100:

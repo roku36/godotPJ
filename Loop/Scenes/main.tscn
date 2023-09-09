@@ -99,7 +99,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(399, -293)
-turn_speed = 0.6
+turn_speed = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
