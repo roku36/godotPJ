@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
 [ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="7_teclx"]
+[ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="8_b0c2y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -63,6 +64,12 @@ outline_color = Color(0.698039, 0, 0.698039, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
 font_size = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86rn3"]
+shader = ExtResource("8_b0c2y")
+shader_parameter/width = 0.56
+shader_parameter/gradient_ease = 3.14
+shader_parameter/fill_ratio = 0.58
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -128,3 +135,19 @@ label_settings = SubResource("LabelSettings_5b1x8")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_86rn3")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -107.0
+offset_right = 107.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(1, 0, 1, 1)
