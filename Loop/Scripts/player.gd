@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var road_path: Path2D = $"../Path2D"
 @onready var test_label: Label = $"../CanvasLayer/TestLabel"
+@onready var circle_bar: ColorRect = $"../CanvasLayer/CircleBar"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -37,6 +38,7 @@ func _input(event):
 		mousex_delta += event.relative.x
 		# update test_label text to mousex_delta
 		test_label.text = str(mousex_delta)
+		circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
 	if event.is_action_pressed("ui_accept"):
 		# if distance is < 100
 		if closest_reflector != null and closest_reflector_distance < 100:

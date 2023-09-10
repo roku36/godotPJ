@@ -69,7 +69,9 @@ font_size = 30
 shader = ExtResource("8_b0c2y")
 shader_parameter/width = 0.56
 shader_parameter/gradient_ease = 3.14
-shader_parameter/fill_ratio = 0.58
+shader_parameter/fill_ratio = 0.1
+shader_parameter/left_col = Color(0, 1, 1, 1)
+shader_parameter/right_col = Color(1, 0, 1, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -136,7 +138,7 @@ label_settings = SubResource("LabelSettings_5b1x8")
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="CircleBar" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_86rn3")
 anchors_preset = 8
 anchor_left = 0.5
