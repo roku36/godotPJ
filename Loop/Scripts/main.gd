@@ -13,6 +13,7 @@ var bestRaptime:float = 1000
 var nearest_offset:float = 0.0
 
 signal goal_reached
+signal new_record
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,8 +35,11 @@ func _process(delta):
 		raptime += delta
 		time_label.text = "%04.2f" % raptime
 		if player.nearest_offset <= 200 and raptime > 1 :
-			goal_reached.emit()
+			if raptime < bestRaptime:
+				bestRaptime = raptime
+				new_record.emit()
 			raptime = 0
+			goal_reached.emit()
 			
 	nearest_offset = road_path.curve.get_closest_offset(player.position)
 	queue_redraw()
