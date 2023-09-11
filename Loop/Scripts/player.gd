@@ -18,19 +18,9 @@ var forward_point = Vector2.ZERO
 var closest_reflector = null
 var closest_reflector_distance = INF
 
-# array to store player position in 1 loop
-# dictionary of position, rotation, velocity
-var replay_system = {
-	"time": [],
-	"position": [],
-	"rotation": [],
-}
 
-const SAVE_INTERVAL = 0.1 # save every 0.1 seconds
-var time_since_last_save = 0.0
 
 func _ready() -> void:
-	ghost.set_replay_data(replay_system)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
 
@@ -44,14 +34,6 @@ func _physics_process(delta):
 	forward_point = road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
 	move_and_slide()
-	# Add to the time since the last save
-	time_since_last_save += delta
-	# If it's been long enough since the last save, save the data
-	if time_since_last_save >= SAVE_INTERVAL:
-		# Reset the time since the last save
-		time_since_last_save = 0.0
-		# Save the player's data
-		record_data()
 
 
 func _input(event):
@@ -106,7 +88,3 @@ func check_closest_reflector():
 			closest_reflector=reflector 
 
 
-func record_data():
-	replay_system["time"].append(Time.get_ticks_msec())
-	replay_system["position"].append(self.position)
-	replay_system["rotation"].append(self.rotation)

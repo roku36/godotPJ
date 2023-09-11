@@ -99,13 +99,13 @@ joint_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-position = Vector2(399, -293)
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
-position = Vector2(399, -293)
+position = Vector2(982.71, 745)
 turn_speed = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]

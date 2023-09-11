@@ -1,5 +1,6 @@
 extends Node2D
 @onready var test_label_2: Label = $"../CanvasLayer/TestLabel2"
+@onready var player: CharacterBody2D = $"../Player"
 
 var replay_data = {
 	"time": [],
@@ -10,6 +11,9 @@ var replay_data = {
 var current_time = 0.0
 var current_index = 0
 var playback_started = false
+
+const SAVE_INTERVAL = 0.1 # save every 0.1 seconds
+var time_since_last_save = 0.0
 
 func _ready():
 	pass
@@ -22,30 +26,40 @@ func start_playback():
 
 func _physics_process(delta):
 	if not playback_started:
-		return
+		# Add to the time since the last save
+		time_since_last_save += delta
+		# If it's been long enough since the last save, save the data
+		if time_since_last_save >= SAVE_INTERVAL:
+			time_since_last_save = 0.0
+			record_data()
 
-	# show number of replay_data["position"] to label
-	test_label_2.text = str(len(replay_data["position"]))
-	
-	current_time += delta
-
-	# If we've reached the end of the replay data, stop
-	if current_index >= len(replay_data["position"]) - 1:
-		return
-
-	# If the current time is greater than the next timestamp in the replay data,
-	# move to the next index
-	if current_time >= replay_data["time"][current_index]:
-		current_index += 1
-
-	# Calculate the ratio between the current time and the next timestamp
-	var t = (current_time - replay_data["time"][current_index-1]) / (replay_data["time"][current_index] - replay_data["time"][current_index-1])
-
-	# Use linear interpolation for the position and rotation
-	# self.position = replay_data["position"][current_index-1].linear_interpolate(replay_data["position"][current_index], t)
-	self.position = lerp(replay_data["position"][current_index-1], replay_data["position"][current_index], t)
-	self.rotation = lerp(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t)
+	else:
+		# show number of replay_data["position"] to label
+		# test_label_2.text = str(len(replay_data["position"]))
+		current_time += delta
+		# If we've reached the end of the replay data, stop
+		if current_index >= len(replay_data["position"]) - 1:
+			return
+		# If the current time is greater than the next timestamp in the replay data,
+		# move to the next index
+		if playback_started and current_time >= replay_data["time"][current_index]:
+			current_index += 1
+		# Calculate the ratio between the current time and the next timestamp
+		var t = (current_time - replay_data["time"][current_index-1]) / (replay_data["time"][current_index] - replay_data["time"][current_index-1])
+		# Use linear interpolation for the position and rotation
+		# self.position = lerp(replay_data["position"][current_index-1], replay_data["position"][current_index], t)
+		# self.rotation = lerp(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t)
+		self.position = replay_data["position"][current_index]
+		self.rotation = replay_data["rotation"][current_index]
+		# show position of replay_data on current_index (vector2) to label
+		test_label_2.text = str(lerp(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t))
 
 func _input(event):
 	if event.is_action_pressed("ghost"):
+		current_time = 0
 		start_playback()
+
+func record_data():
+	replay_data["time"].append(current_time)
+	replay_data["position"].append(player.position)
+	replay_data["rotation"].append(player.rotation)
