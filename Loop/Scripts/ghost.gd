@@ -21,7 +21,7 @@ func _ready():
 func set_replay_data(data):
 	replay_data = data
 
-func start_playback():
+func _start_playback():
 	current_time = 0
 	playback_started = true
 
@@ -52,11 +52,11 @@ func _physics_process(delta):
 		self.position = lerp(replay_data["position"][current_index-1], replay_data["position"][current_index], t)
 		self.rotation = lerp_angle(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t)
 		# show time, position, rotation of current_index to label
-		test_label_2.text = str(current_index) + "\n" + str(replay_data["time"][current_index]) + "\n" + str(replay_data["position"][current_index]) + "\n" + str(replay_data["rotation"][current_index])
+		test_label_2.text = str(current_index) + "\n" + str(replay_data["time"][current_index]) + "\n" + str(replay_data["position"][current_index])
 
 func _input(event):
 	if event.is_action_pressed("ghost"):
-		start_playback()
+		_start_playback()
 
 func record_data():
 	replay_data["time"].append(current_time)

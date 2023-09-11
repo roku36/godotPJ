@@ -18,8 +18,6 @@ var forward_point = Vector2.ZERO
 var closest_reflector = null
 var closest_reflector_distance = INF
 
-
-
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
@@ -52,7 +50,7 @@ func _input(event):
 			var impact_instance = impact.instantiate()
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
-	
+
 
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)

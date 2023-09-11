@@ -138,9 +138,6 @@ offset_bottom = 336.0
 text = "test label"
 label_settings = SubResource("LabelSettings_5b1x8")
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
-visible = false
-
 [node name="CircleBar" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_86rn3")
 anchors_preset = 8
@@ -156,3 +153,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(1, 0, 1, 1)
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
+visible = false
