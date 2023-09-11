@@ -22,11 +22,13 @@ func set_replay_data(data):
 	replay_data = data
 
 func start_playback():
+	current_time = 0
 	playback_started = true
 
 func _physics_process(delta):
 	if not playback_started:
 		# Add to the time since the last save
+		current_time += delta
 		time_since_last_save += delta
 		# If it's been long enough since the last save, save the data
 		if time_since_last_save >= SAVE_INTERVAL:
@@ -42,21 +44,18 @@ func _physics_process(delta):
 			return
 		# If the current time is greater than the next timestamp in the replay data,
 		# move to the next index
-		if playback_started and current_time >= replay_data["time"][current_index]:
+		if current_time >= replay_data["time"][current_index]:
 			current_index += 1
 		# Calculate the ratio between the current time and the next timestamp
 		var t = (current_time - replay_data["time"][current_index-1]) / (replay_data["time"][current_index] - replay_data["time"][current_index-1])
 		# Use linear interpolation for the position and rotation
-		# self.position = lerp(replay_data["position"][current_index-1], replay_data["position"][current_index], t)
-		# self.rotation = lerp(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t)
-		self.position = replay_data["position"][current_index]
-		self.rotation = replay_data["rotation"][current_index]
-		# show position of replay_data on current_index (vector2) to label
-		test_label_2.text = str(lerp(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t))
+		self.position = lerp(replay_data["position"][current_index-1], replay_data["position"][current_index], t)
+		self.rotation = lerp_angle(replay_data["rotation"][current_index-1], replay_data["rotation"][current_index], t)
+		# show time, position, rotation of current_index to label
+		test_label_2.text = str(current_index) + "\n" + str(replay_data["time"][current_index]) + "\n" + str(replay_data["position"][current_index]) + "\n" + str(replay_data["rotation"][current_index])
 
 func _input(event):
 	if event.is_action_pressed("ghost"):
-		current_time = 0
 		start_playback()
 
 func record_data():
