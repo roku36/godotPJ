@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var road_path: Path2D = $"../Path2D"
 @onready var test_label: Label = $"../CanvasLayer/TestLabel"
 @onready var circle_bar: ColorRect = $"../CanvasLayer/CircleBar"
+@onready var ghost: Node2D = $"../Ghost"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -17,8 +18,20 @@ var forward_point = Vector2.ZERO
 var closest_reflector = null
 var closest_reflector_distance = INF
 
+# array to store player position in 1 loop
+# dictionary of position, rotation, velocity
+var replay_system = {
+	"time": [],
+	"position": [],
+	"rotation": [],
+}
+
+const SAVE_INTERVAL = 0.1 # save every 0.1 seconds
+var time_since_last_save = 0.0
+
 func _ready() -> void:
-	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	ghost.set_replay_data(replay_system)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
 
 func _physics_process(delta):    
@@ -31,6 +44,14 @@ func _physics_process(delta):
 	forward_point = road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
 	move_and_slide()
+	# Add to the time since the last save
+	time_since_last_save += delta
+	# If it's been long enough since the last save, save the data
+	if time_since_last_save >= SAVE_INTERVAL:
+		# Reset the time since the last save
+		time_since_last_save = 0.0
+		# Save the player's data
+		record_data()
 
 
 func _input(event):
@@ -49,6 +70,7 @@ func _input(event):
 			var impact_instance = impact.instantiate()
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
+	
 
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
@@ -82,3 +104,9 @@ func check_closest_reflector():
 		if distance < closest_reflector_distance:
 			closest_reflector_distance = distance
 			closest_reflector=reflector 
+
+
+func record_data():
+	replay_system["time"].append(Time.get_ticks_msec())
+	replay_system["position"].append(self.position)
+	replay_system["rotation"].append(self.rotation)

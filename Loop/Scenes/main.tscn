@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
-[ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="3_aaxum"]
+[ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
 [ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="7_teclx"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
-shader_parameter/iteration_times = 3
+shader_parameter/iteration_times = 4
 shader_parameter/speed = 0.1
 shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
 shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
@@ -88,14 +88,6 @@ offset_bottom = 2420.0
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_m06sm")
 
-[node name="Dash" type="PathFollow2D" parent="Path2D"]
-position = Vector2(551.281, 141.939)
-rotation = 0.73714
-progress = 1351.35
-
-[node name="Icon" type="Sprite2D" parent="Path2D/Dash"]
-texture = ExtResource("3_aaxum")
-
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_jvebd")
@@ -105,6 +97,9 @@ width_curve = SubResource("Curve_t3qhw")
 texture_mode = 2
 joint_mode = 2
 metadata/_edit_lock_ = true
+
+[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+position = Vector2(399, -293)
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(399, -293)
@@ -132,6 +127,14 @@ label_settings = SubResource("LabelSettings_o53ck")
 [node name="TestLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+text = "test label"
+label_settings = SubResource("LabelSettings_5b1x8")
+
+[node name="TestLabel2" type="Label" parent="CanvasLayer"]
+offset_left = 40.0
+offset_top = 291.0
+offset_right = 261.0
+offset_bottom = 336.0
 text = "test label"
 label_settings = SubResource("LabelSettings_5b1x8")
 
