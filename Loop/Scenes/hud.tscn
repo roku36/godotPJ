@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbm1e8gtik5rv"]
+
+[ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="1_so4l0"]
+[ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="2_rfqen"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
+font_size = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86rn3"]
+shader = ExtResource("1_so4l0")
+shader_parameter/width = 0.56
+shader_parameter/gradient_ease = 3.14
+shader_parameter/fill_ratio = 0.1
+shader_parameter/left_col = Color(0, 1, 1, 1)
+shader_parameter/right_col = Color(1, 0, 1, 1)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="TestLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "test label"
+label_settings = SubResource("LabelSettings_5b1x8")
+
+[node name="TestLabel2" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 291.0
+offset_right = 261.0
+offset_bottom = 336.0
+text = "test label"
+label_settings = SubResource("LabelSettings_5b1x8")
+
+[node name="CircleBar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_86rn3")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -107.0
+offset_right = 107.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(1, 0, 1, 1)
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_rfqen")]
+visible = false

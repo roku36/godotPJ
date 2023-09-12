@@ -1,11 +1,12 @@
 @tool
 extends Node2D
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var road_path: Path2D = $Path2D
 @onready var road_line: Line2D = $Line2D
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
-@onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var pause_menu: Control = $HUD/PauseMenu
 var paused = false
 
 var raptime:float = 0.0
@@ -26,6 +27,9 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		update_road_line()
 	else:
+		if Input.is_action_just_pressed("animation"):
+			animation_player.play("default")
+		
 		if Input.is_action_just_pressed("restart"):
 			get_tree().reload_current_scene()
 		if Input.is_action_just_pressed("pause"):
@@ -62,10 +66,12 @@ func update_road_line():
 
 func pop_pause_menu() -> void:
 	if not paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		Engine.time_scale = 0
 		pause_menu.show()
 		paused = true
 	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Engine.time_scale = 1
 		pause_menu.hide()
 		paused = false

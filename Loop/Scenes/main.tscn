@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="4_vpwma"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="6_ex0kb"]
-[ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="7_teclx"]
-[ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="8_b0c2y"]
+[ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -62,16 +61,62 @@ font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
-font_size = 30
+[sub_resource type="Animation" id="Animation_2guvw"]
+resource_name = "default"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0, -1127, -1.5, 19.1423, 0.25, 0),
+"times": PackedFloat32Array(0, 2.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0, -107, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.5)
+}
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_86rn3"]
-shader = ExtResource("8_b0c2y")
-shader_parameter/width = 0.56
-shader_parameter/gradient_ease = 3.14
-shader_parameter/fill_ratio = 0.1
-shader_parameter/left_col = Color(0, 1, 1, 1)
-shader_parameter/right_col = Color(1, 0, 1, 1)
+[sub_resource type="Animation" id="Animation_cd2ty"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8vn"]
+_data = {
+"RESET": SubResource("Animation_cd2ty"),
+"default": SubResource("Animation_2guvw")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -98,64 +143,37 @@ texture_mode = 2
 joint_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-
-[node name="Player" parent="." instance=ExtResource("2_146rn")]
-position = Vector2(982.71, 745)
-turn_speed = 0.01
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.2, 0.2)
-position_smoothing_enabled = true
-
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
 position = Vector2(607, -272)
 rotation = 1.94397
+scale = Vector2(1, 1)
 segment_num = 0
+
+[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+position = Vector2(-1158, 70)
+
+[node name="Player" parent="." instance=ExtResource("2_146rn")]
+position = Vector2(-95, -105)
+turn_speed = 0.01
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
 
 [node name="TimeLabel" type="Label" parent="."]
 material = SubResource("ShaderMaterial_gdr3f")
-offset_left = -432.0
-offset_top = -294.0
-offset_right = -225.0
-offset_bottom = -126.0
+offset_left = -692.0
+offset_top = -330.0
+offset_right = -485.0
+offset_bottom = -162.0
 text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" parent="." instance=ExtResource("7_ltflu")]
 
-[node name="TestLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "test label"
-label_settings = SubResource("LabelSettings_5b1x8")
-
-[node name="TestLabel2" type="Label" parent="CanvasLayer"]
-offset_left = 40.0
-offset_top = 291.0
-offset_right = 261.0
-offset_bottom = 336.0
-text = "test label"
-label_settings = SubResource("LabelSettings_5b1x8")
-
-[node name="CircleBar" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_86rn3")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -107.0
-offset_right = 107.0
-offset_bottom = 107.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-color = Color(1, 0, 1, 1)
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_teclx")]
-visible = false
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wk8vn")
+}
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
