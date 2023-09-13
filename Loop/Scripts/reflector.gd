@@ -1,11 +1,10 @@
 @tool
 extends Node2D
 
-@onready var road_path: Path2D = $"../Path2D"
-@onready var player: CharacterBody2D = $"../Player"
+@onready var road_path: Path2D = $".."
 
 # bigger than 0
-@export_range(0, 100, 1) var segment_num: int = 5:
+@export_range(0, 100) var segment_num: int = 5:
 	set (value):
 		segment_num = set_segment_num(value)
 	get:
