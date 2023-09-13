@@ -15,7 +15,9 @@ signal new_record
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# add level1.tscn scene as "road"
 	pass
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
