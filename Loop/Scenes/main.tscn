@@ -15,6 +15,7 @@ shader_parameter/speed = 0.1
 shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
 shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
 shader_parameter/intensity = 0.005
+shader_parameter/size = Vector2(1, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_m06sm"]
 _data = {
@@ -61,6 +62,31 @@ font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
 
+[sub_resource type="Animation" id="Animation_cd2ty"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_2guvw"]
 resource_name = "default"
 length = 3.0
@@ -87,31 +113,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.5)
 }
 
-[sub_resource type="Animation" id="Animation_cd2ty"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8vn"]
 _data = {
 "RESET": SubResource("Animation_cd2ty"),
@@ -127,8 +128,8 @@ z_index = -3
 material = SubResource("ShaderMaterial_0q4tg")
 offset_left = -1220.0
 offset_top = -1083.0
-offset_right = 2283.0
-offset_bottom = 2420.0
+offset_right = 2533.0
+offset_bottom = 1228.0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_m06sm")
@@ -146,7 +147,6 @@ metadata/_edit_lock_ = true
 [node name="Reflector" parent="." instance=ExtResource("6_ex0kb")]
 position = Vector2(607, -272)
 rotation = 1.94397
-scale = Vector2(1, 1)
 segment_num = 0
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]

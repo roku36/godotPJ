@@ -1,5 +1,5 @@
 extends Node2D
-@onready var test_label_2: Label = $"../CanvasLayer/TestLabel2"
+@onready var test_label_2: Label = $"../HUD/TestLabel2"
 @onready var player: CharacterBody2D = $"../Player"
 
 var replay_data = {
