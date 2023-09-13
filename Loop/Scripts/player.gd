@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var road_path: Path2D = $"../Path2D"
+@onready var road_path: Path2D = $"../Road"
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
