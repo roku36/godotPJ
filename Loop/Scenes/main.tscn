@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=14 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
-[ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/road.tscn" id="4_sl7pb"]
+[ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
+[ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
@@ -92,8 +93,6 @@ offset_top = -1083.0
 offset_right = 2533.0
 offset_bottom = 1228.0
 
-[node name="Road" parent="." instance=ExtResource("4_sl7pb")]
-
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 position = Vector2(-1158, 70)
 
@@ -119,6 +118,12 @@ label_settings = SubResource("LabelSettings_o53ck")
 libraries = {
 "": SubResource("AnimationLibrary_wk8vn")
 }
+
+[node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
+position = Vector2(109, 106)
+
+[node name="Level1" parent="." instance=ExtResource("6_wuisk")]
+position = Vector2(194, 213)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
