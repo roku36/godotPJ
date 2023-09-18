@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@onready var road_path: Path2D = $"../Level0"
+@onready var level0: Path2D = $"../Level0"
+@onready var level1: Path2D = $"../Level1"
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
@@ -15,12 +16,15 @@ var nearest_offset:float = 0.0
 var nearest_point = Vector2.ZERO
 var forward_point = Vector2.ZERO
 
+var road_path: Path2D = level0
+
 var closest_reflector = null
 var closest_reflector_distance = INF
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
+	road_path = level1
 
 func _physics_process(delta):    
 	check_closest_reflector()

@@ -120,10 +120,9 @@ libraries = {
 }
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
-position = Vector2(109, 106)
+visible = false
 
 [node name="Level1" parent="." instance=ExtResource("6_wuisk")]
-position = Vector2(194, 213)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
