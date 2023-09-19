@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/mode=3
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="/Users/roku/godotMovie/test.avi"
+
 [input]
 
 restart={
