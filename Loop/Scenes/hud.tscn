@@ -17,12 +17,14 @@ shader_parameter/right_col = Color(1, 0, 1, 1)
 [node name="HUD" type="CanvasLayer"]
 
 [node name="TestLabel" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "test label"
 label_settings = SubResource("LabelSettings_5b1x8")
 
 [node name="TestLabel2" type="Label" parent="."]
+visible = false
 offset_left = 40.0
 offset_top = 291.0
 offset_right = 261.0

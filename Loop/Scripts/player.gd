@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@onready var level0: Path2D = $"../Level0"
-@onready var level1: Path2D = $"../Level1"
+# @onready var level0: Path2D = $"../Level0"
+# @onready var level1: Path2D = $"../Level1"
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
@@ -16,7 +16,7 @@ var nearest_offset:float = 0.0
 var nearest_point = Vector2.ZERO
 var forward_point = Vector2.ZERO
 
-var road_path: Path2D = level0
+var road_path: Path2D
 
 var closest_reflector = null
 var closest_reflector_distance = INF
@@ -24,7 +24,6 @@ var closest_reflector_distance = INF
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
-	road_path = level1
 
 func _physics_process(delta):    
 	check_closest_reflector()
@@ -89,4 +88,8 @@ func check_closest_reflector():
 			closest_reflector_distance = distance
 			closest_reflector=reflector 
 
+
+func _on_level_selector_change_stage(stage_num) -> void:
+	print("hello")
+	road_path = get_node(str("../Level", stage_num))
 

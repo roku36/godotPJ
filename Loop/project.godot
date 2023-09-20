@@ -22,7 +22,8 @@ window/stretch/mode="canvas_items"
 
 [editor]
 
-movie_writer/movie_file="/Users/roku/godotMovie/test.avi"
+movie_writer/movie_file="/Users/roku/godotMovie/test.png"
+movie_writer/fps=10
 
 [input]
 
