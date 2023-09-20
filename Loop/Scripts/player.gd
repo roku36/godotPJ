@@ -22,6 +22,7 @@ var closest_reflector = null
 var closest_reflector_distance = INF
 
 func _ready() -> void:
+	_on_level_selector_change_stage(0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
 
@@ -90,6 +91,5 @@ func check_closest_reflector():
 
 
 func _on_level_selector_change_stage(stage_num) -> void:
-	print("hello")
-	road_path = get_node(str("../Level", stage_num))
+	road_path = get_parent().get_node("Level" + str(stage_num))
 

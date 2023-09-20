@@ -87,7 +87,6 @@ script = ExtResource("1_pd7es")
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
-stage_num = 1
 
 [node name="bg" type="ColorRect" parent="."]
 light_mask = 0
@@ -125,9 +124,10 @@ libraries = {
 }
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
-visible = false
 
 [node name="Level1" parent="." instance=ExtResource("6_wuisk")]
+visible = false
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
+[connection signal="change_stage" from="LevelSelector" to="Player" method="_on_level_selector_change_stage"]
