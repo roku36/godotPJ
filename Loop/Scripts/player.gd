@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
+@onready var level_selector: Node = $"../LevelSelector"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -16,13 +17,10 @@ var nearest_offset:float = 0.0
 var nearest_point = Vector2.ZERO
 var forward_point = Vector2.ZERO
 
-var road_path: Path2D
-
 var closest_reflector = null
 var closest_reflector_distance = INF
 
 func _ready() -> void:
-	_on_level_selector_change_stage(0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	velocity = Vector2.ZERO
 
@@ -31,9 +29,9 @@ func _physics_process(delta):
 	velocity = velocity.limit_length(max_speed)
 	velocity *= 0.95
 	update_rotation(mousex_delta, delta)
-	nearest_offset = road_path.curve.get_closest_offset(self.position)
-	nearest_point = road_path.curve.sample_baked(nearest_offset)
-	forward_point = road_path.curve.sample_baked(nearest_offset+30)
+	nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
+	nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
+	forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
 	move_foward()
 	move_and_slide()
 
@@ -88,8 +86,4 @@ func check_closest_reflector():
 		if distance < closest_reflector_distance:
 			closest_reflector_distance = distance
 			closest_reflector=reflector 
-
-
-func _on_level_selector_change_stage(stage_num) -> void:
-	road_path = get_parent().get_node("Level" + str(stage_num))
 

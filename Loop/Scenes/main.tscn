@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=17 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
+[ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
+[ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -87,7 +89,6 @@ script = ExtResource("1_pd7es")
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
-stage_num = 1
 
 [node name="bg" type="ColorRect" parent="."]
 light_mask = 0
@@ -125,10 +126,15 @@ libraries = {
 }
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
-visible = false
 
 [node name="Level1" parent="." instance=ExtResource("6_wuisk")]
+visible = false
+
+[node name="Level2" parent="." instance=ExtResource("9_vwxht")]
+visible = false
+
+[node name="Level3" parent="." instance=ExtResource("10_l0o5c")]
+visible = false
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
-[connection signal="change_stage" from="LevelSelector" to="Player" method="_on_level_selector_change_stage"]
