@@ -18,7 +18,7 @@ shader_parameter/speed = 0.1
 shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
 shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
 shader_parameter/intensity = 0.005
-shader_parameter/size = Vector2(1, 1)
+shader_parameter/size = Vector2(10, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 
@@ -94,10 +94,10 @@ script = ExtResource("2_52vh0")
 light_mask = 0
 z_index = -3
 material = SubResource("ShaderMaterial_0q4tg")
-offset_left = -1220.0
-offset_top = -1083.0
-offset_right = 2533.0
-offset_bottom = 1228.0
+offset_left = -11924.0
+offset_top = -6919.0
+offset_right = 25606.0
+offset_bottom = 16191.0
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 position = Vector2(-1158, 70)
