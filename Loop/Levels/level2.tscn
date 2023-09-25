@@ -12,7 +12,7 @@ point_count = 9
 
 [sub_resource type="Gradient" id="Gradient_1dul8"]
 offsets = PackedFloat32Array(0, 0.170732, 0.50813, 0.853659, 1)
-colors = PackedColorArray(1, 0, 1, 1, 0.732753, 0.397202, 0, 1, 0.492935, 0.645556, 0, 1, 0.281411, 0.488647, 1, 1, 0, 1, 1, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0.732753, 0.397202, 0, 1, 0.494118, 0, 0, 1, 0.281411, 0.488647, 1, 1, 0, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pcqj5"]
 gradient = SubResource("Gradient_1dul8")
@@ -39,8 +39,8 @@ shader_parameter/gradient_path = SubResource("GradientTexture2D_pcqj5")
 shader_parameter/rough_noise = SubResource("NoiseTexture2D_8si1j")
 
 [sub_resource type="Curve" id="Curve_t3qhw"]
-_data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.418566, 0.150602), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0.000448324, 0.701168), 0.0, 0.0, 0, 0, Vector2(0.418566, 0.150602), 0.0, 0.0, 0, 0, Vector2(0.676773, 0.632348), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="Level1" type="Path2D"]
 curve = SubResource("Curve2D_m06sm")
@@ -59,4 +59,4 @@ joint_mode = 2
 [node name="Reflector" parent="." instance=ExtResource("3_00wju")]
 position = Vector2(1422, 887)
 rotation = 0.344788
-segment_num = 3
+segment_num = 0
