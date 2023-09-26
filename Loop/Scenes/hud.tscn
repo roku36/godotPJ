@@ -24,7 +24,6 @@ text = "test label"
 label_settings = SubResource("LabelSettings_5b1x8")
 
 [node name="TestLabel2" type="Label" parent="."]
-visible = false
 offset_left = 40.0
 offset_top = 291.0
 offset_right = 261.0

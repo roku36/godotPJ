@@ -5,6 +5,6 @@ extends Node
 const STAGE_NUM = 4
 var current_stage = 0
 
-# best rap time for each stages
-var best_rap_time = [-1, -1, -1, -1]
+# best rap time for each stages: float array
+var best_rap_time = [-1.0, -1.0, -1.0, -1.0]
 

@@ -1,5 +1,4 @@
 extends Node2D
-@onready var test_label_2: Label = $"../HUD/TestLabel2"
 @onready var player: CharacterBody2D = $"../Player"
 
 var replay_data = {
@@ -70,9 +69,8 @@ func play_recorded_data():
 	self.position = lerp(best_replay_data["position"][current_index-1], best_replay_data["position"][current_index], t)
 	self.rotation = lerp_angle(best_replay_data["rotation"][current_index-1], best_replay_data["rotation"][current_index], t)
 	# show time, position, rotation of current_index to label
-	test_label_2.text = str(current_index) + "\n" + str(best_replay_data["time"][current_index]) + "\n" + str(best_replay_data["position"][current_index])
-	# show bestraptime of each stages in row: for loop 0~3
-	# test_label_2.text += "\n" + str(best_rap_time[current_stage])
+	# test_label_2.text = str(current_index) + "\n" + str(best_replay_data["time"][current_index]) + "\n" + str(best_replay_data["position"][current_index])
+	# show bestraptime of each stages in row: for loop 0~3, Global.best_rap_time[0..3]
 
 
 func _on_goal_reached() -> void:
@@ -87,4 +85,4 @@ func _on_goal_reached() -> void:
 func _on_new_record() -> void:
 	# show label the len of best_replay_data and \n replay_data
 	best_replay_data = replay_data.duplicate()
-	test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
+	# test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
