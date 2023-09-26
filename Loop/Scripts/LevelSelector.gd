@@ -2,7 +2,7 @@
 extends Node
 @onready var road_path: Path2D
 
-@export_range(0, 3) var stage_num: int:
+@export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
 		stage_num = set_stage_num(value)
 	get:
@@ -35,5 +35,6 @@ func set_stage_num(value: int) -> int:
 		else:
 			levels[i].visible = false 
 	# change_stage.emit(value)
+	Global.current_stage = value
 	road_path = levels[value]
 	return value 

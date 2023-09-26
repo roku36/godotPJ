@@ -7,7 +7,6 @@ extends Node2D
 var paused = false
 
 var raptime:float = 0.0
-var bestRaptime:float = 1000
 var nearest_offset:float = 0.0
 
 signal goal_reached
@@ -32,9 +31,11 @@ func _process(delta):
 	# update time
 	raptime += delta
 	time_label.text = "%04.2f" % raptime
+	# Goal detection
 	if player.nearest_offset <= 200 and raptime > 1 :
-		if raptime < bestRaptime:
-			bestRaptime = raptime
+		var bestRaptime = Global.best_rap_time[Global.current_stage]
+		if bestRaptime == -1 or raptime < bestRaptime:
+			Global.best_rap_time = raptime
 			new_record.emit()
 		raptime = 0
 		goal_reached.emit()

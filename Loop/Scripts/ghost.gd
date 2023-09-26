@@ -70,7 +70,9 @@ func play_recorded_data():
 	self.position = lerp(best_replay_data["position"][current_index-1], best_replay_data["position"][current_index], t)
 	self.rotation = lerp_angle(best_replay_data["rotation"][current_index-1], best_replay_data["rotation"][current_index], t)
 	# show time, position, rotation of current_index to label
-	# test_label_2.text = str(current_index) + "\n" + str(best_replay_data["time"][current_index]) + "\n" + str(best_replay_data["position"][current_index])
+	test_label_2.text = str(current_index) + "\n" + str(best_replay_data["time"][current_index]) + "\n" + str(best_replay_data["position"][current_index])
+	# show bestraptime of each stages in row: for loop 0~3
+	# test_label_2.text += "\n" + str(best_rap_time[current_stage])
 
 
 func _on_goal_reached() -> void:
