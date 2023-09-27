@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn553q7ip4304"]
+
+[ext_resource type="Shader" path="res://Shaders/blob.gdshader" id="1_1atni"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj5r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sklrj"]
+font_size = 120
+outline_size = 20
+outline_color = Color(0.698039, 0, 0.698039, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ng57o"]
+shader = ExtResource("1_1atni")
+shader_parameter/iMouse = Vector2(-0.75, 0.5)
+shader_parameter/ck = 1.04
+shader_parameter/mk = 20.3
+shader_parameter/in_col = Color(0, 0.0941176, 0.12549, 1)
+shader_parameter/out_col = Color(1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_smdhk"]
+resource_name = "default"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/iMouse:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.75, -0.25, 0, 0.1, 2.08165e-12, 0.729678, -0.1, 2.08165e-12, 0.1, 0, 0.424621, -0.1, 0, 0.1, 0, 0.5, -0.1, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.7, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/iMouse:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_dxoqa"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/iMouse:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/iMouse:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iotpr"]
+_data = {
+"RESET": SubResource("Animation_dxoqa"),
+"default": SubResource("Animation_smdhk")
+}
+
+[node name="Goal" type="Node2D"]
+
+[node name="TimeLabel" type="Label" parent="."]
+material = SubResource("ShaderMaterial_trj5r")
+offset_left = -692.0
+offset_top = -330.0
+offset_right = -485.0
+offset_bottom = -162.0
+text = "123"
+label_settings = SubResource("LabelSettings_sklrj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ng57o")
+offset_left = -49.0
+offset_top = -47.0
+offset_right = 47.0
+offset_bottom = 50.0
+color = Color(0, 0.164706, 0.164706, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iotpr")
+}
