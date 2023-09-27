@@ -3,8 +3,17 @@ extends Node
 # const stage num
 
 const STAGE_NUM = 4
-var current_stage = 0
+var current_stage: int = 0
 
-# best rap time for each stages: float array
-var best_rap_time = [-1.0, -1.0, -1.0, -1.0]
+var best_replay_data = []
+var best_rap_time = []
 
+func _ready():
+  for i in range(STAGE_NUM):
+    best_replay_data.append({
+      "time": [],
+      "position": [],
+      "rotation": [],
+    })
+    
+    best_rap_time.append(-1.0)

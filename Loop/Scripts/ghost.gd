@@ -7,12 +7,6 @@ var replay_data = {
 	"rotation": [],
 }
 
-var best_replay_data = {
-	"time": [],
-	"position": [],
-	"rotation": [],
-}
-
 var current_time = 0.0
 var current_index = 0
 var playback_started = false
@@ -57,6 +51,7 @@ func record_data():
 
 func play_recorded_data():
 	# If we've reached the end of the replay data, stop
+	var best_replay_data = Global.best_replay_data[Global.current_stage]
 	if current_index >= len(best_replay_data["position"]) - 1:
 		return
 		# If the current time is greater than the next timestamp in the replay data,
@@ -84,5 +79,5 @@ func _on_goal_reached() -> void:
 
 func _on_new_record() -> void:
 	# show label the len of best_replay_data and \n replay_data
-	best_replay_data = replay_data.duplicate()
+	Global.best_replay_data[Global.current_stage] = replay_data.duplicate()
 	# test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
