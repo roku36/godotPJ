@@ -77,19 +77,19 @@ _data = {
 
 [node name="TimeLabel" type="Label" parent="."]
 material = SubResource("ShaderMaterial_trj5r")
-offset_left = -692.0
-offset_top = -330.0
-offset_right = -485.0
-offset_bottom = -162.0
+offset_left = -106.0
+offset_top = -452.0
+offset_right = 101.0
+offset_bottom = -284.0
 text = "123"
 label_settings = SubResource("LabelSettings_sklrj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ng57o")
-offset_left = -49.0
-offset_top = -47.0
-offset_right = 47.0
-offset_bottom = 50.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 color = Color(0, 0.164706, 0.164706, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

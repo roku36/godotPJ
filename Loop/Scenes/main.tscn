@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=18 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_2wayo"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
+[ext_resource type="PackedScene" uid="uid://dn553q7ip4304" path="res://Scenes/goal.tscn" id="11_38xe7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
 shader = ExtResource("1_2wayo")
@@ -135,6 +136,9 @@ visible = false
 
 [node name="Level3" parent="." instance=ExtResource("10_l0o5c")]
 visible = false
+
+[node name="Goal" parent="." instance=ExtResource("11_38xe7")]
+position = Vector2(-104, -193)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
