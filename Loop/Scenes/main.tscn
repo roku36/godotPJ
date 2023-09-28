@@ -111,6 +111,7 @@ turn_speed = 0.01
 position_smoothing_enabled = true
 
 [node name="TimeLabel" type="Label" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_gdr3f")
 offset_left = -692.0
 offset_top = -330.0
@@ -138,7 +139,6 @@ visible = false
 visible = false
 
 [node name="Goal" parent="." instance=ExtResource("11_38xe7")]
-position = Vector2(-104, -193)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
