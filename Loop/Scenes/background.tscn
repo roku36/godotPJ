@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyjouyral0k31"]
+
+[ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="1_cl5c6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0q4tg"]
+shader = ExtResource("1_cl5c6")
+shader_parameter/iteration_times = 4
+shader_parameter/speed = 0.1
+shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
+shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
+shader_parameter/intensity = 0.005
+shader_parameter/size = Vector2(5, 5)
+
+[node name="Background" type="Node2D"]
+
+[node name="bg" type="ColorRect" parent="."]
+light_mask = 0
+z_index = -3
+material = SubResource("ShaderMaterial_0q4tg")
+offset_left = -11924.0
+offset_top = -6919.0
+offset_right = 25606.0
+offset_bottom = 16191.0

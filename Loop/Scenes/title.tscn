@@ -1,31 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://mljt322ncc7"]
+[gd_scene load_steps=3 format=3 uid="uid://mljt322ncc7"]
 
 [ext_resource type="Script" path="res://Scripts/title.gd" id="1_unw2j"]
-[ext_resource type="Shader" path="res://Shaders/bg.gdshader" id="2_0ifu3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mu4x"]
-shader = ExtResource("2_0ifu3")
-shader_parameter/iteration_times = 4
-shader_parameter/speed = 0.1
-shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
-shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
-shader_parameter/intensity = 0.005
-shader_parameter/size = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc6hs"]
 font_size = 80
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_unw2j")
-
-[node name="bg" type="ColorRect" parent="."]
-light_mask = 0
-z_index = -3
-material = SubResource("ShaderMaterial_2mu4x")
-offset_left = -1220.0
-offset_top = -1083.0
-offset_right = 2533.0
-offset_bottom = 1228.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 470.0
