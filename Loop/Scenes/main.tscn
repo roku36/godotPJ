@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
+[ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
@@ -131,6 +132,8 @@ _data = {
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
+
+[node name="Background" parent="." instance=ExtResource("2_inqlf")]
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")

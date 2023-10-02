@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Scripts/global.gd"
-Background="*res://Scenes/background.tscn"
 
 [display]
 
