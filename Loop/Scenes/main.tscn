@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=22 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -131,9 +131,16 @@ _data = {
 "titleToMain": SubResource("Animation_j1wrn")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ski5d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
+shader_parameter/is_flipped = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ski5d"]
+resource_local_to_scene = true
+shader = ExtResource("13_g6lgf")
+shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
+shader_parameter/is_flipped = false
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -188,12 +195,30 @@ visible = false
 [node name="Logo" parent="." instance=ExtResource("11_gggvu")]
 position = Vector2(-150, -871)
 
-[node name="arrow" type="ColorRect" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 2.08165e-12)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1900.0
+offset_top = -630.0
+offset_right = 1900.0
+offset_bottom = 1257.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 3000
+
+[node name="arrow2" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_pwbag")
+custom_minimum_size = Vector2(600, 2.08165e-12)
+layout_mode = 2
+
+[node name="arrow3" type="ColorRect" parent="HBoxContainer"]
 material = SubResource("ShaderMaterial_ski5d")
-offset_left = 1605.0
-offset_top = -8.0
-offset_right = 2300.0
-offset_bottom = 1221.0
+custom_minimum_size = Vector2(600, 2.08165e-12)
+layout_mode = 2
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
