@@ -7,6 +7,7 @@ var current_stage: int = 0
 
 var best_replay_data = []
 var best_rap_time = []
+var is_started = false
 
 func _ready():
   for i in range(STAGE_NUM):

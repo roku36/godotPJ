@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=18 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://dn553q7ip4304" path="res://Scenes/goal.tscn" id="11_38xe7"]
+[ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 
@@ -42,6 +43,30 @@ tracks/1/keys = {
 "points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Logo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
 
 [sub_resource type="Animation" id="Animation_2guvw"]
 resource_name = "default"
@@ -69,10 +94,39 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.5)
 }
 
+[sub_resource type="Animation" id="Animation_j1wrn"]
+resource_name = "titleToMain"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Logo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8vn"]
 _data = {
 "RESET": SubResource("Animation_cd2ty"),
-"default": SubResource("Animation_2guvw")
+"default": SubResource("Animation_2guvw"),
+"titleToMain": SubResource("Animation_j1wrn")
 }
 
 [node name="Main" type="Node2D"]
@@ -85,10 +139,12 @@ script = ExtResource("2_52vh0")
 position = Vector2(-1158, 70)
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
+process_mode = 2
 position = Vector2(-95, -105)
 turn_speed = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 
 [node name="TimeLabel" type="Label" parent="."]
@@ -120,6 +176,9 @@ visible = false
 visible = false
 
 [node name="Goal" parent="." instance=ExtResource("11_38xe7")]
+
+[node name="Logo" parent="." instance=ExtResource("11_gggvu")]
+position = Vector2(-150, -871)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]

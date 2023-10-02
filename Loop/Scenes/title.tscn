@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://mljt322ncc7"]
+[gd_scene load_steps=4 format=3 uid="uid://mljt322ncc7"]
 
 [ext_resource type="Script" path="res://Scripts/title.gd" id="1_unw2j"]
+[ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="2_042uq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc6hs"]
 font_size = 80
@@ -22,5 +23,7 @@ offset_top = 415.0
 offset_right = 612.0
 offset_bottom = 446.0
 text = "stage 1"
+
+[node name="Logo" parent="." instance=ExtResource("2_042uq")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

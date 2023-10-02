@@ -29,6 +29,11 @@ func _process(delta):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("pause"):
 		pop_pause_menu()
+	if Input.is_action_just_pressed("start"):
+		Global.is_started = true
+		animation_player.play("titleToMain")
+		# unpause player
+		player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	# update time
 	raptime += delta
