@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://dn553q7ip4304" path="res://Scenes/goal.tscn" id="11_38xe7"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
+[ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 
@@ -130,6 +131,10 @@ _data = {
 "titleToMain": SubResource("Animation_j1wrn")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ski5d"]
+shader = ExtResource("13_g6lgf")
+shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
@@ -182,6 +187,13 @@ visible = false
 
 [node name="Logo" parent="." instance=ExtResource("11_gggvu")]
 position = Vector2(-150, -871)
+
+[node name="arrow" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ski5d")
+offset_left = 1605.0
+offset_top = -8.0
+offset_right = 2300.0
+offset_bottom = 1221.0
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
