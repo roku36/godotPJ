@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
 [ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_qx3sb"]
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
@@ -20,111 +21,6 @@
 font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
-
-[sub_resource type="Animation" id="Animation_cd2ty"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Titles:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_2guvw"]
-resource_name = "default"
-length = 3.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0, -1127, -1.5, 19.1423, 0.25, 0),
-"times": PackedFloat32Array(0, 2.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0, -107, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2.5)
-}
-
-[sub_resource type="Animation" id="Animation_0cugn"]
-resource_name = "mainToTitle"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.2, 0.2), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Titles:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_j1wrn"]
-resource_name = "titleToMain"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Titles/Logo:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player/Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.2, 0.2), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8vn"]
-_data = {
-"RESET": SubResource("Animation_cd2ty"),
-"default": SubResource("Animation_2guvw"),
-"mainToTitle": SubResource("Animation_0cugn"),
-"titleToMain": SubResource("Animation_j1wrn")
-}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
@@ -148,14 +44,15 @@ script = ExtResource("2_52vh0")
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 position = Vector2(-1158, 70)
 
-[node name="Player" parent="." instance=ExtResource("2_146rn")]
-process_mode = 2
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-95, -105)
-turn_speed = 0.01
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
+script = ExtResource("5_qx3sb")
+
+[node name="Player" parent="." instance=ExtResource("2_146rn")]
+position = Vector2(-95, -105)
+turn_speed = 0.01
 
 [node name="TimeLabel" type="Label" parent="."]
 visible = false
@@ -168,11 +65,6 @@ text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_wk8vn")
-}
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
 
@@ -188,9 +80,10 @@ visible = false
 [node name="Goal" parent="." instance=ExtResource("11_38xe7")]
 
 [node name="Titles" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.458333)
 
 [node name="Logo" parent="Titles" instance=ExtResource("11_gggvu")]
-position = Vector2(-31, 282)
+position = Vector2(2.08165e-12, -700)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Titles"]
 custom_minimum_size = Vector2(400, 2.08165e-12)

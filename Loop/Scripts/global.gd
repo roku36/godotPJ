@@ -7,7 +7,6 @@ var current_stage: int = 0
 
 var best_replay_data = []
 var best_rap_time = []
-var is_started = false
 
 func _ready():
   for i in range(STAGE_NUM):
@@ -16,5 +15,9 @@ func _ready():
       "position": [],
       "rotation": [],
     })
-    
+
     best_rap_time.append(-1.0)
+
+# enum to set stage: title, ready, started
+enum {TITLE, READY, STARTED}
+var state = TITLE

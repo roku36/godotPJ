@@ -5,6 +5,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
 @onready var pause_menu: Control = $HUD/PauseMenu
+@onready var titles: Node2D = $Titles
 
 var paused = false
 var raptime:float = 0.0
@@ -22,7 +23,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
+	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
+	# show Global.state with text
+	test_label_2.text = str(Global.state)
 	if Input.is_action_just_pressed("animation"):
 		animation_player.play("default")
 	
@@ -30,11 +33,13 @@ func _process(delta):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("pause"):
 		pop_pause_menu()
-	if Input.is_action_just_pressed("start"):
-		Global.is_started = true
-		animation_player.play("titleToMain")
+	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
+		Global.state = Global.STARTED
+	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
+		Global.state = Global.READY
+		# animation_player.play("titleToMain")
+		titles.visible = false
 		# unpause player
-		player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	# update time
 	raptime += delta

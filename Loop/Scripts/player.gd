@@ -25,15 +25,16 @@ func _ready() -> void:
 	velocity = Vector2.ZERO
 
 func _physics_process(delta):    
-	check_closest_reflector()
-	velocity = velocity.limit_length(max_speed)
-	velocity *= 0.95
-	update_rotation(mousex_delta, delta)
-	nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
-	nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
-	forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
-	move_foward()
-	move_and_slide()
+	if Global.state == Global.STARTED:
+		check_closest_reflector()
+		velocity = velocity.limit_length(max_speed)
+		velocity *= 0.95
+		update_rotation(mousex_delta, delta)
+		nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
+		nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
+		forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
+		move_foward()
+		move_and_slide()
 
 
 func _input(event):
