@@ -5,8 +5,8 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
 @onready var pause_menu: Control = $HUD/PauseMenu
-var paused = false
 
+var paused = false
 var raptime:float = 0.0
 var nearest_offset:float = 0.0
 
@@ -18,6 +18,7 @@ func _ready():
 	# add level1.tscn scene as "road"
 	pass
 	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

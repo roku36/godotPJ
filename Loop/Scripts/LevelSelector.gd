@@ -1,6 +1,7 @@
 @tool
 extends Node
 @onready var road_path: Path2D
+@onready var scores: RichTextLabel = $"../Titles/Scores"
 
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -37,4 +38,8 @@ func set_stage_num(value: int) -> int:
 	# change_stage.emit(value)
 	Global.current_stage = value
 	road_path = levels[value]
+	update_scoreboard()
 	return value 
+
+func update_scoreboard():
+	scores.text = "%d st stage: %f" % [Global.current_stage, Global.best_rap_time[Global.current_stage]]

@@ -10,7 +10,6 @@ void fragment() {
     float speed = tan(TIME*blink_speed) * 0.03 + TIME * 0.2;
     // float speed = 0.05;
     vec2 pos = uv - vec2(0.5 + speed, 0.5);
-    // vec2 pos = UV - vec2(mod(TIME * speed, 1.0), 0.5);
 
     pos.x *= 2.0;  // Stretch the y axis to make a taller shape.
 
