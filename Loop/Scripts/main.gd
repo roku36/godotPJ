@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var test_label_2: Label = $"HUD/TestLabel2"
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
 @onready var pause_menu: Control = $HUD/PauseMenu
@@ -26,13 +25,10 @@ func _process(delta):
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
 	test_label_2.text = str(Global.state)
-	if Input.is_action_just_pressed("animation"):
-		animation_player.play("default")
-	
 	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+		Global.state = Global.TITLE
 	if Input.is_action_just_pressed("pause"):
-		pop_pause_menu()
+		Global.state = Global.TITLE
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
 		Global.state = Global.STARTED
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):

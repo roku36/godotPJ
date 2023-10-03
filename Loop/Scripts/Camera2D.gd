@@ -9,6 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.state == Global.TITLE:
+		self.position = self.position.lerp(Vector2.ZERO, 8.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2(0.2, 0.2), 3.0 * delta)
 	else:
 		self.zoom = self.zoom.lerp(Vector2.ONE, 3.0 * delta)
