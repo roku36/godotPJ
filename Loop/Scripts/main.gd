@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var test_label_2: Label = $"HUD/TestLabel2"
+@onready var hud: CanvasLayer = $"HUD"
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
 @onready var pause_menu: Control = $HUD/PauseMenu
@@ -25,10 +26,13 @@ func _process(delta):
 	# show Global.state with text
 	test_label_2.text = str(Global.state)
 	if Input.is_action_just_pressed("restart"):
-		Global.state = Global.TITLE
+		pass
 	if Input.is_action_just_pressed("pause"):
+		hud.visible = false
 		Global.state = Global.TITLE
+		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
+		hud.visible = true
 		Global.state = Global.STARTED
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
 		Global.state = Global.READY
