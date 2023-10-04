@@ -10,7 +10,7 @@ font_size = 30
 shader = ExtResource("1_so4l0")
 shader_parameter/width = 0.56
 shader_parameter/gradient_ease = 3.14
-shader_parameter/fill_ratio = 0.1
+shader_parameter/fill_ratio = 2.08165e-12
 shader_parameter/left_col = Color(0, 1, 1, 1)
 shader_parameter/right_col = Color(1, 0, 1, 1)
 

@@ -33,6 +33,8 @@ func _process(delta):
 		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
 		hud.visible = true
+		player.mousex_delta = 0.0
+		$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 		Global.state = Global.STARTED
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
 		Global.state = Global.READY
