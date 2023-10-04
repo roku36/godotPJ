@@ -17,7 +17,6 @@ signal new_record
 func _ready():
 	# add level1.tscn scene as "road"
 	pass
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

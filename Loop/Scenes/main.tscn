@@ -80,7 +80,7 @@ visible = false
 [node name="Goal" parent="." instance=ExtResource("11_38xe7")]
 
 [node name="Titles" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0.458333)
+modulate = Color(1, 1, 1, 0.678431)
 
 [node name="Logo" parent="Titles" instance=ExtResource("11_gggvu")]
 position = Vector2(2.08165e-12, -700)
