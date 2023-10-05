@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -33,10 +33,33 @@ shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
 shader_parameter/is_flipped = false
 
+[sub_resource type="Shader" id="Shader_j5gyk"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+uniform float brightness = 1.0;
+uniform float contrast = 1.0;
+uniform float saturation = 1.0;
+
+void fragment() {
+    vec3 c = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
+
+    c.rgb = mix(vec3(0.0), c.rgb, brightness);
+    c.rgb = mix(vec3(0.5), c.rgb, contrast);
+    c.rgb = mix(vec3(dot(vec3(1.0), c.rgb) * 0.33333), c.rgb, saturation);
+
+    COLOR.rgb = c;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n2cc"]
+shader = SubResource("Shader_j5gyk")
+shader_parameter/brightness = 1.09
+shader_parameter/contrast = 0.9
+shader_parameter/saturation = -3.79
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
-
-[node name="Background" parent="." instance=ExtResource("2_inqlf")]
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
@@ -133,6 +156,19 @@ text = "1: 32:00
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Background" parent="." instance=ExtResource("2_inqlf")]
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StageChanger" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_5n2cc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
