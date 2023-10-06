@@ -161,6 +161,7 @@ autowrap_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="StageChanger" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_5n2cc")

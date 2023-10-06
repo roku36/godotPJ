@@ -8,6 +8,7 @@ shader_parameter/iteration_times = 4
 shader_parameter/speed = 0.1
 shader_parameter/fg_color = Color(0.462745, 0.647059, 0.619608, 1)
 shader_parameter/bg_color = Color(0, 0.0862745, 0.137255, 1)
+shader_parameter/colorMap = PackedColorArray(0, 0, 0, 1, 0.619608, 0.619608, 0.619608, 1, 1, 0, 0, 1, 0, 0, 0, 1)
 shader_parameter/intensity = 0.005
 shader_parameter/size = Vector2(5, 5)
 
