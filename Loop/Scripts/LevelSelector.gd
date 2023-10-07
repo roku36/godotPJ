@@ -2,6 +2,7 @@
 extends Node
 @onready var road_path: Path2D
 @onready var scores: RichTextLabel = $"../Titles/Scores"
+@onready var background: Node2D = $"../Background"
 
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -37,6 +38,7 @@ func set_stage_num(value: int) -> int:
 			levels[i].visible = false 
 	# change_stage.emit(value)
 	Global.current_stage = value
+	background.col_transition(value)
 	road_path = levels[value]
 	update_scoreboard()
 	return value 
