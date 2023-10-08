@@ -92,6 +92,7 @@ text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
+visible = false
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
 

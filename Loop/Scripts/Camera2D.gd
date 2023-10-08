@@ -1,17 +1,25 @@
 extends Camera2D
 
+@onready var level_selector: Node = $"../LevelSelector"
 @onready var player: CharacterBody2D = $"../Player"
 # Called when the node enters the scene tree for the first time.
+
+var target_point = Vector2.ZERO
+
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	target_point = level_selector.road_path.curve.sample_baked(player.nearest_offset+500)
+
+	# move camera
 	if Global.state == Global.TITLE:
 		self.position = self.position.lerp(Vector2.ZERO, 3.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2(0.2, 0.2), 3.0 * delta)
 	else:
 		# lerp position to player
-		self.position = self.position.lerp(player.position, 3.0 * delta)
+		self.position = self.position.lerp(target_point, 1.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2.ONE, 3.0 * delta)
+

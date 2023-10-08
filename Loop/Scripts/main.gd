@@ -7,6 +7,7 @@ extends Node2D
 @onready var pause_menu: Control = $HUD/PauseMenu
 @onready var titles: Node2D = $Titles
 @onready var scores: RichTextLabel = $Titles/Scores
+@onready var camera: Camera2D = $Camera2D
 
 var paused = false
 var raptime:float = 0.0
@@ -20,9 +21,16 @@ func _ready():
 	# add level1.tscn scene as "road"
 	pass
 
+func _draw() -> void:
+	pass
+	# draw forward_point by circle
+	# draw_circle(player.nearest_point, 50, Color.RED)
+	# draw_circle(camera.target_point, 50, Color.BLUE)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	queue_redraw()
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
 	scores.text = str(Global.best_rap_time[Global.current_stage])
