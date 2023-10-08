@@ -24,13 +24,13 @@ outline_color = Color(0.698039, 0, 0.698039, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
-shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
+shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ski5d"]
 resource_local_to_scene = true
 shader = ExtResource("13_g6lgf")
-shader_parameter/arrow_col = Color(0.643137, 1, 0.996078, 1)
+shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
 [sub_resource type="Shader" id="Shader_j5gyk"]
@@ -62,7 +62,7 @@ shader_parameter/saturation = -3.79
 script = ExtResource("1_pd7es")
 
 [node name="Background" parent="." instance=ExtResource("2_inqlf")]
-colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)]])
+colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
 trans_spd = 0.05
 metadata/_edit_lock_ = true
 
@@ -92,7 +92,6 @@ text = "123"
 label_settings = SubResource("LabelSettings_o53ck")
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
-visible = false
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
 

@@ -6,6 +6,7 @@ extends Node2D
 @onready var time_label: Label = $TimeLabel
 @onready var pause_menu: Control = $HUD/PauseMenu
 @onready var titles: Node2D = $Titles
+@onready var scores: RichTextLabel = $Titles/Scores
 
 var paused = false
 var raptime:float = 0.0
@@ -24,7 +25,7 @@ func _ready():
 func _process(delta):
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
-	test_label_2.text = str(Global.state)
+	scores.text = str(Global.best_rap_time[Global.current_stage])
 	if Input.is_action_just_pressed("restart"):
 		pass
 	if Input.is_action_just_pressed("pause"):
@@ -48,9 +49,12 @@ func _process(delta):
 	# Goal detection
 	if player.nearest_offset <= 200 and raptime > 1 :
 		var bestRaptime = Global.best_rap_time[Global.current_stage]
-		if bestRaptime == -1 or raptime < bestRaptime:
-			Global.best_rap_time[Global.current_stage] = raptime
+		bestRaptime.append(raptime)
+		bestRaptime.sort()
+		while bestRaptime.size() > 5:
+			bestRaptime.pop_back()
 			new_record.emit()
+		Global.best_rap_time[Global.current_stage] = bestRaptime
 		raptime = 0
 		goal_reached.emit()
 
