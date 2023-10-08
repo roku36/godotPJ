@@ -3,6 +3,8 @@ extends Node
 @onready var road_path: Path2D
 @onready var scores: RichTextLabel = $"../Titles/Scores"
 @onready var background: Node2D = $"../Background"
+@onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
+@onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -38,6 +40,17 @@ func set_stage_num(value: int) -> int:
 			levels[i].visible = true
 		else:
 			levels[i].visible = false 
+
+	# show/hide arrows
+	if value == 0:
+		arrow_left.modulate = Color.TRANSPARENT
+	else:
+		arrow_left.modulate = Color.WHITE
+	if value == Global.STAGE_NUM - 1:
+		arrow_right.modulate = Color.TRANSPARENT
+	else:
+		arrow_right.modulate = Color.WHITE
+
 	# change_stage.emit(value)
 	Global.current_stage = value
 	background.col_transition(value)

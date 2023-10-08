@@ -127,12 +127,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 3000
 
-[node name="arrow2" type="ColorRect" parent="Titles/HBoxContainer"]
+[node name="arrowLeft" type="ColorRect" parent="Titles/HBoxContainer"]
 material = SubResource("ShaderMaterial_pwbag")
 custom_minimum_size = Vector2(600, 2.08165e-12)
 layout_mode = 2
 
-[node name="arrow3" type="ColorRect" parent="Titles/HBoxContainer"]
+[node name="arrowRight" type="ColorRect" parent="Titles/HBoxContainer"]
 material = SubResource("ShaderMaterial_ski5d")
 custom_minimum_size = Vector2(600, 2.08165e-12)
 layout_mode = 2
