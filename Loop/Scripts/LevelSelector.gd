@@ -30,7 +30,9 @@ func _process(delta: float) -> void:
 			stage_num += 1
 
 func set_stage_num(value: int) -> int:
-	# range of stage_num, make invisible if value!=i of node Leveli
+	# range of stage_num, make invisible if value!=i of node Level
+	if value < 0 or value >= Global.STAGE_NUM:
+		return stage_num
 	for i in range(4):
 		if i == value:
 			levels[i].visible = true
