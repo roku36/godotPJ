@@ -53,6 +53,8 @@ func set_stage_num(value: int) -> int:
 
 	# change_stage.emit(value)
 	Global.current_stage = value
+	if Global.state == Global.STARTED:
+		Global.state = Global.READY
 	background.col_transition(value)
 	road_path = levels[value]
 	update_scoreboard()

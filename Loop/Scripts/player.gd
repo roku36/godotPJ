@@ -25,6 +25,9 @@ func _ready() -> void:
 	velocity = Vector2.ZERO
 
 func _physics_process(delta):    
+	if Global.state == Global.READY or Global.state == Global.TITLE:
+		# set position to start of the curve
+		self.position = level_selector.road_path.curve.sample_baked(0)
 	if Global.state == Global.STARTED:
 		check_closest_reflector()
 		velocity = velocity.limit_length(max_speed)
