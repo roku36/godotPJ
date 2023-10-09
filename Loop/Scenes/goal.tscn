@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn553q7ip4304"]
+[gd_scene load_steps=9 format=3 uid="uid://dn553q7ip4304"]
 
 [ext_resource type="Shader" path="res://Shaders/blob.gdshader" id="1_1atni"]
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="1_q457f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trj5r"]
 
@@ -74,6 +75,7 @@ _data = {
 }
 
 [node name="Goal" type="Node2D"]
+script = ExtResource("1_q457f")
 
 [node name="TimeLabel" type="Label" parent="."]
 material = SubResource("ShaderMaterial_trj5r")

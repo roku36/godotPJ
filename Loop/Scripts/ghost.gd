@@ -81,3 +81,4 @@ func _on_new_record() -> void:
 	# show label the len of best_replay_data and \n replay_data
 	Global.best_replay_data[Global.current_stage] = replay_data.duplicate()
 	# test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
+

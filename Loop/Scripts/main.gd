@@ -24,7 +24,7 @@ func _ready():
 func _draw() -> void:
 	pass
 	# draw forward_point by circle
-	# draw_circle(player.nearest_point, 50, Color.RED)
+	# draw_circle(p layer.nearest_point, 50, Color.RED)
 	# draw_circle(camera.target_point, 50, Color.BLUE)
 
 

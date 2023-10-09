@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://gjuygdvv8hp3"]
+[gd_scene load_steps=12 format=3 uid="uid://gjuygdvv8hp3"]
 
 [ext_resource type="Script" path="res://Scripts/road.gd" id="1_m0u8a"]
 [ext_resource type="Shader" path="res://Shaders/road.gdshader" id="2_jiau3"]
 [ext_resource type="PackedScene" uid="uid://b0xfurce5ygwk" path="res://Entities/reflector.tscn" id="3_00wju"]
+[ext_resource type="PackedScene" uid="uid://dn553q7ip4304" path="res://Scenes/goal.tscn" id="4_jxf84"]
 
 [sub_resource type="Curve2D" id="Curve2D_m06sm"]
 _data = {
@@ -60,3 +61,6 @@ joint_mode = 2
 position = Vector2(1422, 887)
 rotation = 0.344788
 segment_num = 0
+
+[node name="Goal" parent="." instance=ExtResource("4_jxf84")]
+position = Vector2(-72, -50)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=20 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
-[ext_resource type="PackedScene" uid="uid://dn553q7ip4304" path="res://Scenes/goal.tscn" id="11_38xe7"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 
@@ -95,6 +94,7 @@ label_settings = SubResource("LabelSettings_o53ck")
 visible = false
 
 [node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
+metadata/_edit_group_ = true
 
 [node name="Level1" parent="." instance=ExtResource("6_wuisk")]
 visible = false
@@ -104,8 +104,6 @@ visible = false
 
 [node name="Level3" parent="." instance=ExtResource("10_l0o5c")]
 visible = false
-
-[node name="Goal" parent="." instance=ExtResource("11_38xe7")]
 
 [node name="Titles" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.678431)
@@ -129,6 +127,7 @@ grow_vertical = 2
 theme_override_constants/separation = 3000
 
 [node name="arrowLeft" type="ColorRect" parent="Titles/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_pwbag")
 custom_minimum_size = Vector2(600, 2.08165e-12)
 layout_mode = 2

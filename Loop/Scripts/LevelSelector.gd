@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends Node
 @onready var road_path: Path2D
 @onready var scores: RichTextLabel = $"../Titles/Scores"
