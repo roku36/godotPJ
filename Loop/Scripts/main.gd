@@ -37,6 +37,7 @@ func _process(delta):
 		pass
 	if Input.is_action_just_pressed("pause"):
 		hud.visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		Global.state = Global.TITLE
 		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
@@ -45,6 +46,7 @@ func _process(delta):
 		$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 		Global.state = Global.STARTED
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Global.state = Global.READY
 		# animation_player.play("titleToMain")
 		titles.visible = false
