@@ -7,6 +7,7 @@ extends Node2D
 @onready var titles: Node2D = $Titles
 @onready var scores: RichTextLabel = $Titles/Scores
 @onready var camera: Camera2D = $Camera2D
+@onready var level_selector: Node = $LevelSelector
 
 var paused = false
 var raptime:float = 0.0
@@ -21,8 +22,9 @@ func _ready():
 	pass
 
 func _draw() -> void:
-	draw_circle(player.nearest_point, 50, Color.RED)
-	draw_circle(camera.target_point, 50, Color.BLUE)
+	# draw_circle(player.nearest_point, 50, Color.RED)
+	# draw_circle(camera.target_point, 50, Color.BLUE)
+	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# pass
 	# draw forward_point by circle
 

@@ -1,6 +1,7 @@
 # @tool
 extends Node
 @onready var road_path: Path2D
+@onready var path_follow_player: PathFollow2D
 @onready var scores: RichTextLabel = $"../Titles/Scores"
 @onready var background: Node2D = $"../Background"
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
@@ -17,7 +18,6 @@ var levels = []
 
 # signal change_stage(stage_num)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(4):
 		levels.append(get_parent().get_node("Level" + str(i)))
@@ -59,6 +59,10 @@ func set_stage_num(value: int) -> int:
 		Global.state = Global.READY
 	background.col_transition(value)
 	road_path = levels[value]
+	# add pathfollow2d 
+	path_follow_player = PathFollow2D.new()
+	path_follow_player.name = "PathFollowPlayer"
+	road_path.add_child(path_follow_player)
 	update_scoreboard()
 	return value 
 

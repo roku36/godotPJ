@@ -68,8 +68,8 @@ func move_foward() -> void:
 	# rotate if close to center
 	self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
 	push_force = clampf(push_force, 5, 100)
-	self.velocity += self.position.direction_to(level_selector.pathfollower.position) * restrict_force
-	self.velocity += Vector2.UP.rotated(self.rotation) * push_force
+	self.velocity += self.position.direction_to(level_selector.path_follow_player.position) * restrict_force
+	# self.velocity += Vector2.UP.rotated(self.rotation) * push_force
 
 
 func update_rotation(turn_input: float, delta: float) -> void:
