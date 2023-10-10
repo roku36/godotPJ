@@ -64,3 +64,8 @@ segment_num = 0
 
 [node name="Goal" parent="." instance=ExtResource("4_r3l27")]
 position = Vector2(-72, -50)
+
+[node name="PathFollowPlayer" type="PathFollow2D" parent="."]
+position = Vector2(1207.97, 754.978)
+rotation = 2.88973
+progress = 3435.41

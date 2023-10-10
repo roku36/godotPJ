@@ -71,12 +71,14 @@ func play_recorded_data():
 func _on_goal_reached() -> void:
 	start_playback()
 	# initialize replay_data
+	reset_replay_data()
+
+func reset_replay_data() -> void:
 	replay_data = {
 		"time": [],
 		"position": [],
 		"rotation": [],
 	}
-
 func _on_new_record() -> void:
 	# show label the len of best_replay_data and \n replay_data
 	Global.best_replay_data[Global.current_stage] = replay_data.duplicate()

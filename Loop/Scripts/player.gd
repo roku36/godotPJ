@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var level_selector: Node = $"../LevelSelector"
+@onready var path_follow_player: Node = $"../LevelSelector/PathFollowPlayer"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -28,6 +29,7 @@ func _physics_process(delta):
 	if Global.state == Global.READY or Global.state == Global.TITLE:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
+		self.rotation = level_selector.road_path.curve.get_point_out(0).angle() + deg_to_rad(90)
 	if Global.state == Global.STARTED:
 		check_closest_reflector()
 		velocity = velocity.limit_length(max_speed)

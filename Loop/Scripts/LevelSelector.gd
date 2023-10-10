@@ -5,6 +5,7 @@ extends Node
 @onready var background: Node2D = $"../Background"
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
+@onready var ghost: Node2D = $"../Ghost"
 
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -53,6 +54,7 @@ func set_stage_num(value: int) -> int:
 
 	# change_stage.emit(value)
 	Global.current_stage = value
+	ghost.reset_replay_data()
 	if Global.state == Global.STARTED:
 		Global.state = Global.READY
 	background.col_transition(value)

@@ -97,3 +97,8 @@ text = "[tornado]spaceで開始"
 
 [node name="Goal" parent="." instance=ExtResource("3_e8wt7")]
 position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="PathFollowPlayer" type="PathFollow2D" parent="."]
+position = Vector2(-509.22, 1109.89)
+rotation = -3.04156
+progress = 3435.41
