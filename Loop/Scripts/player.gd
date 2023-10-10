@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var level_selector: Node = $"../LevelSelector"
-@onready var path_follow_player: Node = $"../LevelSelector/PathFollowPlayer"
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
@@ -70,7 +69,7 @@ func move_foward() -> void:
 	# rotate if close to center
 	self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
 	push_force = clampf(push_force, 5, 100)
-	self.velocity += self.position.direction_to(nearest_point) * restrict_force
+	self.velocity += self.position.direction_to(level_selector.pathfollower.position) * restrict_force
 	self.velocity += Vector2.UP.rotated(self.rotation) * push_force
 
 

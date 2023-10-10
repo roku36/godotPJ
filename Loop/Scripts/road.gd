@@ -1,6 +1,7 @@
 @tool
 extends Path2D
 @onready var road_line : Line2D = $Line2D
+const goal = preload("res://Scenes/goal.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
