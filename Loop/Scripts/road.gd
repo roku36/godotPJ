@@ -6,6 +6,11 @@ const goal = preload("res://Scenes/goal.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_road_line()
+	# add pathfollow2d 
+	var path_follow = PathFollow2D.new()
+	path_follow.name = "path_follow_player"
+	path_follow.progress = 0.0
+	add_child(path_follow)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

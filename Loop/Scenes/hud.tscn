@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbm1e8gtik5rv"]
+[gd_scene load_steps=4 format=3 uid="uid://dbm1e8gtik5rv"]
 
 [ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="1_so4l0"]
-[ext_resource type="PackedScene" uid="uid://c1fy1asyivcoi" path="res://Scenes/pause_menu.tscn" id="2_rfqen"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
 font_size = 30
@@ -46,6 +45,3 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(1, 0, 1, 1)
-
-[node name="PauseMenu" parent="." instance=ExtResource("2_rfqen")]
-visible = false

@@ -4,7 +4,6 @@ extends Node2D
 @onready var hud: CanvasLayer = $"HUD"
 @onready var player: CharacterBody2D = $Player
 @onready var time_label: Label = $TimeLabel
-@onready var pause_menu: Control = $HUD/PauseMenu
 @onready var titles: Node2D = $Titles
 @onready var scores: RichTextLabel = $Titles/Scores
 @onready var camera: Camera2D = $Camera2D
@@ -65,16 +64,3 @@ func _process(delta):
 		Global.best_rap_time[Global.current_stage] = bestRaptime
 		raptime = 0
 		goal_reached.emit()
-
-
-func pop_pause_menu() -> void:
-	if not paused:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Engine.time_scale = 0
-		pause_menu.show()
-		paused = true
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		Engine.time_scale = 1
-		pause_menu.hide()
-		paused = false
