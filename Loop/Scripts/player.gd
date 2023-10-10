@@ -33,6 +33,7 @@ func _physics_process(delta):
 		velocity = velocity.limit_length(max_speed)
 		velocity *= 0.95
 		update_rotation(mousex_delta, delta)
+		update_pathfollow()
 		nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
 		nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
 		forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
@@ -60,16 +61,20 @@ func _input(event):
 
 func move_foward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
-	var push_force = (100/ center_dist) + 10
+	# var push_force = (100/ center_dist) + 10
 	var restrict_force = center_dist / 3 ** 2
 	# get direction to forward road
 	var road_dir : float = nearest_point.angle_to_point(forward_point)
 	road_dir += PI / 2
 	# rotate if close to center
 	self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
-	push_force = clampf(push_force, 5, 100)
-	self.velocity += self.position.direction_to(level_selector.path_follow_player.position) * restrict_force
+	# push_force = clampf(push_force, 5, 100)
+	self.velocity += self.position.direction_to(level_selector.path_follow_player.position) * 10.0
 	# self.velocity += Vector2.UP.rotated(self.rotation) * push_force
+
+func update_pathfollow() -> void:
+	var center_dist = clampf(1000.0/self.position.distance_to(level_selector.path_follow_player.position), 1, 100)
+	level_selector.path_follow_player.progress += center_dist
 
 
 func update_rotation(turn_input: float, delta: float) -> void:
