@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ht746vm1ho17"]
+
+[ext_resource type="Shader" path="res://sky.gdshader" id="1_wrok6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_neoda"]
+shader = ExtResource("1_wrok6")
+
+[sub_resource type="Sky" id="Sky_lgse7"]
+sky_material = SubResource("ShaderMaterial_neoda")
+
+[sub_resource type="Environment" id="Environment_bekgg"]
+background_mode = 2
+sky = SubResource("Sky_lgse7")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bekgg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.98182e-17, -1.79638e-16, -1.79638e-16, -0.515038, -0.857167, -4.98182e-17, 0.857167, -0.515038, 0, 0, 0)
