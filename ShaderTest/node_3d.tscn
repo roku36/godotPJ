@@ -1,9 +1,37 @@
 [gd_scene load_steps=5 format=3 uid="uid://ht746vm1ho17"]
 
-[ext_resource type="Shader" path="res://sky.gdshader" id="1_wrok6"]
+[ext_resource type="Shader" path="res://clouds.gdshader" id="1_agpuu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_neoda"]
-shader = ExtResource("1_wrok6")
+shader = ExtResource("1_agpuu")
+shader_parameter/day_top_color = Color(0.560784, 0.498039, 1, 1)
+shader_parameter/day_bottom_color = Color(0.396078, 0, 0.666667, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.501961, 0.701961, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.18
+shader_parameter/sun_color = Color(1, 1, 0.560784, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.135
+shader_parameter/sun_blur = 0.242
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_top_color = Color(0.678431, 0.380392, 0.513726, 1)
+shader_parameter/clouds_middle_color = Color(0.682353, 0.576471, 0.74902, 1)
+shader_parameter/clouds_bottom_color = Color(0.74902, 0.568627, 0.623529, 1)
+shader_parameter/clouds_speed = 20.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.4
+shader_parameter/clouds_fuzziness = 0.13
+shader_parameter/clouds_weight = 0.04
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
 
 [sub_resource type="Sky" id="Sky_lgse7"]
 sky_material = SubResource("ShaderMaterial_neoda")
@@ -14,8 +42,11 @@ sky = SubResource("Sky_lgse7")
 
 [node name="Node3D" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.325568, -0.782946, -0.530095, -9.80252e-08, -0.560639, 0.82806, -0.945519, -0.26959, -0.182526, 0, 0, 0)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bekgg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -4.98182e-17, -1.79638e-16, -1.79638e-16, -0.515038, -0.857167, -4.98182e-17, 0.857167, -0.515038, 0, 0, 0)
+transform = Transform3D(1, -4.98182e-17, -1.79639e-16, -1.79638e-16, -0.515038, -0.857167, -4.98182e-17, 0.857167, -0.515038, 0, 0, 0)
