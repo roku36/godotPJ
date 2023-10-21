@@ -99,8 +99,10 @@ func check_closest_reflector():
 
 # move toward pathfollower2d.
 func move_to_follower() -> void:
-	var followerAngle = level_selector.path_follow_player.rotation
-	self.rotation = lerp_angle(self.rotation, followerAngle, 0.1)
-	self.position = lerp(self.position, level_selector.path_follow_player.position, 0.1)
+	var followerDirVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
+	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
+	self.rotation = lerp_angle(self.rotation, followerDirVec.angle(), 0.1)
+	self.position += followerDirVec.dot(followerDist) * followerDirVec.normalized()
+	
 	
 	
