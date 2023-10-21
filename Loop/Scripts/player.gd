@@ -96,3 +96,7 @@ func check_closest_reflector():
 			closest_reflector_distance = distance
 			closest_reflector=reflector 
 
+# move toward pathfollower2d.
+# move strongly on y axis, weakly on x axis
+func move_to_follower() -> void:
+	pass

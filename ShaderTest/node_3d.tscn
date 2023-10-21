@@ -19,10 +19,10 @@ shader_parameter/sun_blur = 0.242
 shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
 shader_parameter/moon_size = 0.06
 shader_parameter/moon_blur = 0.1
-shader_parameter/clouds_edge_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_top_color = Color(0.678431, 0.380392, 0.513726, 1)
-shader_parameter/clouds_middle_color = Color(0.682353, 0.576471, 0.74902, 1)
-shader_parameter/clouds_bottom_color = Color(0.74902, 0.568627, 0.623529, 1)
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
 shader_parameter/clouds_speed = 20.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
@@ -43,10 +43,9 @@ sky = SubResource("Sky_lgse7")
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.325568, -0.782946, -0.530095, -9.80252e-08, -0.560639, 0.82806, -0.945519, -0.26959, -0.182526, 0, 0, 0)
+transform = Transform3D(1, -1.08069e-17, -8.61501e-17, -8.61501e-17, -0.246999, -0.969016, -1.08069e-17, 0.969016, -0.246999, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bekgg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -4.98182e-17, -1.79639e-16, -1.79638e-16, -0.515038, -0.857167, -4.98182e-17, 0.857167, -0.515038, 0, 0, 0)
