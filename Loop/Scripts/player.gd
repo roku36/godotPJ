@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if Global.state == Global.READY or Global.state == Global.TITLE:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
-		self.rotation = level_selector.road_path.curve.get_point_out(0).angle() + deg_to_rad(90)
+		self.rotation = level_selector.road_path.curve.get_point_out(0).angle()
 	if Global.state == Global.STARTED:
 		check_closest_reflector()
 		velocity = velocity.limit_length(max_speed)
@@ -37,7 +37,8 @@ func _physics_process(delta):
 		nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
 		nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
 		forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
-		move_foward()
+		# move_forward()
+		move_to_follower()
 		move_and_slide()
 
 
@@ -59,7 +60,7 @@ func _input(event):
 			get_parent().add_child(impact_instance)
 
 
-func move_foward() -> void:
+func move_forward() -> void:
 	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
 	# var push_force = (100/ center_dist) + 10
 	var restrict_force = center_dist / 3 ** 2
@@ -97,6 +98,9 @@ func check_closest_reflector():
 			closest_reflector=reflector 
 
 # move toward pathfollower2d.
-# move strongly on y axis, weakly on x axis
 func move_to_follower() -> void:
-	pass
+	var followerAngle = level_selector.path_follow_player.rotation
+	self.rotation = lerp_angle(self.rotation, followerAngle, 0.1)
+	self.position = lerp(self.position, level_selector.path_follow_player.position, 0.1)
+	
+	
