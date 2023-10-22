@@ -58,7 +58,7 @@ func _process(delta):
 	raptime += delta
 	time_label.text = "%04.2f" % raptime
 	# Goal detection
-	if player.nearest_offset <= 200 and raptime > 1 :
+	if level_selector.path_follow_player.progress <= 200 and raptime > 1 :
 		var bestRaptime = Global.best_rap_time[Global.current_stage]
 		bestRaptime.append(raptime)
 		bestRaptime.sort()

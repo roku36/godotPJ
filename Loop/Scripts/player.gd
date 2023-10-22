@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-# @onready var level0: Path2D = $"../Level0"
-# @onready var level1: Path2D = $"../Level1"
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var ghost: Node2D = $"../Ghost"
@@ -14,9 +12,6 @@ extends CharacterBody2D
 var impact = preload("res://Scenes/impact.tscn")
 
 var mousex_delta:float = 0.0
-var nearest_offset:float = 0.0
-var nearest_point = Vector2.ZERO
-var forward_point = Vector2.ZERO
 
 var closest_reflector = null
 var closest_reflector_distance = INF
@@ -35,9 +30,6 @@ func _physics_process(delta):
 		velocity *= 0.95
 		update_rotation(mousex_delta, delta)
 		update_pathfollow()
-		nearest_offset = level_selector.road_path.curve.get_closest_offset(self.position)
-		nearest_point = level_selector.road_path.curve.sample_baked(nearest_offset)
-		forward_point = level_selector.road_path.curve.sample_baked(nearest_offset+30)
 		move_to_follower()
 		move_and_slide()
 
@@ -59,19 +51,6 @@ func _input(event):
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
 
-
-func move_forward() -> void:
-	# var push_force = (100/ center_dist) + 10
-	# var restrict_force = center_dist / 3 ** 2
-	# get direction to forward road
-	# var road_dir : float = nearest_point.angle_to_point(forward_point)
-	# road_dir += PI / 2
-	# rotate if close to center
-	# self.rotation = lerp_angle(self.rotation, road_dir, 10/(100+center_dist))
-	# push_force = clampf(push_force, 5, 100)
-	# self.velocity += Vector2.UP.rotated(self.rotation) * push_force
-	pass
-#
 func update_pathfollow() -> void:
 	var center_dist = self.position.distance_to(level_selector.path_follow_player.position)
 	var spd = spd_on_dist.sample(center_dist/1000.0)
@@ -100,7 +79,6 @@ func check_closest_reflector():
 
 # move toward pathfollower2d.
 func move_to_follower() -> void:
-	var center_dist = clampf(self.position.distance_to(nearest_point), 5, 1000)
 	var followerDirXVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
