@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=21 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -13,6 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
+
+[sub_resource type="Curve" id="Curve_2bhjp"]
+min_value = 1.0
+max_value = 10.0
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.178939, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 
@@ -79,6 +85,7 @@ script = ExtResource("5_qx3sb")
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(-95, -105)
 turn_speed = 0.01
+spd_on_dist = SubResource("Curve_2bhjp")
 
 [node name="TimeLabel" type="Label" parent="."]
 visible = false

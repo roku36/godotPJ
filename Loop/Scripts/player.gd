@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
 @export var turn_speed: float = 0.3
+@export var spd_on_dist: Curve
 var impact = preload("res://Scenes/impact.tscn")
 
 var mousex_delta:float = 0.0
@@ -23,7 +24,7 @@ var closest_reflector_distance = INF
 func _ready() -> void:
 	velocity = Vector2.ZERO
 
-func _physics_process(delta):    
+func _physics_process(delta):
 	if Global.state == Global.READY or Global.state == Global.TITLE:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
@@ -72,8 +73,9 @@ func move_forward() -> void:
 	pass
 #
 func update_pathfollow() -> void:
-	var center_dist = clampf(self.position.distance_to(level_selector.path_follow_player.position), 10, 300)
-	level_selector.path_follow_player.progress += 200 / center_dist
+	var center_dist = self.position.distance_to(level_selector.path_follow_player.position)
+	var spd = spd_on_dist.sample(center_dist/1000.0)
+	level_selector.path_follow_player.progress += spd
 	# level_selector.path_follow_player.progress += 10.0
 
 
