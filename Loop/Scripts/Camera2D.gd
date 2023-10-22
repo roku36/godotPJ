@@ -12,7 +12,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# target_point = level_selector.road_path.curve.sample_baked(player.nearest_offset+500)
 	target_point = (level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 1000) + player.position) / 2
 
 	# move camera
