@@ -63,7 +63,8 @@ func update_rotation(turn_input: float, delta: float) -> void:
 
 
 func reflection_to(angle, pos) -> void:
-	self.rotation = lerp_angle(self.rotation, angle + Vector2.DOWN.angle(), 1)
+	# self.rotation = lerp_angle(self.rotation, angle + Vector2.DOWN.angle(), 1)
+	self.rotation = angle
 	# self.position = pos
 	velocity = Vector2.RIGHT.rotated(angle) * velocity.length()
 
@@ -82,7 +83,8 @@ func move_to_follower() -> void:
 	var followerDirXVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
-	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.01)
+	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.1)
 	self.position += followerDirXVec.dot(followerDist) * followerDirXVec.normalized() / followerDirXVec.length()
 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
 	self.velocity += followerDirYVec.dot(followerDist) * followerDirYVec.normalized() / followerDirYVec.length() * 0.01
+

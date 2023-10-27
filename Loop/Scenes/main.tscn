@@ -75,7 +75,6 @@ metadata/_edit_lock_ = true
 script = ExtResource("2_52vh0")
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-position = Vector2(-1158, 70)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)

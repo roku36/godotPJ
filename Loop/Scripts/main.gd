@@ -22,11 +22,9 @@ func _ready():
 	pass
 
 func _draw() -> void:
-	# draw_circle(player.nearest_point, 50, Color.RED)
 	draw_circle(camera.target_point, 50, Color.BLUE)
 	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# pass
-	# draw forward_point by circle
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
