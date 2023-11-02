@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://dp5loavop5jkw"]
 
 [node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1182.0
+offset_bottom = 676.0
+size_flags_horizontal = 0
+color = Color(0.376471, 0.192157, 0.192157, 1)
