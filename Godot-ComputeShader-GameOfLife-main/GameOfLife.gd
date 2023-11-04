@@ -12,8 +12,8 @@ var write_data: PackedByteArray
 var image_size: Vector2i
 var image_format := Image.FORMAT_RGBA8
 
-
 func _ready() -> void:
+	
 	# We will be using our own RenderingDevice to handle the compute commands
 	rd = RenderingServer.create_local_rendering_device()
 	if not rd:
@@ -77,8 +77,8 @@ func _ready() -> void:
 	uniform_set = rd.uniform_set_create([read_uniform, write_uniform], shader, 0)
 
 
-func _process(_delta: float) -> void:
-	compute()
+# func _process(_delta: float) -> void:
+#	compute()
 
 
 func compute() -> void:
@@ -98,3 +98,7 @@ func compute() -> void:
 	read_data = rd.texture_get_data(texture_write, 0)
 	var image := Image.create_from_data(image_size.x, image_size.y, false, image_format, read_data)
 	texture = ImageTexture.create_from_image(image)
+
+
+func _on_timer_timeout() -> void:
+	compute()
