@@ -5,8 +5,10 @@
 
 [node name="GameOfLife" type="TextureRect"]
 texture_filter = 1
-offset_right = 512.0
-offset_bottom = 512.0
+offset_left = 315.0
+offset_top = 258.0
+offset_right = 827.0
+offset_bottom = 770.0
 texture = ExtResource("1_1rj1s")
 stretch_mode = 4
 script = ExtResource("1_wr0c7")
