@@ -5,16 +5,18 @@
 
 [node name="GameOfLife" type="TextureRect"]
 texture_filter = 1
-offset_left = 315.0
-offset_top = 258.0
-offset_right = 827.0
-offset_bottom = 770.0
+offset_left = 63.0
+offset_right = 575.0
+offset_bottom = 512.0
+scale = Vector2(2, 2)
 texture = ExtResource("1_1rj1s")
+expand_mode = 1
 stretch_mode = 4
+flip_h = true
 script = ExtResource("1_wr0c7")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.01
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

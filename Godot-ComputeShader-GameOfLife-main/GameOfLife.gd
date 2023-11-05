@@ -35,8 +35,12 @@ func _ready() -> void:
 	read_data = og_image.get_data()
 
 	var tex_read_format := RDTextureFormat.new()
-	tex_read_format.width = image_size.x
-	tex_read_format.height = image_size.y
+	# tex_read_format.width = int(self.size.x)
+	# tex_read_format.height = int(self.size.y)
+	tex_read_format.width = 512
+	tex_read_format.height = 512
+	# tex_read_format.width = image_size.x
+	# tex_read_format.height = image_size.y
 	tex_read_format.depth = 4
 	tex_read_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	tex_read_format.usage_bits = (
@@ -75,10 +79,6 @@ func _ready() -> void:
 	write_uniform.add_id(texture_write)
 
 	uniform_set = rd.uniform_set_create([read_uniform, write_uniform], shader, 0)
-
-
-# func _process(_delta: float) -> void:
-#	compute()
 
 
 func compute() -> void:
