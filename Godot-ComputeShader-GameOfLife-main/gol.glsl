@@ -28,7 +28,7 @@ vec2 updateCell(ivec2 cell_idx) {
       float weight = kernelSize - sqrt((dx * dx) + (dy * dy));
       // float weight = 1.0;
       alive_cells += cell_value;
-      total_cells += 0.3 * weight;
+      total_cells += 1.5 * weight;
     }
   }
 
@@ -48,9 +48,9 @@ vec2 updateCell(ivec2 cell_idx) {
   float next_status = current_status;
 
   if (mean > birth_low && mean < birth_high && density > survival_low && density < survival_high) {
-    next_status = min(1.0, current_status + 0.5 * rand(cell_idx)); // Increase cell state
+    next_status = min(1.0, current_status + 1.5 * rand(cell_idx)); // Increase cell state
   } else if (!(mean > survival_low && mean < survival_high && density > survival_low && density < survival_high)) {
-    next_status = max(0.0, current_status - 0.5 * rand(cell_idx)); // Decrease cell state
+    next_status = max(0.0, current_status - 1.5 * rand(cell_idx)); // Decrease cell state
   }
 
   return vec2(next_status, 0.0);
