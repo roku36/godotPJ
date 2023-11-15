@@ -100,5 +100,6 @@ func compute() -> void:
 	texture = ImageTexture.create_from_image(image)
 
 
-func _on_timer_timeout() -> void:
+# func _on_timer_timeout() -> void:
+func _process(delta):
 	compute()
