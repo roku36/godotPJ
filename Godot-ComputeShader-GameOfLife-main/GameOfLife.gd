@@ -12,8 +12,12 @@ var write_data: PackedByteArray
 var image_size: Vector2i
 var image_format := Image.FORMAT_RGBA8
 
+@export var ring_curve: Curve
+@export var ring_range: int = 10 
+
 func _ready() -> void:
-	
+	generate_ring()
+
 	# We will be using our own RenderingDevice to handle the compute commands
 	rd = RenderingServer.create_local_rendering_device()
 	if not rd:
@@ -80,6 +84,26 @@ func _ready() -> void:
 
 	uniform_set = rd.uniform_set_create([read_uniform, write_uniform], shader, 0)
 
+func generate_ring() -> void:
+	var texSize: int = ring_range * 2 + 1
+	var img: Image = Image.create(texSize, texSize, false, Image.FORMAT_L8)
+
+	for x in range(0, texSize):
+		for y in range(0, texSize):
+			var dx: float = x -ring_range
+			var dy: float = y -ring_range
+			var distance: float = sqrt(dx * dx + dy * dy)
+			if distance <=ring_range:
+				var t: float = distance /ring_range
+				var value: float = ring_curve.sample_baked(t)
+				var color_val: int = int(value * 255)
+				img.set_pixel(x, y, Color8(color_val, color_val, color_val))
+
+	img.save_png("res://ring_texture.png")
+	# var path = str("file://", ProjectSettings.globalize_path("user://"))
+	# OS.shell_open(path)
+	print("saved!!")
+	
 
 # func _on_timer_timeout() -> void:
 func _process(delta):
@@ -95,9 +119,9 @@ func compute(delta) -> void:
 	# Binds the uniform set with the data we want to give our shader
 	rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
 	rd.compute_list_dispatch(compute_list, image_size.x, image_size.y, 1)
-	rd.compute_list_end()  # Tell the GPU we are done with this compute task
-	rd.submit()  # Force the GPU to start our commands
-	rd.sync()  # Force the CPU to wait for the GPU to finish with the recorded commands
+	rd.compute_list_end()	# Tell the GPU we are done with this compute task
+	rd.submit()	# Force the GPU to start our commands
+	rd.sync()	# Force the CPU to wait for the GPU to finish with the recorded commands
 
 	# Now we can grab our data from the texture
 	read_data = rd.texture_get_data(texture_write, 0)

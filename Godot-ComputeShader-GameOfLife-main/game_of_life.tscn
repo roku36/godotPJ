@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bojvd7col3t4k"]
+[gd_scene load_steps=4 format=3 uid="uid://bojvd7col3t4k"]
 
 [ext_resource type="Texture2D" uid="uid://dre3o7g4j47l1" path="res://gameoflife.png" id="1_bbk8t"]
 [ext_resource type="Script" path="res://GameOfLife.gd" id="1_wr0c7"]
 
+[sub_resource type="Curve" id="Curve_jatab"]
+_data = [Vector2(0, 0.0023731), 0.0, 0.0, 0, 0, Vector2(0.345777, 1), 0.0, 0.0, 0, 0, Vector2(0.758056, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="GameOfLife" type="TextureRect"]
+modulate = Color(0.270588, 1, 0, 1)
 texture_filter = 1
 offset_left = 63.0
 offset_right = 575.0
@@ -14,3 +19,4 @@ expand_mode = 1
 stretch_mode = 4
 flip_h = true
 script = ExtResource("1_wr0c7")
+ring_curve = SubResource("Curve_jatab")
