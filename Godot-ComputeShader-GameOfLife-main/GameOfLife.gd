@@ -81,7 +81,12 @@ func _ready() -> void:
 	uniform_set = rd.uniform_set_create([read_uniform, write_uniform], shader, 0)
 
 
-func compute() -> void:
+# func _on_timer_timeout() -> void:
+func _process(delta):
+	compute(delta)
+
+
+func compute(delta) -> void:
 	rd.texture_update(texture_read, 0, read_data)
 	# Start compute list to start recording our compute commands
 	var compute_list := rd.compute_list_begin()
@@ -99,7 +104,3 @@ func compute() -> void:
 	var image := Image.create_from_data(image_size.x, image_size.y, false, image_format, read_data)
 	texture = ImageTexture.create_from_image(image)
 
-
-# func _on_timer_timeout() -> void:
-func _process(delta):
-	compute()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj5vnphrdcq2h"
-path="res://.godot/imported/gameoflife.jpg-a28c334866f6c58432be8733feac09b3.ctex"
+uid="uid://dre3o7g4j47l1"
+path="res://.godot/imported/gameoflife.png-6a06b56900f2ad391fa223e913bc92c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gameoflife.jpg"
-dest_files=["res://.godot/imported/gameoflife.jpg-a28c334866f6c58432be8733feac09b3.ctex"]
+source_file="res://gameoflife.png"
+dest_files=["res://.godot/imported/gameoflife.png-6a06b56900f2ad391fa223e913bc92c2.ctex"]
 
 [params]
 
