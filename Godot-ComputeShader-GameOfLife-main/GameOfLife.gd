@@ -11,6 +11,7 @@ var read_data: PackedByteArray
 var write_data: PackedByteArray
 var image_size: Vector2i
 var image_format := Image.FORMAT_RGBA8
+@onready var fps_label = $fpsLabel
 
 @export var ring_curve: Curve
 @export var ring_range: int = 10 
@@ -30,7 +31,7 @@ func _ready() -> void:
 	shader = rd.shader_create_from_spirv(shader_spirv)
 	pipeline = rd.compute_pipeline_create(shader)
 
-	var og_image := texture.get_image()
+	var og_image := self.texture.get_image()
 	og_image.convert(image_format)
 	image_size = og_image.get_size()
 
@@ -41,8 +42,8 @@ func _ready() -> void:
 	var tex_read_format := RDTextureFormat.new()
 	# tex_read_format.width = int(self.size.x)
 	# tex_read_format.height = int(self.size.y)
-	tex_read_format.width = 512
-	tex_read_format.height = 512
+	tex_read_format.width = 256
+	tex_read_format.height = 256
 	# tex_read_format.width = image_size.x
 	# tex_read_format.height = image_size.y
 	tex_read_format.depth = 4
@@ -82,7 +83,12 @@ func _ready() -> void:
 	write_uniform.binding = 1
 	write_uniform.add_id(texture_write)
 
-	uniform_set = rd.uniform_set_create([read_uniform, write_uniform], shader, 0)
+	var ring_uniform := RDUniform.new()
+	ring_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_IMAGE
+	ring_uniform.binding = 2
+	ring_uniform.add_id(texture_read)
+
+	uniform_set = rd.uniform_set_create([read_uniform, write_uniform, ring_uniform], shader, 0)
 
 func generate_ring() -> void:
 	var texSize: int = ring_range * 2 + 1
@@ -107,6 +113,7 @@ func generate_ring() -> void:
 
 # func _on_timer_timeout() -> void:
 func _process(delta):
+	fps_label.text = str(Engine.get_frames_per_second())
 	compute(delta)
 
 

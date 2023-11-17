@@ -4,19 +4,27 @@
 [ext_resource type="Script" path="res://GameOfLife.gd" id="1_wr0c7"]
 
 [sub_resource type="Curve" id="Curve_jatab"]
-_data = [Vector2(0, 0.0023731), 0.0, 0.0, 0, 0, Vector2(0.345777, 1), 0.0, 0.0, 0, 0, Vector2(0.758056, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.272483, 0.59529), 0.0, 0.0, 0, 0, Vector2(0.451137, 0.261774), 0.0, 0.0, 0, 0, Vector2(0.722936, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [node name="GameOfLife" type="TextureRect"]
-modulate = Color(0.270588, 1, 0, 1)
 texture_filter = 1
 offset_left = 63.0
-offset_right = 575.0
-offset_bottom = 512.0
-scale = Vector2(2, 2)
+offset_right = 1087.0
+offset_bottom = 1024.0
 texture = ExtResource("1_bbk8t")
 expand_mode = 1
 stretch_mode = 4
 flip_h = true
 script = ExtResource("1_wr0c7")
 ring_curve = SubResource("Curve_jatab")
+ring_range = 5
+
+[node name="fpsLabel" type="Label" parent="."]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 102.0
+offset_bottom = 33.0
+text = "fps counter"
