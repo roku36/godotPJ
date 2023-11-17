@@ -42,7 +42,6 @@ func _ready() -> void:
 	var tex_read_format := RDTextureFormat.new()
 	tex_read_format.width = image_size.x
 	tex_read_format.height = image_size.y
-	tex_read_format.depth = 4
 	tex_read_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	tex_read_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT
@@ -64,7 +63,6 @@ func _ready() -> void:
 	var tex_write_format := RDTextureFormat.new()
 	tex_write_format.width = image_size.x
 	tex_write_format.height = image_size.y
-	tex_write_format.depth = 4
 	tex_write_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	tex_write_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT
