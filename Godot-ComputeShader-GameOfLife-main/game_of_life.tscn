@@ -9,8 +9,8 @@ point_count = 5
 
 [node name="GameOfLife" type="TextureRect"]
 texture_filter = 1
-offset_left = 63.0
-offset_right = 1087.0
+offset_left = 162.0
+offset_right = 1186.0
 offset_bottom = 1024.0
 texture = ExtResource("1_bbk8t")
 expand_mode = 1
@@ -23,8 +23,9 @@ ring_range = 5
 [node name="fpsLabel" type="Label" parent="."]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 13.0
-offset_top = 7.0
-offset_right = 102.0
-offset_bottom = 33.0
+offset_left = -136.0
+offset_top = 15.0
+offset_right = 67.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 37
 text = "fps counter"
