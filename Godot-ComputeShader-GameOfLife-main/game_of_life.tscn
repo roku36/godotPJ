@@ -18,7 +18,7 @@ stretch_mode = 4
 flip_h = true
 script = ExtResource("1_wr0c7")
 ring_curve = SubResource("Curve_jatab")
-ring_range = 5
+ring_range = 3
 
 [node name="fpsLabel" type="Label" parent="."]
 modulate = Color(0, 1, 0, 1)
