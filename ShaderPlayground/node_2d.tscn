@@ -1,6 +1,29 @@
-[gd_scene load_steps=25 format=3 uid="uid://cysqlukrc4mp2"]
+[gd_scene load_steps=28 format=3 uid="uid://cysqlukrc4mp2"]
 
 [ext_resource type="Shader" uid="uid://3u2uyq0norb3" path="res://disk.tres" id="1_04nce"]
+
+[sub_resource type="Gradient" id="Gradient_njaf7"]
+offsets = PackedFloat32Array(0, 0.218519, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.219956, 3.66882e-05, 0.223621, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mystr"]
+gradient = SubResource("Gradient_njaf7")
+
+[sub_resource type="Environment" id="Environment_ins2t"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 3.15
+glow_levels/3 = 2.9
+glow_levels/4 = 0.3
+glow_levels/5 = 0.0
+glow_intensity = 3.74
+glow_strength = 2.0
+glow_blend_mode = 1
+glow_hdr_threshold = 1.75
+glow_hdr_scale = 2.95
+glow_hdr_luminance_cap = 0.01
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_mystr")
 
 [sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_piimm"]
 output_port_for_preview = 0
@@ -214,21 +237,31 @@ shader_parameter/ColorParameter = Color(0.945098, 0, 0.580392, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ye2cg"]
 shader = ExtResource("1_04nce")
-shader_parameter/rotateSpd = 5.0
+shader_parameter/rotateSpd = 20.0
 
 [node name="Node2D" type="Node2D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ins2t")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8p82s")
-offset_left = 46.0
-offset_top = 23.0
-offset_right = 432.0
-offset_bottom = 410.0
+offset_left = -177.0
+offset_top = 135.0
+offset_right = 209.0
+offset_bottom = 522.0
 color = Color(0.47451, 0.415686, 0.352941, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color(7.94, 2.65, 6.76, 1)
+offset_left = 654.0
+offset_top = 157.0
+offset_right = 805.0
+offset_bottom = 339.0
 
 [node name="Disk" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ye2cg")
-offset_left = 514.0
-offset_top = 96.0
-offset_right = 893.0
-offset_bottom = 475.0
+offset_left = 181.0
+offset_top = 132.0
+offset_right = 560.0
+offset_bottom = 511.0
