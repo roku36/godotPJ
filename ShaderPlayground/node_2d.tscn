@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://3u2uyq0norb3" path="res://disk.tres" id="1_04nce"]
 
 [sub_resource type="Gradient" id="Gradient_njaf7"]
-offsets = PackedFloat32Array(0, 0.218519, 1)
+offsets = PackedFloat32Array(0, 0.266667, 1)
 colors = PackedColorArray(1, 0, 1, 1, 0.219956, 3.66882e-05, 0.223621, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mystr"]
@@ -261,7 +261,7 @@ offset_bottom = 339.0
 
 [node name="Disk" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ye2cg")
-offset_left = 181.0
-offset_top = 132.0
-offset_right = 560.0
-offset_bottom = 511.0
+offset_left = 141.0
+offset_top = 137.0
+offset_right = 520.0
+offset_bottom = 516.0
