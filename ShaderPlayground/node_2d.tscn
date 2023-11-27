@@ -214,6 +214,7 @@ shader_parameter/ColorParameter = Color(0.945098, 0, 0.580392, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ye2cg"]
 shader = ExtResource("1_04nce")
+shader_parameter/rotateSpd = 5.0
 
 [node name="Node2D" type="Node2D"]
 
