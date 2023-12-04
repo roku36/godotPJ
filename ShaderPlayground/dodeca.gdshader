@@ -3,11 +3,12 @@ shader_type canvas_item;
 void fragment(){
     float stepSize = 0.0;
     float distance = sqrt(5.) * 0.5 + 0.5;
-    vec3 resolution = vec3(1.0/SCREEN_PIXEL_SIZE, 1.0);
+    // vec3 resolution = vec3(1.0/SCREEN_PIXEL_SIZE, 0.1234);
+    vec3 resolution = vec3(1000.2, 1000.2, 0.1234);
     vec3 eye = vec3(0.0);
     vec3 normal = vec3(0.0);
     vec3 position = vec3(0.0);
-    vec3 rayDir = vec3((FRAGCOORD.xy + FRAGCOORD.xy - resolution.xy) / resolution.y, 1);
+    vec3 rayDir = vec3((UV.xy * resolution.xy * 2.0 - resolution.xy) / resolution.y, 1);
     vec3 baseColor = 1.0 - vec3(distance, 0, 1.0 / distance);
     eye.y = 0.01;
 
@@ -29,5 +30,5 @@ void fragment(){
         }
     }
 
-    COLOR = vec4(0.6) + 0.1 * dot(resolution * baseColor, normal);
+    COLOR = vec4(vec3(0.8 + 0.1 * dot(resolution * baseColor, normal)), 1.0);
 }
