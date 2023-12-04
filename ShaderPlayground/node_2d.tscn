@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cysqlukrc4mp2"]
+[gd_scene load_steps=41 format=3 uid="uid://cysqlukrc4mp2"]
 
 [ext_resource type="Shader" uid="uid://3u2uyq0norb3" path="res://disk.tres" id="1_04nce"]
 [ext_resource type="Shader" path="res://dodeca.gdshader" id="2_70q3x"]
@@ -12,7 +12,6 @@ gradient = SubResource("Gradient_njaf7")
 
 [sub_resource type="Environment" id="Environment_ins2t"]
 background_mode = 3
-glow_enabled = true
 glow_levels/2 = 3.15
 glow_levels/3 = 2.9
 glow_levels/4 = 0.3
@@ -282,6 +281,14 @@ shader_parameter/rotateSpd = 20.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odq64"]
 shader = ExtResource("2_70q3x")
 
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lamqw"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_vmfk0"]
+output_port_for_preview = 0
+input_name = "screen_uv"
+
 [sub_resource type="VisualShaderNodeSDFRaymarch" id="VisualShaderNodeSDFRaymarch_caltb"]
 output_port_for_preview = 0
 
@@ -297,6 +304,10 @@ constant = Vector2(1.38, 0.71)
 [sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_7044s"]
 constant = Vector2(0.87, 0.64)
 
+[sub_resource type="VisualShaderNodeScreenUVToSDF" id="VisualShaderNodeScreenUVToSDF_3wbxi"]
+output_port_for_preview = 1
+expanded_output_ports = [0]
+
 [sub_resource type="VisualShader" id="VisualShader_m8uc2"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -305,22 +316,20 @@ render_mode blend_mix;
 
 
 void fragment() {
-// FloatOp:3
-	float n_in3p0 = 0.00000;
-	float n_in3p1 = 0.00000;
-	float n_out3p0 = n_in3p0 + n_in3p1;
+// Input:11
+	vec2 n_out11p0 = SCREEN_UV;
 
 
 // Output:0
-	COLOR.rgb = vec3(n_out3p0);
+	COLOR.rgb = vec3(n_out11p0, 0.0);
 
 
 }
 "
-graph_offset = Vector2(-48, -239.48)
+graph_offset = Vector2(-144.96, 71.56)
 mode = 1
 flags/light_only = false
-nodes/fragment/0/position = Vector2(1520, 140)
+nodes/fragment/0/position = Vector2(1760, 340)
 nodes/fragment/2/node = SubResource("VisualShaderNodeSDFRaymarch_caltb")
 nodes/fragment/2/position = Vector2(480, 100)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatOp_q8cbh")
@@ -331,7 +340,13 @@ nodes/fragment/7/node = SubResource("VisualShaderNodeVec2Constant_hessb")
 nodes/fragment/7/position = Vector2(60, -60)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVec2Constant_7044s")
 nodes/fragment/8/position = Vector2(-20, 240)
-nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 7, 0, 2, 0, 8, 0, 2, 1)
+nodes/fragment/9/node = SubResource("VisualShaderNodeScreenUVToSDF_3wbxi")
+nodes/fragment/9/position = Vector2(1680, 980)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_lamqw")
+nodes/fragment/10/position = Vector2(-220, 880)
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_vmfk0")
+nodes/fragment/11/position = Vector2(620, 640)
+nodes/fragment/connections = PackedInt32Array(7, 0, 2, 0, 8, 0, 2, 1, 11, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_157oc"]
 shader = SubResource("VisualShader_m8uc2")
@@ -363,16 +378,16 @@ offset_top = 137.0
 offset_right = 520.0
 offset_bottom = 516.0
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="dodeca" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_odq64")
-offset_left = 470.0
-offset_top = 392.0
-offset_right = 700.0
-offset_bottom = 622.0
+offset_left = 1595.0
+offset_top = -164.0
+offset_right = 2619.0
+offset_bottom = 860.0
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_157oc")
-offset_left = 244.0
-offset_top = 655.0
-offset_right = 786.0
-offset_bottom = 1197.0
+offset_left = 1233.0
+offset_top = 847.0
+offset_right = 2743.0
+offset_bottom = 1762.0
