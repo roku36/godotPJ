@@ -222,7 +222,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(46.3605, 290.242)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(4000, 1440)
@@ -326,7 +325,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-144.96, 71.56)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1760, 340)
@@ -380,10 +378,10 @@ offset_bottom = 516.0
 
 [node name="dodeca" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_odq64")
-offset_left = 1595.0
-offset_top = -164.0
-offset_right = 2619.0
-offset_bottom = 860.0
+offset_left = 49.0
+offset_top = -193.0
+offset_right = 1073.0
+offset_bottom = 831.0
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_157oc")

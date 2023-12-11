@@ -8,8 +8,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	bg.material.set_shader_parameter("fg_color", colors[0][0])
-	bg.material.set_shader_parameter("bg_color", colors[0][1])
+	pass
+	# bg.material.set_shader_parameter("fg_color", colors[0][0])
+	# bg.material.set_shader_parameter("bg_color", colors[0][1])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

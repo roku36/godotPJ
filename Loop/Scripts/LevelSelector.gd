@@ -7,6 +7,7 @@ extends Node
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 @onready var ghost: Node2D = $"../Ghost"
+@onready var world_env: WorldEnvironment = $"../WorldEnvironment"
 
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -57,7 +58,8 @@ func set_stage_num(value: int) -> int:
 	ghost.reset_replay_data()
 	if Global.state == Global.STARTED:
 		Global.state = Global.READY
-	background.col_transition(value)
+	# background.col_transition(value)
+	world_env.change_env_gradient(value)
 	road_path = levels[value]
 	# add pathfollow2d 
 	path_follow_player = PathFollow2D.new()
