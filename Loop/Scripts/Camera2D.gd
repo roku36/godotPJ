@@ -4,7 +4,7 @@ extends Camera2D
 @onready var player: CharacterBody2D = $"../Player"
 # Called when the node enters the scene tree for the first time.
 
-var target_point = Vector2.ZERO
+var target_point: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	pass # Replace with function body.

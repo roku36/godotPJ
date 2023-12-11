@@ -13,15 +13,15 @@ func _ready() -> void:
 	# bg.material.set_shader_parameter("bg_color", colors[0][1])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass # Replace with function body.
 
 func test_transition() -> void:
 	# tween from blue to red
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(bg, "material:shader_parameter/bg_color", Color.RED, 3.0)
 
 func col_transition(stage: int) -> void:
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(bg, "material:shader_parameter/fg_color", colors[stage][0], trans_spd)
 	tween.tween_property(bg, "material:shader_parameter/bg_color", colors[stage][1], trans_spd)

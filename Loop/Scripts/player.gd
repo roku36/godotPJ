@@ -9,17 +9,17 @@ extends CharacterBody2D
 @export var max_speed: float = 1000.0
 @export var turn_speed: float = 0.3
 @export var spd_on_dist: Curve
-var impact = preload("res://Scenes/impact.tscn")
+var impact: PackedScene = preload("res://Scenes/impact.tscn")
 
 var mousex_delta:float = 0.0
 
-var closest_reflector = null
-var closest_reflector_distance = INF
+var closest_reflector: Node2D = null
+var closest_reflector_distance: float = INF
 
 func _ready() -> void:
 	velocity = Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if Global.state == Global.READY or Global.state == Global.TITLE:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
@@ -34,7 +34,7 @@ func _physics_process(delta):
 		move_and_slide()
 
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mousex_delta += event.relative.x
 		# update test_label text to mousex_delta
@@ -47,13 +47,13 @@ func _input(event):
 			print("Closest enemy rotation: " + str(closest_reflector.rotation))
 			reflection_to(closest_reflector.rotation, closest_reflector.global_position)
 			# add impact instance to the position
-			var impact_instance = impact.instantiate()
+			var impact_instance: Node2D = impact.instantiate()
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
 
 func update_pathfollow() -> void:
-	var center_dist = self.position.distance_to(level_selector.path_follow_player.position)
-	var spd = spd_on_dist.sample(center_dist/1000.0)
+	var center_dist: float = self.position.distance_to(level_selector.path_follow_player.position)
+	var spd: float = spd_on_dist.sample(center_dist/1000.0)
 	level_selector.path_follow_player.progress += spd
 	# level_selector.path_follow_player.progress += 10.0
 
@@ -62,18 +62,18 @@ func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
 
 
-func reflection_to(angle, pos) -> void:
+func reflection_to(angle: float, _pos: Vector2) -> void:
 	# self.rotation = lerp_angle(self.rotation, angle + Vector2.DOWN.angle(), 1)
 	self.rotation = angle
 	# self.position = pos
 	velocity = Vector2.RIGHT.rotated(angle) * velocity.length()
 
 
-func check_closest_reflector():
+func check_closest_reflector() -> void:
 	closest_reflector= null
 	closest_reflector_distance = INF
 	for reflector in get_tree().get_nodes_in_group("Reflector"):
-		var distance = reflector.global_position.distance_to(global_position)
+		var distance: float = reflector.global_position.distance_to(global_position)
 		if distance < closest_reflector_distance:
 			closest_reflector_distance = distance
 			closest_reflector=reflector 

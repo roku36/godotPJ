@@ -9,7 +9,7 @@ extends Node2D
 @onready var camera: Camera2D = $Camera2D
 @onready var level_selector: Node = $LevelSelector
 
-var paused = false
+var paused:bool = false
 var raptime:float = 0.0
 var nearest_offset:float = 0.0
 
@@ -17,7 +17,7 @@ signal goal_reached
 signal new_record
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	# add level1.tscn scene as "road"
 	pass
 
@@ -29,7 +29,7 @@ func _draw() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta: float) -> void:
 	queue_redraw()
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
@@ -58,7 +58,7 @@ func _process(delta):
 	time_label.text = "%04.2f" % raptime
 	# Goal detection
 	if level_selector.path_follow_player.progress <= 200 and raptime > 1 :
-		var bestRaptime = Global.best_rap_time[Global.current_stage]
+		var bestRaptime: Array[int] = Global.best_rap_time[Global.current_stage]
 		bestRaptime.append(raptime)
 		bestRaptime.sort()
 		while bestRaptime.size() > 5:

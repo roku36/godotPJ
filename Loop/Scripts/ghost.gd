@@ -1,31 +1,31 @@
 extends Node2D
 @onready var player: CharacterBody2D = $"../Player"
 
-var replay_data = {
+var replay_data: Dictionary = {
 	"time": [],
 	"position": [],
 	"rotation": [],
 }
 
-var current_time = 0.0
-var current_index = 0
-var playback_started = false
+var current_time: float = 0.0
+var current_index: int = 0
+var playback_started: bool = false
 
 const SAVE_INTERVAL = 0.1 # save every 0.1 seconds
-var time_since_last_save = 0.0
+var time_since_last_save: float = 0.0
 
-func _ready():
+func _ready() -> void:
 	pass
 
-func set_replay_data(data):
+func set_replay_data(data: Dictionary) -> void:
 	replay_data = data
 
-func start_playback():
+func start_playback() -> void:
 	current_time = 0
 	current_index = 0
 	playback_started = true
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	current_time += delta
 	# Add to the time since the last save
 	time_since_last_save += delta
@@ -38,20 +38,20 @@ func _physics_process(delta):
 		play_recorded_data()
 
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ghost"):
 		start_playback()
 
 
-func record_data():
+func record_data() -> void:
 	replay_data["time"].append(current_time)
 	replay_data["position"].append(player.position)
 	replay_data["rotation"].append(player.rotation)
 
 
-func play_recorded_data():
+func play_recorded_data() -> void:
 	# If we've reached the end of the replay data, stop
-	var best_replay_data = Global.best_replay_data[Global.current_stage]
+	var best_replay_data: Dictionary = Global.best_replay_data[Global.current_stage]
 	if current_index >= len(best_replay_data["position"]) - 1:
 		return
 		# If the current time is greater than the next timestamp in the replay data,
@@ -59,7 +59,7 @@ func play_recorded_data():
 	if current_time >= best_replay_data["time"][current_index]:
 		current_index += 1
 	# Calculate the ratio between the current time and the next timestamp
-	var t = (current_time - best_replay_data["time"][current_index-1]) / (best_replay_data["time"][current_index] - best_replay_data["time"][current_index-1])
+	var t: float = (current_time - best_replay_data["time"][current_index-1]) / (best_replay_data["time"][current_index] - best_replay_data["time"][current_index-1])
 	# Use linear interpolation for the position and rotation
 	self.position = lerp(best_replay_data["position"][current_index-1], best_replay_data["position"][current_index], t)
 	self.rotation = lerp_angle(best_replay_data["rotation"][current_index-1], best_replay_data["rotation"][current_index], t)

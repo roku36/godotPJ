@@ -8,14 +8,14 @@ extends Node
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
-
+#
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
 		stage_num = set_stage_num(value)
 	get:
 		return stage_num
 
-var levels = []
+var levels: Array[Node2D] = []
 
 # signal change_stage(stage_num)
 
@@ -26,7 +26,7 @@ func _ready() -> void:
 	set_stage_num(stage_num)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
 		if Input.is_action_just_pressed("previous_level"):
 			stage_num -= 1
@@ -68,5 +68,7 @@ func set_stage_num(value: int) -> int:
 	update_scoreboard()
 	return value 
 
-func update_scoreboard():
+func update_scoreboard() -> void:
+	print(Global.current_stage)
+	print(Global.best_rap_time[Global.current_stage])
 	scores.text = "%d st stage: %f" % [Global.current_stage, Global.best_rap_time[Global.current_stage]]

@@ -107,6 +107,7 @@ metadata/_edit_lock_ = true
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
+stage_num = null
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
@@ -117,6 +118,8 @@ script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(-95, -105)
+acceleration = null
+max_speed = null
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 
