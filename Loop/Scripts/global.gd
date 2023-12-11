@@ -18,7 +18,7 @@ func _ready() -> void:
 		})
 			
 		# best_rap_time[i].fill(-1)
-		var top_scores: Array[int] = []
+		var top_scores: Array[float] = []
 		for j in range(REC_CAPACITY):
 			top_scores.append(-1)
 		best_rap_time.append(top_scores)

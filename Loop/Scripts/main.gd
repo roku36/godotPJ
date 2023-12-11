@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
-	scores.text = str(Global.best_rap_time[Global.current_stage])
 	if Input.is_action_just_pressed("restart"):
 		pass
 	if Input.is_action_just_pressed("pause"):
@@ -58,7 +57,7 @@ func _process(delta: float) -> void:
 	time_label.text = "%04.2f" % raptime
 	# Goal detection
 	if level_selector.path_follow_player.progress <= 200 and raptime > 1 :
-		var bestRaptime: Array[int] = Global.best_rap_time[Global.current_stage]
+		var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
 		bestRaptime.append(raptime)
 		bestRaptime.sort()
 		while bestRaptime.size() > 5:

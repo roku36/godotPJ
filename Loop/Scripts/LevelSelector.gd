@@ -22,7 +22,6 @@ var levels: Array[Node2D] = []
 func _ready() -> void:
 	for i in range(4):
 		levels.append(get_parent().get_node("Level" + str(i)))
-	print(levels)
 	set_stage_num(stage_num)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,6 +68,8 @@ func set_stage_num(value: int) -> int:
 	return value 
 
 func update_scoreboard() -> void:
-	print(Global.current_stage)
-	print(Global.best_rap_time[Global.current_stage])
-	scores.text = "%d st stage: %f" % [Global.current_stage, Global.best_rap_time[Global.current_stage]]
+	scores.clear()
+	# append top 5 scores
+	# e.g. "1st score: 30.00"
+	for i in range(Global.best_rap_time[Global.current_stage].size()):
+		scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
