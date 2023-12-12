@@ -27,9 +27,10 @@ func _physics_process(delta: float) -> void:
 	if Global.state == Global.STARTED:
 		check_closest_reflector()
 		velocity = velocity.limit_length(max_speed)
+		# damp
 		velocity *= 0.95
 		update_rotation(mousex_delta, delta)
-		update_pathfollow()
+		# update_pathfollow()
 		move_to_follower()
 		move_and_slide()
 
@@ -51,11 +52,11 @@ func _input(event: InputEvent) -> void:
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
 
-func update_pathfollow() -> void:
-	var center_dist: float = self.position.distance_to(level_selector.path_follow_player.position)
-	var spd: float = spd_on_dist.sample(center_dist/1000.0)
-	level_selector.path_follow_player.progress += spd
-	# level_selector.path_follow_player.progress += 10.0
+# func update_pathfollow() -> void:
+# 	var dist_player_target: float = self.position.distance_to(level_selector.path_follow_player.position)
+# 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
+# 	level_selector.path_follow_player.progress += spd
+# 	# level_selector.path_follow_player.progress += 10.0
 
 
 func update_rotation(turn_input: float, delta: float) -> void:
@@ -83,8 +84,25 @@ func move_to_follower() -> void:
 	var followerDirXVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
-	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.1)
-	self.position += followerDirXVec.dot(followerDist) * followerDirXVec.normalized() / followerDirXVec.length()
+	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.01)
+	self.position += followerDirXVec * followerDist.dot(followerDirXVec)
 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
-	self.velocity += followerDirYVec.dot(followerDist) * followerDirYVec.normalized() / followerDirYVec.length() * 0.01
+	# self.position += followerDirYVec * Vector2.from_angle(self.rotation).dot(followerDirYVec)
 
+	# move toward pathfollower2d.
+	# self.velocity += followerDirXVec * followerDist.dot(followerDirXVec) * 0.001
+	# # 加速度ベクトル,ターゲット方向を追加
+	# var acc: Vector2 = followerDirYVec.dot(followerDist) * followerDirYVec.normalized() / followerDirYVec.length() * 0.002
+	# self.velocity += acc
+	#
+	# # 方向成分に減衰を適用
+	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
+	# self.velocity += (dir_component * 0.98) - dir_component
+
+	# update_pathfollower
+	var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.8
+	# level_selector.path_follow_player.progress += spd
+# 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
+	level_selector.path_follow_player.progress += spd
+	# remove all Xspd
+	velocity -= velocity.dot(followerDirXVec.normalized()) * followerDirXVec.normalized()

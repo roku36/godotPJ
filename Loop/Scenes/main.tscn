@@ -46,7 +46,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 1.0
 max_value = 10.0
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.178939, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.136126, 1.65029), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
@@ -112,14 +112,15 @@ stage_num = null
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+enabled = false
 zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
+modulate = Color(1, 1, 1, 0.309804)
 position = Vector2(-95, -105)
-acceleration = null
-max_speed = null
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 
@@ -214,6 +215,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
