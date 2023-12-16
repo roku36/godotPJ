@@ -112,8 +112,6 @@ stage_num = null
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-enabled = false
 zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 script = ExtResource("5_qx3sb")
@@ -219,6 +217,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera2D2" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(0.2, 0.2)
 
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]

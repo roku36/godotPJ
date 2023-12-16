@@ -1,13 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn2kmwa7jde32"]
+[gd_scene load_steps=20 format=3 uid="uid://cn2kmwa7jde32"]
+
+[ext_resource type="Shader" path="res://Scenes/main.gdshader" id="1_4qv23"]
+[ext_resource type="Texture2D" uid="uid://bw0trce8k2n3l" path="res://icon.svg" id="1_mxsdf"]
+
+[sub_resource type="Gradient" id="Gradient_gjki8"]
+offsets = PackedFloat32Array(0, 0.810855, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.965461, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8d17c"]
+gradient = SubResource("Gradient_gjki8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_m503f"]
+_data = [Vector2(0, 0.858588), 0.0, 0.0, 0, 0, Vector2(0.436937, 0.761573), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4eq0"]
+curve = SubResource("Curve_m503f")
+
+[sub_resource type="Gradient" id="Gradient_qn6a0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hi3o5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2bs3o"]
+color_ramp = SubResource("Gradient_qn6a0")
+noise = SubResource("FastNoiseLite_hi3o5")
+
+[sub_resource type="Gradient" id="Gradient_6gcje"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fghm3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drcff"]
+color_ramp = SubResource("Gradient_6gcje")
+noise = SubResource("FastNoiseLite_fghm3")
+
+[sub_resource type="Gradient" id="Gradient_17c7i"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ex3ji"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q5mua"]
+color_ramp = SubResource("Gradient_17c7i")
+noise = SubResource("FastNoiseLite_ex3ji")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kbsa"]
+shader = ExtResource("1_4qv23")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.5
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = null
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_drcff")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_2bs3o")
+shader_parameter/cloud_curves = SubResource("CurveTexture_k4eq0")
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_q5mua")
+shader_parameter/top_color = Color(0, 0, 1, 1)
+shader_parameter/bottom_color = Color(0, 0.501961, 0, 1)
+shader_parameter/sun_scatter = Color(1, 1, 1, 1)
+shader_parameter/astro_tint = Color(1, 0.8, 0.172549, 1)
+shader_parameter/astro_scale = 3.0
+shader_parameter/astro_intensity = 1.0
+shader_parameter/astro_sampler = SubResource("GradientTexture2D_8d17c")
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 10.0
+shader_parameter/shooting_star_tint = null
+
+[sub_resource type="Sky" id="Sky_d5und"]
+sky_material = SubResource("ShaderMaterial_4kbsa")
+
+[sub_resource type="Environment" id="Environment_gft3i"]
+background_mode = 2
+sky = SubResource("Sky_d5und")
 
 [sub_resource type="Curve3D" id="Curve3D_ayb5w"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0250994, -0.0189619, 0.017108, -0.176225, -0.364683, 0.547757, 0.176225, 0.364683, -0.547757, -0.873344, 1.9117, -0.44889, 0, 0, 0, 0, 0, 0, 0.996314, 1.91331, -1.25101),
-"tilts": PackedFloat32Array(0, -0.0980993, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0250994, -0.0189619, 0.017108, 0.254483, -0.137905, 0.87063, -0.254483, 0.137905, -0.87063, -0.873344, 1.9117, -0.44889, 0.0901473, 0.309413, 0.1985, -0.0901473, -0.309413, -0.1985, 1.54439, 1.74697, -1.16673, -0.645079, 0.140893, -0.197598, 0.645079, -0.140893, 0.197598, 1.54595, 1.21882, -1.54674, 0, 0, 0, 0, 0, 0, 2.47269, 1.2908, -0.223545),
+"tilts": PackedFloat32Array(0, -0.0980993, 0, 0, 0)
 }
-point_count = 3
+point_count = 5
 
 [node name="Main" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gft3i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, -5.62079e-16, 2.75968e-16, 2.75968e-16, 0.791224, 0.611527, -5.62079e-16, -0.611527, 0.791224, 0, 0, 0)
+
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_ayb5w")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.640795, -0.510799, -0.573093, -0.598057, 0.8002, -0.0445126, 0.481336, 0.314225, -0.818258, 2.47269, 1.2908, -0.223545)
+progress = 7.84979
+
+[node name="Sprite3D" type="Sprite3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("1_mxsdf")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(1, -4.60036e-16, 3.30569e-16, 3.30569e-16, 0.947768, 0.318959, -4.60036e-16, -0.318959, 0.947768, 2.08165e-12, 0.24, 0.43)
