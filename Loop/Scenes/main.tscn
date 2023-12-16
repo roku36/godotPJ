@@ -119,8 +119,6 @@ script = ExtResource("5_qx3sb")
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 modulate = Color(1, 1, 1, 0.309804)
 position = Vector2(-95, -105)
-acceleration = null
-max_speed = null
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 

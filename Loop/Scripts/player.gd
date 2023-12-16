@@ -85,7 +85,7 @@ func move_to_follower() -> void:
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
 	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.05)
-	self.position += followerDirXVec * followerDist.dot(followerDirXVec)
+	# self.position += followerDirXVec * followerDist.dot(followerDirXVec)
 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
 	# self.position += followerDirYVec * Vector2.from_angle(self.rotation).dot(followerDirYVec)
 
@@ -100,9 +100,10 @@ func move_to_follower() -> void:
 	# self.velocity += (dir_component * 0.98) - dir_component
 
 	# update_pathfollower
-	var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.8
+	var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.01
 	# level_selector.path_follow_player.progress += spd
 # 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
 	# level_selector.path_follow_player.progress += spd * spd_on_dist.sample(dist_player_target/1000.0)
+	level_selector.path_follow_player.progress += spd
 	# remove all Xspd
-	velocity -= velocity.dot(followerDirXVec.normalized()) * followerDirXVec.normalized()
+	# velocity -= velocity.dot(followerDirXVec.normalized()) * followerDirXVec.normalized()
