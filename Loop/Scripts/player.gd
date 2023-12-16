@@ -100,7 +100,8 @@ func move_to_follower() -> void:
 	# self.velocity += (dir_component * 0.98) - dir_component
 
 	# update_pathfollower
-	var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.01
+	# var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.01
+	var spd: float = -followerDist.dot(followerDirXVec.normalized())
 	# level_selector.path_follow_player.progress += spd
 # 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
 	# level_selector.path_follow_player.progress += spd * spd_on_dist.sample(dist_player_target/1000.0)
