@@ -96,6 +96,12 @@ func move_to_follower() -> void:
 	var spd: float = spd_on_dist.sample(YVec_dist/300.0)
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 
+	# YVec_dist and velocity is same direction, add 1 to spd_on_dist
+	# var YVec_velocity: float = self.velocity.dot(followerDirYVec.normalized())
+	# print YVec_dist and YVec_velocity
+	if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
+		self.velocity += Vector2.from_angle(self.rotation) * 10.0
+
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
 	# self.velocity += (dir_component * 0.98) - dir_component

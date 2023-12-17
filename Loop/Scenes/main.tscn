@@ -44,10 +44,10 @@ offsets = PackedFloat32Array(0, 0.133333, 0.238889, 0.366667, 0.466667, 0.577778
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_2bhjp"]
-min_value = 1.0
+min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.129213, 30), 0.0, 0.0, 0, 0, Vector2(0.455056, 9.10559), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0.0617978, 30), 0.0, 0.0, 0, 0, Vector2(0.292135, 2.13163e-14), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 
