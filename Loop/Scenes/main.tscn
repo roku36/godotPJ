@@ -45,9 +45,9 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 1.0
-max_value = 10.0
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.136126, 1.65029), 0.0, 0.0, 0, 0]
-point_count = 2
+max_value = 30.0
+_data = [Vector2(0.129213, 30), 0.0, 0.0, 0, 0, Vector2(0.455056, 9.10559), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
 

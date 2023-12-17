@@ -88,25 +88,15 @@ func move_to_follower() -> void:
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
 	# self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.03)
 	# self.position += followerDirXVec * followerDist.dot(followerDirXVec)
-	self.velocity += Vector2.from_angle(self.rotation) * 30.0
-	# self.position += followerDirYVec * Vector2.from_angle(self.rotation).dot(followerDirYVec)
 
-	# move toward pathfollower2d.
-	# self.velocity += followerDirXVec * followerDist.dot(followerDirXVec) * 0.001
-	# # 加速度ベクトル,ターゲット方向を追加
-	# var acc: Vector2 = followerDirYVec.dot(followerDist) * followerDirYVec.normalized() / followerDirYVec.length() * 0.002
-	# self.velocity += acc
-	#
+	var XVec_dist: float = -followerDist.dot(followerDirXVec.normalized())
+	var YVec_dist: float = followerDist.dot(followerDirYVec.normalized())
+	level_selector.path_follow_player.progress += XVec_dist
+	# self.velocity += Vector2.from_angle(self.rotation) * 30.0
+	var spd: float = spd_on_dist.sample(YVec_dist/300.0)
+	self.velocity += Vector2.from_angle(self.rotation) * spd
+
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
 	# self.velocity += (dir_component * 0.98) - dir_component
 
-	# update_pathfollower
-	# var spd: float = velocity.dot(followerDirXVec.normalized()) * 0.01
-	var spd: float = -followerDist.dot(followerDirXVec.normalized())
-	# level_selector.path_follow_player.progress += spd
-# 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
-	# level_selector.path_follow_player.progress += spd * spd_on_dist.sample(dist_player_target/1000.0)
-	level_selector.path_follow_player.progress += spd
-	# remove all Xspd
-	# velocity -= velocity.dot(followerDirXVec.normalized()) * followerDirXVec.normalized()
