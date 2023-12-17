@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://ch724dbcbobgr"]
+
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin2d.gd" id="1_fplre"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rthms"]
+
+[sub_resource type="Sky" id="Sky_80jnc"]
+sky_material = SubResource("ProceduralSkyMaterial_rthms")
+
+[sub_resource type="Environment" id="Environment_5vili"]
+background_mode = 2
+sky = SubResource("Sky_80jnc")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_pa3yq"]
+output_port_for_preview = 0
+default_input_values = [1, Vector3(0, 0, 0), 2, 10.0, 3, Vector3(0, 0, 0)]
+initialized = true
+script = ExtResource("1_fplre")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ogmbd"]
+output_port_for_preview = 0
+input_name = "fragcoord"
+
+[sub_resource type="VisualShader" id="VisualShader_yut0h"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+// PerlinNoise2D
+#include \"res://addons/shaderV/rgba/noise/perlin2d.gdshaderinc\"
+
+void fragment() {
+// Input:3
+	vec4 n_out3p0 = FRAGCOORD;
+
+
+	float n_out2p0;
+// PerlinNoise2D:2
+	vec3 n_in2p1 = vec3(0.00000, 0.00000, 0.00000);
+	float n_in2p2 = 10.00000;
+	vec3 n_in2p3 = vec3(0.00000, 0.00000, 0.00000);
+	{
+		n_out2p0 = _perlin2dNoiseFunc((vec3(n_out3p0.xyz).xy+n_in2p1.xy)*n_in2p2, n_in2p3.xy);
+	}
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0);
+
+
+}
+"
+graph_offset = Vector2(-332.16, 135.36)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_pa3yq")
+nodes/fragment/2/position = Vector2(-80, 260)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_ogmbd")
+nodes/fragment/3/position = Vector2(-740, 380)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 2, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqytb"]
+render_priority = 0
+shader = SubResource("VisualShader_yut0h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_lm6a2"]
+lightmap_size_hint = Vector2i(316, 159)
+material = SubResource("ShaderMaterial_eqytb")
+radius = 10.0
+height = 20.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5vili")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_lm6a2")

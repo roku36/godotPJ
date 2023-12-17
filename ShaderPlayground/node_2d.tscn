@@ -1,7 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://cysqlukrc4mp2"]
+[gd_scene load_steps=47 format=3 uid="uid://cysqlukrc4mp2"]
 
 [ext_resource type="Shader" uid="uid://3u2uyq0norb3" path="res://disk.tres" id="1_04nce"]
 [ext_resource type="Shader" path="res://dodeca.gdshader" id="2_70q3x"]
+[ext_resource type="Script" path="res://addons/shaderV/tools/transformCoordinates/cartesianToSpherical.gd" id="3_dj3h7"]
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin2d.gd" id="4_btgoe"]
+[ext_resource type="Script" path="res://addons/shaderV/tools/transformCoordinates/sphericalToCartesian.gd" id="5_bbnro"]
 
 [sub_resource type="Gradient" id="Gradient_njaf7"]
 offsets = PackedFloat32Array(0, 0.266667, 1)
@@ -288,6 +291,25 @@ input_name = "uv"
 output_port_for_preview = 0
 input_name = "screen_uv"
 
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_e77gv"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(1, 1, 1)]
+expanded_output_ports = [0]
+initialized = true
+script = ExtResource("3_dj3h7")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_0o3tc"]
+output_port_for_preview = 0
+default_input_values = [1, Vector3(0, 0, 0), 2, 5.0, 3, Vector3(0, 0, 0)]
+initialized = true
+script = ExtResource("4_btgoe")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_ctldp"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(1, 1, 1)]
+initialized = true
+script = ExtResource("5_bbnro")
+
 [sub_resource type="VisualShaderNodeSDFRaymarch" id="VisualShaderNodeSDFRaymarch_caltb"]
 output_port_for_preview = 0
 
@@ -325,6 +347,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-66.24, 232.32)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1760, 340)
@@ -341,10 +364,16 @@ nodes/fragment/8/position = Vector2(-20, 240)
 nodes/fragment/9/node = SubResource("VisualShaderNodeScreenUVToSDF_3wbxi")
 nodes/fragment/9/position = Vector2(1680, 980)
 nodes/fragment/10/node = SubResource("VisualShaderNodeInput_lamqw")
-nodes/fragment/10/position = Vector2(-220, 880)
+nodes/fragment/10/position = Vector2(-100, 1080)
 nodes/fragment/11/node = SubResource("VisualShaderNodeInput_vmfk0")
 nodes/fragment/11/position = Vector2(620, 640)
-nodes/fragment/connections = PackedInt32Array(7, 0, 2, 0, 8, 0, 2, 1, 11, 0, 0, 0)
+nodes/fragment/12/node = SubResource("VisualShaderNodeCustom_e77gv")
+nodes/fragment/12/position = Vector2(720, 1140)
+nodes/fragment/13/node = SubResource("VisualShaderNodeCustom_0o3tc")
+nodes/fragment/13/position = Vector2(1460, 1000)
+nodes/fragment/14/node = SubResource("VisualShaderNodeCustom_ctldp")
+nodes/fragment/14/position = Vector2(900, 1680)
+nodes/fragment/connections = PackedInt32Array(7, 0, 2, 0, 8, 0, 2, 1, 11, 0, 0, 0, 10, 0, 12, 0, 12, 0, 13, 0, 10, 0, 14, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_157oc"]
 shader = SubResource("VisualShader_m8uc2")
