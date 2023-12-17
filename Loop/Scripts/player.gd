@@ -91,16 +91,32 @@ func move_to_follower() -> void:
 
 	var XVec_dist: float = -followerDist.dot(followerDirXVec.normalized())
 	var YVec_dist: float = followerDist.dot(followerDirYVec.normalized())
-	level_selector.path_follow_player.progress += XVec_dist
+	level_selector.path_follow_player.progress += XVec_dist * 0.5
 	# self.velocity += Vector2.from_angle(self.rotation) * 30.0
-	var spd: float = spd_on_dist.sample(YVec_dist/300.0)
+	var spd: float = spd_on_dist.sample(abs(YVec_dist)/300.0)
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 
 	# YVec_dist and velocity is same direction, add 1 to spd_on_dist
 	# var YVec_velocity: float = self.velocity.dot(followerDirYVec.normalized())
 	# print YVec_dist and YVec_velocity
-	if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
+	if YVec_dist < 0:
+		self.get_node("Icon").modulate= Color.RED
+	else:
+		self.get_node("Icon").modulate= Color.GREEN
+	
+	if Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0:
+		self.get_node("ColorRect").color = Color.RED
+	else:
+		self.get_node("ColorRect").color = Color.GREEN
+		
+	print(YVec_dist, " ", Vector2.from_angle(self.rotation).dot(followerDirYVec))
+	# if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
+	if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
+		((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
 		self.velocity += Vector2.from_angle(self.rotation) * 10.0
+		self.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	else:
+		self.modulate = Color(1.0, 1.0, 1.0, 0.1)
 
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()

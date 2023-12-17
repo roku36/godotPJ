@@ -46,7 +46,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.0617978, 30), 0.0, 0.0, 0, 0, Vector2(0.292135, 2.13163e-14), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.367978, 2.13163e-14), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
@@ -117,7 +117,7 @@ position_smoothing_enabled = true
 script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
-modulate = Color(1, 1, 1, 0.309804)
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(-95, -105)
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
