@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0
-@export var turn_speed: float = 0.3
+@export var turn_speed: float = 0.1
 @export var spd_on_dist: Curve
 var impact: PackedScene = preload("res://Scenes/impact.tscn")
 
@@ -20,6 +20,8 @@ func _ready() -> void:
 	velocity = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
+	mousex_delta = lerp(mousex_delta, 0.0, 0.02)
+	circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
 	if Global.state == Global.READY or Global.state == Global.TITLE:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
@@ -40,7 +42,7 @@ func _input(event: InputEvent) -> void:
 		mousex_delta += event.relative.x
 		# update test_label text to mousex_delta
 		test_label.text = str(mousex_delta)
-		circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
+		# circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
 	if event.is_action_pressed("ui_accept"):
 		# if distance is < 100
 		if closest_reflector != null and closest_reflector_distance < 100:
@@ -84,7 +86,7 @@ func move_to_follower() -> void:
 	var followerDirXVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
-	self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.05)
+	# self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.03)
 	# self.position += followerDirXVec * followerDist.dot(followerDirXVec)
 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
 	# self.position += followerDirYVec * Vector2.from_angle(self.rotation).dot(followerDirYVec)
