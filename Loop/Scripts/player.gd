@@ -88,7 +88,7 @@ func move_to_follower() -> void:
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
 	# self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.03)
 	# self.position += followerDirXVec * followerDist.dot(followerDirXVec)
-	self.velocity += Vector2.from_angle(self.rotation) * 10.0
+	self.velocity += Vector2.from_angle(self.rotation) * 30.0
 	# self.position += followerDirYVec * Vector2.from_angle(self.rotation).dot(followerDirYVec)
 
 	# move toward pathfollower2d.

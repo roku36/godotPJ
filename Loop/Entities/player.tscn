@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dku6tgnvso8fr"]
+[gd_scene load_steps=9 format=3 uid="uid://dku6tgnvso8fr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hn671"]
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_kjkuf"]
+[ext_resource type="Shader" path="res://Shaders/trail.gdshader" id="3_rqecu"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tnsii"]
 diffuse_texture = ExtResource("1_kjkuf")
@@ -21,6 +22,77 @@ width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jecvu"]
+shader = ExtResource("3_rqecu")
+shader_parameter/inherit_emitter_velocity_percent = 0.0
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 15.7
+shader_parameter/flatness = 2.85
+shader_parameter/initial_linear_velocity_min = null
+shader_parameter/initial_angle_min = 1.92
+shader_parameter/angular_velocity_min = null
+shader_parameter/linear_accel_min = null
+shader_parameter/radial_accel_min = null
+shader_parameter/tangent_accel_min = null
+shader_parameter/damping_min = null
+shader_parameter/hue_variation_min = null
+shader_parameter/anim_speed_min = null
+shader_parameter/anim_offset_min = null
+shader_parameter/initial_linear_velocity_max = null
+shader_parameter/initial_angle_max = null
+shader_parameter/angular_velocity_max = null
+shader_parameter/linear_accel_max = null
+shader_parameter/radial_accel_max = null
+shader_parameter/tangent_accel_max = null
+shader_parameter/damping_max = null
+shader_parameter/hue_variation_max = null
+shader_parameter/anim_speed_max = null
+shader_parameter/anim_offset_max = null
+shader_parameter/lifetime_randomness = null
+shader_parameter/color_value = Color(1, 0, 0, 1)
+shader_parameter/emission_value = 0.0
+shader_parameter/gravity = Vector3(1.36, 1.08, -0.41)
+shader_parameter/random_initial_axis = false
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/scale_over_velocity_range = Vector2(0, 5)
+shader_parameter/align_y = false
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/velocity_to_dir_tolerance = 0.02
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/directional_velocity_mode = 0
+shader_parameter/velocity_limit = false
+shader_parameter/velocity_limit_multiplier = 1.0
+shader_parameter/orbit_velocity_min = null
+shader_parameter/orbit_velocity_max = null
+shader_parameter/radial_velocity_min = null
+shader_parameter/radial_velocity_max = null
+shader_parameter/radial_velocity_prevent_overshoot = false
+shader_parameter/interpolate_to_end = 0.0
+shader_parameter/emission_shape_index = 0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/emission_sphere_radius = null
+shader_parameter/emission_box_extents = null
+shader_parameter/emission_texture_point_count = null
+shader_parameter/emission_ring_axis = null
+shader_parameter/emission_ring_height = null
+shader_parameter/emission_ring_radius = null
+shader_parameter/emission_ring_inner_radius = null
+shader_parameter/turbulence_noise_strength = null
+shader_parameter/turbulence_noise_scale = null
+shader_parameter/turbulence_influence_min = null
+shader_parameter/turbulence_influence_max = null
+shader_parameter/turbulence_initial_displacement_min = null
+shader_parameter/turbulence_initial_displacement_max = null
+shader_parameter/turbulence_noise_speed_random = null
+shader_parameter/turbulence_noise_speed = Vector3(1, 1, 1)
+shader_parameter/collision_friction = null
+shader_parameter/collision_bounce = null
+shader_parameter/sub_emitter_amount_at_end = null
+shader_parameter/sub_emitter_keep_velocity = null
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hn671")
@@ -43,3 +115,11 @@ offset_top = -24.0
 offset_right = 49.0
 offset_bottom = 24.0
 color = Color(0.537255, 0, 0, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-348, 5)
+amount = 32
+process_material = SubResource("ShaderMaterial_jecvu")
+texture = ExtResource("1_kjkuf")
+trail_lifetime = 10.0
