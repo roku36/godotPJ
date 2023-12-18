@@ -117,7 +117,6 @@ position_smoothing_enabled = true
 script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
-modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(-95, -105)
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")

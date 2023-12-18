@@ -114,9 +114,6 @@ func move_to_follower() -> void:
 	if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
 		((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
 		self.velocity += Vector2.from_angle(self.rotation) * 10.0
-		self.modulate = Color(1.0, 1.0, 1.0, 1.0)
-	else:
-		self.modulate = Color(1.0, 1.0, 1.0, 0.1)
 
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
