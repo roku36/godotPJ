@@ -18,11 +18,10 @@ func _process(delta: float) -> void:
 	if Global.state == Global.TITLE:
 		self.position = self.position.lerp(Vector2.ZERO, 3.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2(0.2, 0.2), 3.0 * delta)
-	elif Global.state == Global.READY:
+	elif Global.state == Global.STARTED:
+		self.position = self.position.lerp(target_point, 2.0 * delta)
+		self.zoom = self.zoom.lerp(Vector2.ONE, 3.0 * delta)
+	else:
 		# lerp position to player
 		self.position = self.position.lerp(player.position, 1.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2.ONE, 3.0 * delta)
-	else:
-		self.position = self.position.lerp(target_point, 2.0 * delta)
-		self.zoom = self.zoom.lerp(Vector2.ONE, 3.0 * delta)
-

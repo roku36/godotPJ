@@ -22,7 +22,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	mousex_delta = lerp(mousex_delta, 0.0, 0.02)
 	circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
-	if Global.state == Global.READY or Global.state == Global.TITLE:
+	if Global.state == Global.READY or Global.state == Global.TITLE or Global.state == Global.LAUNCH:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
 		self.rotation = level_selector.road_path.curve.get_point_out(0).angle()

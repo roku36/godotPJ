@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=28 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -67,30 +67,11 @@ shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
-[sub_resource type="Shader" id="Shader_j5gyk"]
-code = "shader_type canvas_item;
-
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-
-uniform float brightness = 1.0;
-uniform float contrast = 1.0;
-uniform float saturation = 1.0;
-
-void fragment() {
-    vec3 c = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
-
-    c.rgb = mix(vec3(0.0), c.rgb, brightness);
-    c.rgb = mix(vec3(0.5), c.rgb, contrast);
-    c.rgb = mix(vec3(dot(vec3(1.0), c.rgb) * 0.33333), c.rgb, saturation);
-
-    COLOR.rgb = c;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n2cc"]
-shader = SubResource("Shader_j5gyk")
-shader_parameter/brightness = 1.09
-shader_parameter/contrast = 0.9
-shader_parameter/saturation = -3.79
+[sub_resource type="LabelSettings" id="LabelSettings_hsyk1"]
+font_size = 20
+font_color = Color(0, 1, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -203,15 +184,16 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="StageChanger" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_5n2cc")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StateLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "aaaaaaaaaaaaaa"
+label_settings = SubResource("LabelSettings_hsyk1")
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 enabled = false
