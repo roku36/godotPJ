@@ -24,5 +24,5 @@ func _ready() -> void:
 		best_rap_time.append(top_scores)
 
 # enum to set stage: title, ready, started
-enum {TITLE, READY, STARTED}
+enum {TITLE, READY, LAUNCH, STARTED}
 var state: int = TITLE

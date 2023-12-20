@@ -109,7 +109,6 @@ func move_to_follower() -> void:
 	else:
 		self.get_node("ColorRect").color = Color.GREEN
 		
-	print(YVec_dist, " ", Vector2.from_angle(self.rotation).dot(followerDirYVec))
 	# if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
 	if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
 		((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):

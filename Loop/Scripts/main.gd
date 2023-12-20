@@ -34,7 +34,10 @@ func _process(delta: float) -> void:
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
 	if Input.is_action_just_pressed("restart"):
-		pass
+		hud.visible = true
+		player.mousex_delta = 0.0
+		$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
+		Global.state = Global.STARTED
 	if Input.is_action_just_pressed("pause"):
 		hud.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
