@@ -8,8 +8,8 @@ extends Node2D
 @onready var scores: RichTextLabel = $Titles/Scores
 @onready var camera: Camera2D = $Camera2D
 @onready var level_selector: Node = $LevelSelector
-@onready var state_label: Node = $CanvasLayer/StateLabel
-@onready var countdown_label: Node = $CanvasLayer/CountdownLabel
+@onready var state_label: Node = %StateLabel
+@onready var rap_time_label: Node = %RapTimeLabel
 
 var paused:bool = false
 var raptime:float = 0.0
@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 	# update time
 	raptime += delta
 	time_label.text = "%04.2f" % raptime
+	rap_time_label.text = "%04.2f" % raptime
 	# Goal detection
 	if level_selector.path_follow_player.progress <= 200 and raptime > 1 :
 		var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]

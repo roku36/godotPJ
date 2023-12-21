@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=29 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -70,6 +70,11 @@ shader_parameter/is_flipped = false
 [sub_resource type="LabelSettings" id="LabelSettings_hsyk1"]
 font_size = 20
 font_color = Color(0, 1, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_27npf"]
+font_size = 20
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -185,15 +190,21 @@ autowrap_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="StateLabel" type="Label" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_right = 40.0
-offset_bottom = 23.0
-text = "aaaaaaaaaaaaaa"
+offset_bottom = 40.0
+
+[node name="StateLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "state number"
 label_settings = SubResource("LabelSettings_hsyk1")
 
-[node name="CountdownLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="RapTimeLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "rap time"
+label_settings = SubResource("LabelSettings_27npf")
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 enabled = false
