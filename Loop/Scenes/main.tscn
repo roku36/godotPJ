@@ -210,5 +210,6 @@ label_settings = SubResource("LabelSettings_27npf")
 enabled = false
 zoom = Vector2(0.2, 0.2)
 
+[connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]

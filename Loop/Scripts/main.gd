@@ -56,22 +56,16 @@ func _process(delta: float) -> void:
 	# update time
 	raptime += delta
 	time_label.text = "%04.2f" % raptime
-	rap_time_label.text = "%04.2f" % raptime
+	# rap_time_label.text = "%04.2f" % raptime
+	rap_time_label.text = str(level_selector.path_follow_player.progress_ratio)
 	# Goal detection
-	if level_selector.path_follow_player.progress <= 200 and raptime > 1 :
-		var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
-		bestRaptime.append(raptime)
-		bestRaptime.sort()
-		while bestRaptime.size() > 5:
-			bestRaptime.pop_back()
-			new_record.emit()
-		Global.best_rap_time[Global.current_stage] = bestRaptime
-		raptime = 0
+	if level_selector.path_follow_player.progress_ratio >= 0.98:
 		goal_reached.emit()
 
 func init_state() -> void:
 	hud.visible = true
 	player.mousex_delta = 0.0
+	player.velocity = Vector2.ZERO
 	$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 	level_selector.path_follow_player.progress = 0
 
@@ -83,4 +77,14 @@ func launch_countdown() -> void:
 	Global.state = Global.STARTED
 
 
+func _on_goal_reached() -> void:
+	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
+	bestRaptime.append(raptime)
+	bestRaptime.sort()
+	while bestRaptime.size() > 5:
+		bestRaptime.pop_back()
+		new_record.emit()
+	Global.best_rap_time[Global.current_stage] = bestRaptime
+	raptime = 0
+	launch_countdown()
 
