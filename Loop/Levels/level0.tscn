@@ -96,4 +96,5 @@ bbcode_enabled = true
 text = "[tornado]spaceで開始"
 
 [node name="Goal" parent="." instance=ExtResource("3_c37hp")]
+visible = false
 position = Vector2(2.08165e-12, 2.08165e-12)

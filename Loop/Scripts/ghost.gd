@@ -20,12 +20,11 @@ func _ready() -> void:
 func set_replay_data(data: Dictionary) -> void:
 	replay_data = data
 
-func start_playback() -> void:
-	current_time = 0
-	current_index = 0
-	playback_started = true
-
 func _physics_process(delta: float) -> void:
+	if playback_started:
+		modulate = Color.RED
+	else:
+		modulate = Color.WHITE
 	current_time += delta
 	# Add to the time since the last save
 	time_since_last_save += delta
@@ -36,11 +35,6 @@ func _physics_process(delta: float) -> void:
 	
 	if playback_started:
 		play_recorded_data()
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ghost"):
-		start_playback()
 
 
 func record_data() -> void:
@@ -69,7 +63,7 @@ func play_recorded_data() -> void:
 
 
 func _on_goal_reached() -> void:
-	pass
+	playback_started = false
 
 func reset_replay_data() -> void:
 	replay_data = {
@@ -84,6 +78,10 @@ func _on_new_record() -> void:
 
 
 func _on_main_rap_started() -> void:
-	start_playback()
+	current_time = 0
+	current_index = 0
+	if not Global.best_rap_time[Global.current_stage].is_empty():
+		playback_started = true
 	# initialize replay_data
 	reset_replay_data()
+
