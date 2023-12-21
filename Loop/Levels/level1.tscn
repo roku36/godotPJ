@@ -64,8 +64,3 @@ segment_num = 0
 
 [node name="Goal" parent="." instance=ExtResource("4_r3l27")]
 position = Vector2(-72, -50)
-
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(-72, -50)
-rotation = -1.59352
-loop = false

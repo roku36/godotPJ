@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 
-[sub_resource type="Gradient" id="Gradient_qanh7"]
+[sub_resource type="Gradient" id="Gradient_dxoh7"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gtfoa"]
-gradient = SubResource("Gradient_qanh7")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7r5s"]
+gradient = SubResource("Gradient_dxoh7")
 
 [sub_resource type="Environment" id="Environment_8xspm"]
 background_mode = 3
@@ -28,11 +28,12 @@ glow_strength = 1.07
 glow_bloom = 0.13
 glow_blend_mode = 0
 adjustment_enabled = true
-adjustment_color_correction = SubResource("GradientTexture1D_gtfoa")
+adjustment_color_correction = SubResource("GradientTexture1D_q7r5s")
 
 [sub_resource type="Gradient" id="Gradient_qr8g3"]
 
 [sub_resource type="Gradient" id="Gradient_migqc"]
+offsets = PackedFloat32Array(0, 0.542435)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_722ma"]
@@ -49,9 +50,9 @@ max_value = 30.0
 _data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.367978, 2.13163e-14), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr3f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0r0k"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_o53ck"]
+[sub_resource type="LabelSettings" id="LabelSettings_eee20"]
 font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
@@ -93,7 +94,6 @@ metadata/_edit_lock_ = true
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
-stage_num = null
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
@@ -107,29 +107,31 @@ position = Vector2(-95, -105)
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 
-[node name="TimeLabel" type="Label" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_gdr3f")
-offset_left = -692.0
-offset_top = -330.0
-offset_right = -485.0
-offset_bottom = -162.0
-text = "123"
-label_settings = SubResource("LabelSettings_o53ck")
-
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
 visible = false
 
-[node name="Level0" parent="." instance=ExtResource("6_vnsvh")]
+[node name="levels" type="Node" parent="."]
+
+[node name="GoalLabel" type="Label" parent="levels"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r0r0k")
+offset_left = -102.0
+offset_top = -324.0
+offset_right = 105.0
+offset_bottom = -156.0
+text = "123"
+label_settings = SubResource("LabelSettings_eee20")
+
+[node name="Level0" parent="levels" instance=ExtResource("6_vnsvh")]
 metadata/_edit_group_ = true
 
-[node name="Level1" parent="." instance=ExtResource("6_wuisk")]
+[node name="Level1" parent="levels" instance=ExtResource("6_wuisk")]
 visible = false
 
-[node name="Level2" parent="." instance=ExtResource("9_vwxht")]
+[node name="Level2" parent="levels" instance=ExtResource("9_vwxht")]
 visible = false
 
-[node name="Level3" parent="." instance=ExtResource("10_l0o5c")]
+[node name="Level3" parent="levels" instance=ExtResource("10_l0o5c")]
 visible = false
 
 [node name="Titles" type="Node2D" parent="."]
@@ -176,18 +178,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Scores" type="RichTextLabel" parent="Titles"]
-offset_left = -1670.0
-offset_top = -519.0
-offset_right = -1049.0
-offset_bottom = -313.0
-theme_override_font_sizes/normal_font_size = 75
-text = "1: 32:00
-2: 36:00"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
@@ -206,6 +196,18 @@ layout_mode = 2
 text = "rap time"
 label_settings = SubResource("LabelSettings_27npf")
 
+[node name="Scores" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "1: 32:0[b]0[/b]
+2: 36:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="Camera2D2" type="Camera2D" parent="."]
 enabled = false
 zoom = Vector2(0.2, 0.2)
@@ -213,3 +215,4 @@ zoom = Vector2(0.2, 0.2)
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
+[connection signal="rap_started" from="." to="Ghost" method="_on_main_rap_started"]

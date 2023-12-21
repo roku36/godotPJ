@@ -3,13 +3,13 @@ extends Node2D
 @onready var test_label_2: Label = $"HUD/TestLabel2"
 @onready var hud: CanvasLayer = $"HUD"
 @onready var player: CharacterBody2D = $Player
-@onready var time_label: Label = $TimeLabel
 @onready var titles: Node2D = $Titles
-@onready var scores: RichTextLabel = $Titles/Scores
+@onready var scores: RichTextLabel = %Scores
 @onready var camera: Camera2D = $Camera2D
 @onready var level_selector: Node = $LevelSelector
-@onready var state_label: Node = %StateLabel
-@onready var rap_time_label: Node = %RapTimeLabel
+@onready var state_label: Label = %StateLabel
+@onready var rap_time_label: Label = %RapTimeLabel
+@onready var goal_label: Node = %GoalLabel
 
 var paused:bool = false
 var raptime:float = 0.0
@@ -17,6 +17,7 @@ var nearest_offset:float = 0.0
 
 signal goal_reached
 signal new_record
+signal rap_started
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +25,6 @@ func _ready() -> void:
 	pass
 
 func _draw() -> void:
-	# pass
 	draw_circle(camera.target_point, 50, Color.BLUE)
 	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
@@ -54,10 +54,9 @@ func _process(delta: float) -> void:
 		# unpause player
 	
 	# update time
-	raptime += delta
-	time_label.text = "%04.2f" % raptime
-	# rap_time_label.text = "%04.2f" % raptime
-	rap_time_label.text = str(level_selector.path_follow_player.progress_ratio)
+	if Global.state == Global.STARTED:
+		raptime += delta
+	rap_time_label.text = "%04.2f" % raptime
 	# Goal detection
 	if level_selector.path_follow_player.progress_ratio >= 0.98:
 		goal_reached.emit()
@@ -70,21 +69,27 @@ func init_state() -> void:
 	level_selector.path_follow_player.progress = 0
 
 func launch_countdown() -> void:
+	goal_label.visible = true
+	goal_label.text = "%04.2f" % raptime
 	init_state()
 	Global.state = Global.LAUNCH
 	# countdown 3 seconds and then start
 	await get_tree().create_timer(3.0).timeout
+	raptime = 0
+	goal_label.visible = false
 	Global.state = Global.STARTED
+	rap_started.emit()
 
 
 func _on_goal_reached() -> void:
 	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
 	bestRaptime.append(raptime)
 	bestRaptime.sort()
-	while bestRaptime.size() > 5:
-		bestRaptime.pop_back()
+	if bestRaptime[0] == raptime:
 		new_record.emit()
+	while bestRaptime.size() > Global.REC_CAPACITY:
+		bestRaptime.pop_back()
+	level_selector.update_scoreboard()
 	Global.best_rap_time[Global.current_stage] = bestRaptime
-	raptime = 0
 	launch_countdown()
 

@@ -69,9 +69,7 @@ func play_recorded_data() -> void:
 
 
 func _on_goal_reached() -> void:
-	start_playback()
-	# initialize replay_data
-	reset_replay_data()
+	pass
 
 func reset_replay_data() -> void:
 	replay_data = {
@@ -84,3 +82,8 @@ func _on_new_record() -> void:
 	Global.best_replay_data[Global.current_stage] = replay_data.duplicate()
 	# test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
 
+
+func _on_main_rap_started() -> void:
+	start_playback()
+	# initialize replay_data
+	reset_replay_data()

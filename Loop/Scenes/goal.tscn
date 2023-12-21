@@ -1,14 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn553q7ip4304"]
+[gd_scene load_steps=7 format=3 uid="uid://dn553q7ip4304"]
 
 [ext_resource type="Shader" path="res://Shaders/blob.gdshader" id="1_1atni"]
 [ext_resource type="Script" path="res://Scripts/goal.gd" id="1_q457f"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj5r"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_sklrj"]
-font_size = 120
-outline_size = 20
-outline_color = Color(0.698039, 0, 0.698039, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ng57o"]
 shader = ExtResource("1_1atni")
@@ -76,15 +69,6 @@ _data = {
 
 [node name="Goal" type="Node2D"]
 script = ExtResource("1_q457f")
-
-[node name="TimeLabel" type="Label" parent="."]
-material = SubResource("ShaderMaterial_trj5r")
-offset_left = -106.0
-offset_top = -452.0
-offset_right = 101.0
-offset_bottom = -284.0
-text = "123"
-label_settings = SubResource("LabelSettings_sklrj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ng57o")

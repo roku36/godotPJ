@@ -2,7 +2,7 @@
 extends Node
 @onready var road_path: Path2D
 @onready var path_follow_player: PathFollow2D
-@onready var scores: RichTextLabel = $"../Titles/Scores"
+@onready var scores: RichTextLabel = %Scores
 @onready var background: Node2D = $"../Background"
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
@@ -21,7 +21,7 @@ var levels: Array[Node2D] = []
 
 func _ready() -> void:
 	for i in range(4):
-		levels.append(get_parent().get_node("Level" + str(i)))
+		levels.append(get_parent().get_node("levels/Level" + str(i)))
 	set_stage_num(stage_num)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,5 +71,7 @@ func update_scoreboard() -> void:
 	scores.clear()
 	# append top 5 scores
 	# e.g. "1st score: 30.00"
+	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
 	for i in range(Global.best_rap_time[Global.current_stage].size()):
 		scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
+
