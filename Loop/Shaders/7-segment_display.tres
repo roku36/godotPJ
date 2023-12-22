@@ -89,7 +89,7 @@ default_value_enabled = true
 default_value = true
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_7da2h"]
-size = Vector2(587.246, 854.913)
+size = Vector2(920, 640)
 expression = "segment_a_on = false;
 segment_b_on = false;
 segment_c_on = false;
@@ -974,7 +974,7 @@ uv_skewed = skewed_uv(uv_stretched, theta);
 
 uv_skewed.y = 1.0 - uv_skewed.y;"
 nodes/fragment/51/node = SubResource("VisualShaderNodeColorParameter_j24p0")
-nodes/fragment/51/position = Vector2(2580, 80)
+nodes/fragment/51/position = Vector2(2660, 820)
 nodes/fragment/52/node = SubResource("VisualShaderNodeColorParameter_y1026")
 nodes/fragment/52/position = Vector2(2580, -1140)
 nodes/fragment/53/node = SubResource("VisualShaderNodeColorParameter_ajhdt")
@@ -990,12 +990,12 @@ nodes/fragment/55/position = Vector2(3460, -520)
 nodes/fragment/56/node = SubResource("VisualShaderNodeSwitch_6dre2")
 nodes/fragment/56/position = Vector2(3460, -100)
 nodes/fragment/57/node = SubResource("VisualShaderNodeIntParameter_bsev0")
-nodes/fragment/57/position = Vector2(-40, -820)
+nodes/fragment/57/position = Vector2(-620, -1000)
 nodes/fragment/58/node = SubResource("VisualShaderNodeBooleanParameter_362bo")
-nodes/fragment/58/position = Vector2(-40, -500)
+nodes/fragment/58/position = Vector2(-620, -440)
 nodes/fragment/61/node = SubResource("VisualShaderNodeExpression_7da2h")
-nodes/fragment/61/position = Vector2(320, -720)
-nodes/fragment/61/size = Vector2(587.246, 854.913)
+nodes/fragment/61/position = Vector2(-40, -660)
+nodes/fragment/61/size = Vector2(920, 640)
 nodes/fragment/61/input_ports = "0,1,number;1,6,segments_on;"
 nodes/fragment/61/output_ports = "0,6,segment_a_on;1,6,segment_b_on;2,6,segment_c_on;3,6,segment_d_on;4,6,segment_e_on;5,6,segment_f_on;6,6,segment_g_on;"
 nodes/fragment/61/expression = "segment_a_on = false;
@@ -1083,7 +1083,7 @@ else {
 	}
 }"
 nodes/fragment/62/node = SubResource("VisualShaderNodeExpression_dqja1")
-nodes/fragment/62/position = Vector2(1600, -420)
+nodes/fragment/62/position = Vector2(1640, -660)
 nodes/fragment/62/size = Vector2(1267.32, 389.429)
 nodes/fragment/62/input_ports = "0,6,is_in_segment_a;1,6,is_in_segment_b;2,6,is_in_segment_c;3,6,is_in_segment_d;4,6,is_in_segment_e;5,6,is_in_segment_f;6,6,is_in_segment_g;"
 nodes/fragment/62/output_ports = "0,6,is_in_segments;"
@@ -1097,7 +1097,7 @@ nodes/fragment/72/position = Vector2(-740, 680)
 nodes/fragment/73/node = SubResource("VisualShaderNodeComment_37rar")
 nodes/fragment/73/position = Vector2(1740, -1100)
 nodes/fragment/74/node = SubResource("VisualShaderNodeGlobalExpression_nh4pq")
-nodes/fragment/74/position = Vector2(-1200, -700)
+nodes/fragment/74/position = Vector2(-2180, -1240)
 nodes/fragment/74/size = Vector2(962.171, 786.656)
 nodes/fragment/74/input_ports = ""
 nodes/fragment/74/output_ports = ""

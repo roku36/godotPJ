@@ -1,11 +1,204 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch724dbcbobgr"]
+[gd_scene load_steps=24 format=3 uid="uid://ch724dbcbobgr"]
 
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin4d.gd" id="1_08a3a"]
 [ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin2d.gd" id="1_fplre"]
+[ext_resource type="Script" path="res://addons/shaderV/rgba/noise/perlin3d.gd" id="2_qm5q6"]
+[ext_resource type="Script" path="res://addons/VisualShaderExtras/Procedural/PSRD-Noise3D.gd" id="3_vco5k"]
+[ext_resource type="Script" path="res://addons/VisualShaderExtras/UV/UVtoSphereCoord.gd" id="5_0nphf"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rthms"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mhd0t"]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_sn67h"]
+default_input_values = [0, 0.0, 1, 0.1, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_2a0gf"]
+default_input_values = [1, Vector3(0, 0, 0), 2, 10.0, 3, 1.0, 4, 0.0]
+initialized = true
+script = ExtResource("1_08a3a")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_uo302"]
+default_input_values = [1, Vector3(0, 0, 0), 2, 5.0, 3, 0.0]
+initialized = true
+script = ExtResource("2_qm5q6")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_1k48f"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.1, 0.1, 0.1), 2, 10.0]
+initialized = true
+script = ExtResource("3_vco5k")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jhhg1"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+input_name = "eyedir"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_atk0g"]
+output_port_for_preview = 0
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_tf0gi"]
+size = Vector2(1020, 660)
+expression = "output0 = input0 + input1;
+// output0.y = input0.y + input1;"
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_43im6"]
+default_input_values = [1, Vector3(0, 0, 0)]
+expanded_output_ports = [0]
+initialized = true
+script = ExtResource("5_0nphf")
+
+[sub_resource type="VisualShader" id="VisualShader_pla3h"]
+code = "shader_type sky;
+
+
+// PSRDNoise3D
+
+		vec4 __psrdnoise3_permute(vec4 i) {
+			vec4 im = mod(i, 289.0);
+			return mod(((im*34.0)+10.0)*im, 289.0);
+		}
+		
+		float psrdnoise3_with_gradient(vec3 x, vec3 period, float alpha, out vec3 gradient) {
+			const mat3 M = mat3(vec3(0.0, 1.0, 1.0), vec3(1.0, 0.0, 1.0), vec3(1.0, 1.0, 0.0));
+			const mat3 Mi = mat3(vec3(-0.5, 0.5, 0.5), vec3(0.5,-0.5, 0.5), vec3(0.5, 0.5,-0.5));
+			vec3 uvw = M * x;
+			vec3 i0 = floor(uvw), f0 = fract(uvw);
+			vec3 g_ = step(f0.xyx, f0.yzz), l_ = 1.0 - g_;
+			vec3 g = vec3(l_.z, g_.xy), l = vec3(l_.xy, g_.z);
+			vec3 o1 = min( g, l ), o2 = max( g, l );
+			vec3 i1 = i0 + o1, i2 = i0 + o2, i3 = i0 + vec3(1.0);
+			vec3 v0 = Mi * i0, v1 = Mi * i1, v2 = Mi * i2, v3 = Mi * i3;
+			vec3 x0 = x - v0, x1 = x - v1, x2 = x - v2, x3 = x - v3;
+			if(any(greaterThan(period, vec3(0.0)))) {
+				vec4 vx = vec4(v0.x, v1.x, v2.x, v3.x);
+				vec4 vy = vec4(v0.y, v1.y, v2.y, v3.y);
+				vec4 vz = vec4(v0.z, v1.z, v2.z, v3.z);
+				if(period.x > 0.0) vx = mod(vx, period.x);
+				if(period.y > 0.0) vy = mod(vy, period.y);
+				if(period.z > 0.0) vz = mod(vz, period.z);
+				i0 = floor(M * vec3(vx.x, vy.x, vz.x) + 0.5);
+				i1 = floor(M * vec3(vx.y, vy.y, vz.y) + 0.5);
+				i2 = floor(M * vec3(vx.z, vy.z, vz.z) + 0.5);
+				i3 = floor(M * vec3(vx.w, vy.w, vz.w) + 0.5);
+			}
+			
+		vec4 hash = __psrdnoise3_permute( __psrdnoise3_permute( __psrdnoise3_permute( 
+					  vec4(i0.z, i1.z, i2.z, i3.z ))
+					+ vec4(i0.y, i1.y, i2.y, i3.y ))
+					+ vec4(i0.x, i1.x, i2.x, i3.x ));
+		vec4 theta = hash * 3.883222077;
+		vec4 sz = hash * -0.006920415 + 0.996539792;
+		vec4 psi = hash * 0.108705628;
+		vec4 Ct = cos(theta), St = sin(theta);
+		vec4 sz_prime = sqrt( 1.0 - sz*sz );
+		vec4 gx, gy, gz;
+		if(alpha != 0.0) {
+			vec4 px = Ct * sz_prime, py = St * sz_prime, pz = sz;
+			vec4 Sp = sin(psi), Cp = cos(psi), Ctp = St*Sp - Ct*Cp;
+			vec4 qx = mix( Ctp*St, Sp, sz), qy = mix(-Ctp*Ct, Cp, sz);
+			vec4 qz = -(py*Cp + px*Sp);
+			vec4 Sa = vec4(sin(alpha)), Ca = vec4(cos(alpha));
+			gx = Ca*px + Sa*qx; gy = Ca*py + Sa*qy; gz = Ca*pz + Sa*qz;
+		} else {
+			gx = Ct * sz_prime; gy = St * sz_prime; gz = sz;  
+		}
+		vec3 g0 = vec3(gx.x, gy.x, gz.x), g1 = vec3(gx.y, gy.y, gz.y);
+		vec3 g2 = vec3(gx.z, gy.z, gz.z), g3 = vec3(gx.w, gy.w, gz.w);
+		vec4 w = 0.5-vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3));
+		w = max(w, 0.0); vec4 w2 = w * w, w3 = w2 * w;
+		vec4 gdotx = vec4(dot(g0,x0), dot(g1,x1), dot(g2,x2), dot(g3,x3));
+		float n = dot(w3, gdotx);
+		vec4 dw = -6.0 * w2 * gdotx;
+		vec3 dn0 = w3.x * g0 + dw.x * x0;
+		vec3 dn1 = w3.y * g1 + dw.y * x1;
+		vec3 dn2 = w3.z * g2 + dw.z * x2;
+		vec3 dn3 = w3.w * g3 + dw.w * x3;
+		gradient = 39.5 * (dn0 + dn1 + dn2 + dn3);
+		return 39.5 * n;
+		}
+		
+		float psrdnoise3(vec3 x, vec3 period, float alpha) {
+			vec3 gradient;
+			return psrdnoise3_with_gradient(x, period, alpha, gradient);
+		}
+		
+	
+
+void sky() {
+// Input:5
+	vec3 n_out5p0 = EYEDIR;
+
+
+// Input:6
+	float n_out6p0 = TIME;
+
+
+// MultiplyAdd:11
+	float n_in11p1 = 0.10000;
+	float n_in11p2 = 0.00000;
+	float n_out11p0 = fma(n_out6p0, n_in11p1, n_in11p2);
+
+
+	vec3 n_out7p0;
+// Expression:7
+	n_out7p0 = vec3(0.0, 0.0, 0.0);
+	{
+		n_out7p0 = n_out5p0 + n_out11p0;
+		// n_out7p0.y = n_out5p0.y + n_out11p0;
+	}
+
+
+	float n_out4p0;
+// PSRDNoise3D:4
+	float n_in4p2 = 10.00000;
+	{
+		n_out4p0 = psrdnoise3(n_out7p0.xyz, n_out7p0.xyz, n_in4p2);
+	}
+
+
+// Output:0
+	COLOR = vec3(n_out4p0);
+
+
+}
+"
+graph_offset = Vector2(-744.685, -302.892)
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(900, -40)
+nodes/sky/2/node = SubResource("VisualShaderNodeCustom_2a0gf")
+nodes/sky/2/position = Vector2(440, 240)
+nodes/sky/3/node = SubResource("VisualShaderNodeCustom_uo302")
+nodes/sky/3/position = Vector2(625.48, 613.28)
+nodes/sky/4/node = SubResource("VisualShaderNodeCustom_1k48f")
+nodes/sky/4/position = Vector2(220, -360)
+nodes/sky/5/node = SubResource("VisualShaderNodeInput_jhhg1")
+nodes/sky/5/position = Vector2(-1680, 180)
+nodes/sky/6/node = SubResource("VisualShaderNodeInput_atk0g")
+nodes/sky/6/position = Vector2(-1760, 720)
+nodes/sky/7/node = SubResource("VisualShaderNodeExpression_tf0gi")
+nodes/sky/7/position = Vector2(-740, 60)
+nodes/sky/7/size = Vector2(1020, 660)
+nodes/sky/7/input_ports = "0,4,input0;1,0,input1;"
+nodes/sky/7/output_ports = "0,4,output0;"
+nodes/sky/7/expression = "output0 = input0 + input1;
+// output0.y = input0.y + input1;"
+nodes/sky/9/node = SubResource("VisualShaderNodeCustom_43im6")
+nodes/sky/9/position = Vector2(-700, -400)
+nodes/sky/10/node = SubResource("VisualShaderNodeInput_mhd0t")
+nodes/sky/10/position = Vector2(-1320, -240)
+nodes/sky/11/node = SubResource("VisualShaderNodeMultiplyAdd_sn67h")
+nodes/sky/11/position = Vector2(-1160, 840)
+nodes/sky/connections = PackedInt32Array(5, 0, 7, 0, 4, 0, 0, 0, 10, 0, 9, 0, 7, 0, 4, 0, 6, 0, 11, 0, 11, 0, 7, 1, 7, 0, 4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdchq"]
+shader = SubResource("VisualShader_pla3h")
 
 [sub_resource type="Sky" id="Sky_80jnc"]
-sky_material = SubResource("ProceduralSkyMaterial_rthms")
+sky_material = SubResource("ShaderMaterial_qdchq")
 
 [sub_resource type="Environment" id="Environment_5vili"]
 background_mode = 2
@@ -51,7 +244,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-332.16, 135.36)
+graph_offset = Vector2(-222.219, -87.9878)
 nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_pa3yq")
 nodes/fragment/2/position = Vector2(-80, 260)
 nodes/fragment/3/node = SubResource("VisualShaderNodeInput_ogmbd")
