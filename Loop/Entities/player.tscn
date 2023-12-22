@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dku6tgnvso8fr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hn671"]
-[ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://icon.svg" id="1_kjkuf"]
+[ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://Textures/icon.svg" id="2_7u1vp"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tnsii"]
-diffuse_texture = ExtResource("1_kjkuf")
+diffuse_texture = ExtResource("2_7u1vp")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqwoq"]
 radius = 9.0
@@ -68,6 +68,6 @@ color = Color(0.537255, 0, 0, 1)
 position = Vector2(-44, 0)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_ihg7g")
-texture = ExtResource("1_kjkuf")
+texture = ExtResource("2_7u1vp")
 lifetime = 2.0
 trail_lifetime = 10.0

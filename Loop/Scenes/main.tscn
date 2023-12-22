@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=31 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
+[ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="14_l42mn"]
 
 [sub_resource type="Gradient" id="Gradient_dxoh7"]
 
@@ -56,6 +57,18 @@ point_count = 2
 font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7f0xv"]
+shader = ExtResource("14_l42mn")
+shader_parameter/SkewAngle = 8.072
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 0
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.360784)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
@@ -134,8 +147,40 @@ visible = false
 [node name="Level3" parent="levels" instance=ExtResource("10_l0o5c")]
 visible = false
 
+[node name="Result" type="Control" parent="levels"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.0
+offset_top = -281.0
+offset_right = 168.0
+offset_bottom = -241.0
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="levels/Result"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 66
+
+[node name="ColorRect" type="ColorRect" parent="levels/Result/HBoxContainer"]
+material = SubResource("ShaderMaterial_7f0xv")
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="levels/Result/HBoxContainer"]
+material = SubResource("ShaderMaterial_7f0xv")
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="levels/Result/HBoxContainer"]
+material = SubResource("ShaderMaterial_7f0xv")
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="levels/Result/HBoxContainer"]
+material = SubResource("ShaderMaterial_7f0xv")
+layout_mode = 2
+
 [node name="Titles" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.678431)
+metadata/_edit_lock_ = true
 
 [node name="Logo" parent="Titles" instance=ExtResource("11_gggvu")]
 position = Vector2(2.08165e-12, -700)
@@ -154,6 +199,7 @@ offset_bottom = 1245.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 3000
+metadata/_edit_lock_ = true
 
 [node name="arrowLeft" type="ColorRect" parent="Titles/HBoxContainer"]
 modulate = Color(1, 1, 1, 0)

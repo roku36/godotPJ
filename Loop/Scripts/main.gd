@@ -9,7 +9,9 @@ extends Node2D
 @onready var level_selector: Node = $LevelSelector
 @onready var state_label: Label = %StateLabel
 @onready var rap_time_label: Label = %RapTimeLabel
-@onready var goal_label: Node = %GoalLabel
+@onready var goal_label: Label = %GoalLabel
+@onready var goal_particle: GPUParticles2D = %GoalParticle
+const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
 
 var paused:bool = false
 var raptime:float = 0.0
@@ -82,6 +84,10 @@ func launch_countdown() -> void:
 
 
 func _on_goal_reached() -> void:
+	var goal_fx: GPUParticles2D = GOAL_PARTICLE.instantiate()
+	goal_fx.global_position = player.global_position
+	add_child(goal_fx)
+
 	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
 	bestRaptime.append(raptime)
 	bestRaptime.sort()
