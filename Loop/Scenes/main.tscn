@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=32 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_ldebg"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
@@ -262,18 +261,6 @@ autowrap_mode = 0
 [node name="DebugLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Camera2D2" type="Camera2D" parent="."]
-visible = false
-position = Vector2(-95, -102.5)
-ignore_rotation = false
-enabled = false
-zoom = Vector2(2.24938, 2.24938)
-position_smoothing_speed = 10.0
-rotation_smoothing_enabled = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D2"]
-script = ExtResource("8_ldebg")
 
 [node name="AffineCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
