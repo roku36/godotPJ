@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_ldebg"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="14_l42mn"]
+[ext_resource type="Script" path="res://Scripts/TestCamera.gd" id="18_picnl"]
 
 [sub_resource type="Gradient" id="Gradient_dxoh7"]
 
@@ -111,8 +113,11 @@ script = ExtResource("2_52vh0")
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
-position_smoothing_enabled = true
+visible = false
+position = Vector2(-47.5, -52.5)
+enabled = false
+zoom = Vector2(100, 100)
+position_smoothing_speed = 10.0
 script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
@@ -254,9 +259,30 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="DebugLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Camera2D2" type="Camera2D" parent="."]
+visible = false
+position = Vector2(-95, -102.5)
+ignore_rotation = false
 enabled = false
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(2.24938, 2.24938)
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D2"]
+script = ExtResource("8_ldebg")
+
+[node name="AffineCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+rotation = 0.490438
+ignore_rotation = false
+zoom = Vector2(0.49, 0.49)
+script = ExtResource("18_picnl")
+node1_path = NodePath("../Player")
+node2_path = NodePath("../Player")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
