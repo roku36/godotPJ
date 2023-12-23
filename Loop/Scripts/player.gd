@@ -54,12 +54,6 @@ func _input(event: InputEvent) -> void:
 			impact_instance.global_position = closest_reflector.global_position
 			get_parent().add_child(impact_instance)
 
-# func update_pathfollow() -> void:
-# 	var dist_player_target: float = self.position.distance_to(level_selector.path_follow_player.position)
-# 	var spd: float = spd_on_dist.sample(dist_player_target/1000.0)
-# 	level_selector.path_follow_player.progress += spd
-# 	# level_selector.path_follow_player.progress += 10.0
-
 
 func update_rotation(turn_input: float, delta: float) -> void:
 	rotation += turn_input * turn_speed * delta
@@ -92,6 +86,7 @@ func move_to_follower() -> void:
 	var XVec_dist: float = -followerDist.dot(followerDirXVec.normalized())
 	var YVec_dist: float = followerDist.dot(followerDirYVec.normalized())
 	level_selector.path_follow_player.progress += XVec_dist * 0.5
+	level_selector.path_follow_player.progress_ratio = clamp(level_selector.path_follow_player.progress_ratio, 0.0, 1.0)
 	# self.velocity += Vector2.from_angle(self.rotation) * 30.0
 	var spd: float = spd_on_dist.sample(abs(YVec_dist)/300.0)
 	self.velocity += Vector2.from_angle(self.rotation) * spd

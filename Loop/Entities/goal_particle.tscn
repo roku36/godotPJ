@@ -1,8 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://35dfgf52rl7t"]
+[gd_scene load_steps=11 format=3 uid="uid://35dfgf52rl7t"]
+
+[sub_resource type="Curve" id="Curve_coe04"]
+_data = [Vector2(0, 0.0228188), 0.0, 0.0, 0, 0, Vector2(0.691083, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ne204"]
+curve = SubResource("Curve_coe04")
 
 [sub_resource type="Gradient" id="Gradient_4113p"]
 offsets = PackedFloat32Array(0.0105263, 0.526316, 0.721053)
-colors = PackedColorArray(0.999982, 0.330094, 0.356923, 1, 1.47399e-06, 0.681647, 0.629039, 0.739362, 0, 0, 0, 0)
+colors = PackedColorArray(1, 0.329412, 0.356863, 1, 0, 0.682353, 0.627451, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3ujtk"]
 gradient = SubResource("Gradient_4113p")
@@ -25,6 +32,7 @@ initial_velocity_max = 1000.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_curve = SubResource("CurveTexture_117f3")
 color_ramp = SubResource("GradientTexture1D_3ujtk")
+alpha_curve = SubResource("CurveTexture_ne204")
 turbulence_enabled = true
 turbulence_noise_strength = 0.0
 turbulence_noise_scale = 9.802

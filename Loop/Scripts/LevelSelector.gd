@@ -62,6 +62,7 @@ func set_stage_num(value: int) -> int:
 	road_path = levels[value]
 	# add pathfollow2d 
 	path_follow_player = PathFollow2D.new()
+	path_follow_player.loop = false
 	path_follow_player.name = "PathFollowPlayer"
 	road_path.add_child(path_follow_player)
 	update_scoreboard()

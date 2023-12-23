@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		raptime += delta
 	rap_time_label.text = "%04.2f" % raptime
 	# Goal detection
-	if level_selector.path_follow_player.progress_ratio >= 0.98:
+	if level_selector.path_follow_player.progress_ratio == 1.0:
 		goal_reached.emit()
 
 func init_state() -> void:
