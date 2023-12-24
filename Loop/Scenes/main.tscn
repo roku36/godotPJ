@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="14_l42mn"]
-[ext_resource type="Script" path="res://Scripts/TestCamera.gd" id="18_picnl"]
+[ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
 [sub_resource type="Gradient" id="Gradient_dxoh7"]
 

@@ -11,6 +11,9 @@ extends Node2D
 @onready var rap_time_label: Label = %RapTimeLabel
 @onready var goal_label: Label = %GoalLabel
 @onready var goal_particle: GPUParticles2D = %GoalParticle
+@onready var affine_camera: Camera2D = %AffineCamera
+
+
 const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
 
 var paused:bool = false
@@ -27,8 +30,10 @@ func _ready() -> void:
 	pass
 
 func _draw() -> void:
-	draw_circle(camera.target_point, 50, Color.BLUE)
-	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
+	pass
+	# draw_circle(camera.target_point, 50, Color.BLUE)
+	# draw_circle(affine_camera.target_point, 50, Color.RED)
+	# draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
