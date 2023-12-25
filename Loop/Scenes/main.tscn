@@ -35,7 +35,6 @@ adjustment_color_correction = SubResource("GradientTexture1D_q7r5s")
 [sub_resource type="Gradient" id="Gradient_qr8g3"]
 
 [sub_resource type="Gradient" id="Gradient_migqc"]
-offsets = PackedFloat32Array(0, 0.542435)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_722ma"]
@@ -45,12 +44,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0.878924, 0, 0.339689, 1, 1, 1, 1, 1)
 [sub_resource type="Gradient" id="Gradient_32o80"]
 offsets = PackedFloat32Array(0, 0.133333, 0.238889, 0.366667, 0.466667, 0.577778, 0.677778, 0.788889, 0.894444, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="Curve" id="Curve_2bhjp"]
-min_value = 2.13163e-14
-max_value = 30.0
-_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.367978, 2.13163e-14), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r0r0k"]
 
@@ -70,6 +63,12 @@ shader_parameter/ON = true
 shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
 shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.360784)
 shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_2bhjp"]
+min_value = 2.13163e-14
+max_value = 30.0
+_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.367978, 2.13163e-14), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
@@ -108,24 +107,6 @@ metadata/_edit_lock_ = true
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
-
-[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(-47.5, -52.5)
-enabled = false
-zoom = Vector2(100, 100)
-position_smoothing_speed = 10.0
-script = ExtResource("5_qx3sb")
-
-[node name="Player" parent="." instance=ExtResource("2_146rn")]
-position = Vector2(-95, -105)
-turn_speed = 0.01
-spd_on_dist = SubResource("Curve_2bhjp")
-
-[node name="HUD" parent="." instance=ExtResource("7_ltflu")]
-visible = false
 
 [node name="levels" type="Node" parent="."]
 
@@ -181,6 +162,24 @@ layout_mode = 2
 [node name="ColorRect4" type="ColorRect" parent="levels/Result/HBoxContainer"]
 material = SubResource("ShaderMaterial_7f0xv")
 layout_mode = 2
+
+[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(-47.5, -52.5)
+enabled = false
+zoom = Vector2(100, 100)
+position_smoothing_speed = 10.0
+script = ExtResource("5_qx3sb")
+
+[node name="Player" parent="." instance=ExtResource("2_146rn")]
+position = Vector2(-95, -105)
+turn_speed = 0.01
+spd_on_dist = SubResource("Curve_2bhjp")
+
+[node name="HUD" parent="." instance=ExtResource("7_ltflu")]
+visible = false
 
 [node name="Titles" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.678431)

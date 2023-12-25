@@ -12,10 +12,9 @@ var margin: float = 400
 
 func _ready() -> void:
 	node1 = get_node(node1_path)
-	target_point = level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 1000)
 
 func _process(_delta: float) -> void:
-	target_point = level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 1000)
+	target_point = level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 500)
 	var position1: Vector2 = global_transform.affine_inverse() * node1.global_transform.origin
 	var position2: Vector2 = global_transform.affine_inverse() * target_point
 
@@ -30,4 +29,4 @@ func _process(_delta: float) -> void:
 
 	self.global_position = self.global_position.lerp(target_global_position, 0.1)
 	self.zoom = self.zoom.lerp(target_zoom, 0.05)
-	self.rotation = lerp_angle(self.rotation, target_angle, 0.01)
+	self.rotation = lerp_angle(self.rotation, target_angle, 0.1)
