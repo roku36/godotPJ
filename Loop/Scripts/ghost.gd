@@ -22,9 +22,9 @@ func set_replay_data(data: Dictionary) -> void:
 
 func _physics_process(delta: float) -> void:
 	if playback_started:
-		modulate = Color.RED
+		self.visible = true
 	else:
-		modulate = Color.WHITE
+		self.visible = false
 	current_time += delta
 	# Add to the time since the last save
 	time_since_last_save += delta

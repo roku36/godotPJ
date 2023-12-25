@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/ghost.gd" id="1_6s37a"]
 
 [node name="Ghost" type="Node2D"]
+modulate = Color(1, 1, 1, 0.47451)
 script = ExtResource("1_6s37a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -18,4 +19,10 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-color = Color(0, 1, 1, 0.611765)
+color = Color(0, 0.721569, 0.721569, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 37.0
+offset_top = -24.0
+offset_right = 51.0
+offset_bottom = 24.0

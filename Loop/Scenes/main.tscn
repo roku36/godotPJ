@@ -267,8 +267,8 @@ rotation = 0.490438
 ignore_rotation = false
 zoom = Vector2(0.49, 0.49)
 script = ExtResource("18_picnl")
-node1_path = NodePath("../Player")
-node2_path = NodePath("../Player")
+player_path = NodePath("../Player")
+ghost_path = NodePath("../Ghost")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
