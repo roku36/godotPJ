@@ -105,9 +105,12 @@ func move_to_follower() -> void:
 		self.get_node("ColorRect").color = Color.GREEN
 		
 	# if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
-	if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
-		((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
-		self.velocity += Vector2.from_angle(self.rotation) * 10.0
+	# if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
+	# 	((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
+	# 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
+	
+	if YVec_dist > 100 or YVec_dist < -100:
+		self.velocity -= (self.velocity.dot(followerDirYVec.normalized()) - YVec_dist* 0.01) * followerDirYVec.normalized()
 
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()

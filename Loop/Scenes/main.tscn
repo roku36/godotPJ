@@ -67,7 +67,7 @@ shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.367978, 2.13163e-14), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.340395, 6.19108), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
