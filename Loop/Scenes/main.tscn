@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -67,7 +67,11 @@ shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(0.340395, 6.19108), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(1, 2.13163e-14), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_um74a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
@@ -177,6 +181,8 @@ script = ExtResource("5_qx3sb")
 position = Vector2(-95, -105)
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
+limit_on_dist = SubResource("Curve_um74a")
+limit_width = 500.0
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
 visible = false

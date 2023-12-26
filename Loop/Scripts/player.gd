@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var max_speed: float = 1000.0
 @export var turn_speed: float = 0.1
 @export var spd_on_dist: Curve
+@export var limit_on_dist: Curve
+@export var limit_width: float = 100.0
 var impact: PackedScene = preload("res://Scenes/impact.tscn")
 
 var mousex_delta:float = 0.0
@@ -109,8 +111,13 @@ func move_to_follower() -> void:
 	# 	((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
 	# 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
 	
-	if YVec_dist > 100 or YVec_dist < -100:
-		self.velocity -= (self.velocity.dot(followerDirYVec.normalized()) - YVec_dist* 0.01) * followerDirYVec.normalized()
+	var limit_ratio: float = limit_on_dist.sample(abs(YVec_dist)/limit_width)
+
+	# if YVec_dist > 100 or YVec_dist < -100:
+	# 	self.velocity -= (self.velocity.dot(followerDirYVec.normalized()) - YVec_dist* 0.01) * followerDirYVec.normalized()
+
+	if self.velocity.dot(followerDirYVec) * YVec_dist < 0:
+		self.velocity -= followerDirYVec * (self.velocity.dot(followerDirYVec.normalized()) * limit_ratio)
 
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
