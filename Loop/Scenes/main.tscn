@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=34 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="14_l42mn"]
+[ext_resource type="AudioStream" uid="uid://pu040tsg6rvw" path="res://Audio/bgm.wav" id="17_cxbqg"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
 [sub_resource type="Gradient" id="Gradient_dxoh7"]
@@ -99,6 +100,10 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_cxbqg")
+autoplay = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
@@ -108,6 +113,10 @@ gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradien
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
 trans_spd = 0.05
 metadata/_edit_lock_ = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2(-315, -67)
+rect = Rect2(-97.95, -100, 500, 300)
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
