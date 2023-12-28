@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=38 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -8,14 +8,15 @@
 [ext_resource type="AudioStream" uid="uid://dph7fpbardl80" path="res://Audio/lava.wav" id="2_x06u6"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_qx3sb"]
+[ext_resource type="Script" path="res://Scripts/ResultDisplay.gd" id="6_a20be"]
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
+[ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="7_53g30"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
-[ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="14_l42mn"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
 [sub_resource type="Gradient" id="Gradient_dxoh7"]
@@ -46,24 +47,60 @@ colors = PackedColorArray(0, 0, 0, 1, 0.878924, 0, 0.339689, 1, 1, 1, 1, 1)
 offsets = PackedFloat32Array(0, 0.133333, 0.238889, 0.366667, 0.466667, 0.577778, 0.677778, 0.788889, 0.894444, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4m60"]
+shader = ExtResource("7_53g30")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 9
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2w82"]
+shader = ExtResource("7_53g30")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 9
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40gln"]
+shader = ExtResource("7_53g30")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 1
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rt5o"]
+shader = ExtResource("7_53g30")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 1
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r0r0k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eee20"]
 font_size = 120
 outline_size = 20
 outline_color = Color(0.698039, 0, 0.698039, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7f0xv"]
-shader = ExtResource("14_l42mn")
-shader_parameter/SkewAngle = 8.072
-shader_parameter/Size = 64.0
-shader_parameter/SegmentWidth = 0.1
-shader_parameter/SegmentOffsetRatio = 0.5
-shader_parameter/Number = 0
-shader_parameter/ON = true
-shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
-shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.360784)
-shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
@@ -102,7 +139,6 @@ script = ExtResource("1_pd7es")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_x06u6")
-autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8xspm")
@@ -121,11 +157,45 @@ rect = Rect2(-97.95, -100, 500, 300)
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
 
+[node name="ResultDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.0
+offset_top = -281.0
+offset_right = 168.0
+offset_bottom = -241.0
+script = ExtResource("6_a20be")
+display_number = 1199
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResultDisplay"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 66
+
+[node name="digit0" type="ColorRect" parent="ResultDisplay/HBoxContainer"]
+material = SubResource("ShaderMaterial_q4m60")
+layout_mode = 2
+
+[node name="digit1" type="ColorRect" parent="ResultDisplay/HBoxContainer"]
+material = SubResource("ShaderMaterial_i2w82")
+layout_mode = 2
+
+[node name="digit2" type="ColorRect" parent="ResultDisplay/HBoxContainer"]
+material = SubResource("ShaderMaterial_40gln")
+layout_mode = 2
+
+[node name="digit3" type="ColorRect" parent="ResultDisplay/HBoxContainer"]
+material = SubResource("ShaderMaterial_0rt5o")
+layout_mode = 2
+
 [node name="levels" type="Node2D" parent="."]
 metadata/_edit_group_ = true
 
 [node name="GoalLabel" type="Label" parent="levels"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_r0r0k")
 offset_left = -102.0
 offset_top = -324.0
@@ -145,37 +215,6 @@ visible = false
 
 [node name="Level3" parent="levels" instance=ExtResource("10_l0o5c")]
 visible = false
-
-[node name="Result" type="Control" parent="levels"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 128.0
-offset_top = -281.0
-offset_right = 168.0
-offset_bottom = -241.0
-metadata/_edit_group_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="levels/Result"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 66
-
-[node name="ColorRect" type="ColorRect" parent="levels/Result/HBoxContainer"]
-material = SubResource("ShaderMaterial_7f0xv")
-layout_mode = 2
-
-[node name="ColorRect2" type="ColorRect" parent="levels/Result/HBoxContainer"]
-material = SubResource("ShaderMaterial_7f0xv")
-layout_mode = 2
-
-[node name="ColorRect3" type="ColorRect" parent="levels/Result/HBoxContainer"]
-material = SubResource("ShaderMaterial_7f0xv")
-layout_mode = 2
-
-[node name="ColorRect4" type="ColorRect" parent="levels/Result/HBoxContainer"]
-material = SubResource("ShaderMaterial_7f0xv")
-layout_mode = 2
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
 
