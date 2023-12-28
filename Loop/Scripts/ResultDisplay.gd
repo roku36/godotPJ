@@ -1,7 +1,7 @@
 @tool
 extends Control
 @onready var digits: Array[Node] = $HBoxContainer.get_children()
-@export var display_number: int = 1234
+@export var display_number: float = 12.34
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,8 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# apply display_number for each digits
 	# to shaderparameter digit_num
-	var tmp_display_number: int = display_number
+	var tmp_display_number: int = int(display_number * 100)
 	for digit in digits:
 		digit.material.set_shader_parameter("Number", tmp_display_number % 10)
 		tmp_display_number /= 10
-	# digits[3].material.set_shader_parameter("Number", tmp_display_number % 10)

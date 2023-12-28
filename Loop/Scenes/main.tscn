@@ -113,7 +113,7 @@ offset_left = 14.0
 offset_top = -233.0
 offset_right = 54.0
 offset_bottom = -193.0
-display_number = 1309
+display_number = 12.26
 
 [node name="levels" type="Node2D" parent="."]
 metadata/_edit_group_ = true
