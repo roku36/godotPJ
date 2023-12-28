@@ -10,7 +10,6 @@ extends Node2D
 @onready var state_label: Label = %StateLabel
 @onready var rap_time_label: Label = %RapTimeLabel
 @onready var goal_label: Label = %GoalLabel
-@onready var goal_particle: GPUParticles2D = %GoalParticle
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 

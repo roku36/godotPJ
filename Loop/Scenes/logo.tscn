@@ -39,8 +39,8 @@ shader_parameter/gradient_path = SubResource("GradientTexture2D_pcqj5")
 shader_parameter/rough_noise = SubResource("NoiseTexture2D_8si1j")
 
 [sub_resource type="Curve" id="Curve_chiro"]
-_data = [Vector2(0, 0.653523), 0.0, 0.0, 0, 0, Vector2(0.615939, 0.394122), 0.0, 0.0, 0, 0, Vector2(1, 0.192954), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 35.3579, 0, 0, Vector2(0.069209, 0.559094), 0.458543, 0.458543, 0, 0, Vector2(0.615939, 0.394122), 0.0, 0.0, 0, 0, Vector2(0.970339, 0.177972), -1.20117, -1.20117, 0, 0, Vector2(1, 0), -18.8028, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_i6khe"]
 _data = {
@@ -59,8 +59,8 @@ _data = {
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_p1i1e"]
-_data = [Vector2(0, 0.537057), 0.0, 0.0, 0, 0, Vector2(0.626098, 0.785871), 0.0, 0.0, 0, 0, Vector2(0.95865, 0.335889), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 79.8076, 0, 0, Vector2(0.019774, 0.500713), 1.16579, 1.16579, 0, 0, Vector2(0.626098, 0.785871), 0.0, 0.0, 0, 0, Vector2(0.95865, 0.335889), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.31859, 0.0, 0, 0]
+point_count = 5
 
 [node name="Logo" type="Node2D"]
 
