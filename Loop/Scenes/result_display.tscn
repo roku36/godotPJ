@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6cpjift2ulo"]
+
+[ext_resource type="Script" path="res://Scripts/ResultDisplay.gd" id="1_jw2mu"]
+[ext_resource type="Shader" uid="uid://dx5wnuch6hx6b" path="res://Shaders/7-segment_display.tres" id="2_igpbi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4m60"]
+shader = ExtResource("2_igpbi")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 9
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2w82"]
+shader = ExtResource("2_igpbi")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 0
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40gln"]
+shader = ExtResource("2_igpbi")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 3
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rt5o"]
+shader = ExtResource("2_igpbi")
+shader_parameter/SkewAngle = 6.51
+shader_parameter/Size = 64.0
+shader_parameter/SegmentWidth = 0.1
+shader_parameter/SegmentOffsetRatio = 0.5
+shader_parameter/Number = 1
+shader_parameter/ON = true
+shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
+shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
+shader_parameter/BackgroundColor = Color(0, 0, 0, 0)
+
+[node name="ResultDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jw2mu")
+display_number = 1296
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 3
+layout_mode = 0
+offset_left = -158.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 66
+
+[node name="digit0" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_q4m60")
+layout_mode = 2
+
+[node name="digit1" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_i2w82")
+layout_mode = 2
+
+[node name="digit2" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_40gln")
+layout_mode = 2
+
+[node name="digit3" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_0rt5o")
+layout_mode = 2
