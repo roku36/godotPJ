@@ -9,7 +9,7 @@ shader_parameter/SkewAngle = 6.51
 shader_parameter/Size = 64.0
 shader_parameter/SegmentWidth = 0.1
 shader_parameter/SegmentOffsetRatio = 0.5
-shader_parameter/Number = 3
+shader_parameter/Number = 4
 shader_parameter/ON = true
 shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
 shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
@@ -21,7 +21,7 @@ shader_parameter/SkewAngle = 6.51
 shader_parameter/Size = 64.0
 shader_parameter/SegmentWidth = 0.1
 shader_parameter/SegmentOffsetRatio = 0.5
-shader_parameter/Number = 2
+shader_parameter/Number = 3
 shader_parameter/ON = true
 shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
 shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
@@ -33,7 +33,7 @@ shader_parameter/SkewAngle = 6.51
 shader_parameter/Size = 64.0
 shader_parameter/SegmentWidth = 0.1
 shader_parameter/SegmentOffsetRatio = 0.5
-shader_parameter/Number = 1
+shader_parameter/Number = 2
 shader_parameter/ON = true
 shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
 shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
@@ -45,7 +45,7 @@ shader_parameter/SkewAngle = 6.51
 shader_parameter/Size = 64.0
 shader_parameter/SegmentWidth = 0.1
 shader_parameter/SegmentOffsetRatio = 0.5
-shader_parameter/Number = 0
+shader_parameter/Number = 1
 shader_parameter/ON = true
 shader_parameter/SegmentOnColor = Color(1, 0, 0, 1)
 shader_parameter/SegmentOffColor = Color(0, 0, 0, 0.407843)
@@ -62,7 +62,7 @@ metadata/_edit_group_ = true
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_direction = 3
 layout_mode = 0
-offset_left = -158.0
+offset_left = -168.0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 66
@@ -77,8 +77,17 @@ layout_mode = 2
 
 [node name="digit2" type="ColorRect" parent="HBoxContainer"]
 material = SubResource("ShaderMaterial_40gln")
+custom_minimum_size = Vector2(10, 2.08165e-12)
 layout_mode = 2
 
 [node name="digit3" type="ColorRect" parent="HBoxContainer"]
 material = SubResource("ShaderMaterial_0rt5o")
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 92.0
+offset_right = 141.0
+offset_bottom = 100.0
+color = Color(1, 0, 0, 1)

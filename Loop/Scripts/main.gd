@@ -9,7 +9,6 @@ extends Node2D
 @onready var level_selector: Node = $LevelSelector
 @onready var state_label: Label = %StateLabel
 @onready var rap_time_label: Label = %RapTimeLabel
-@onready var goal_label: Label = %GoalLabel
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 
@@ -76,16 +75,13 @@ func init_state() -> void:
 	level_selector.path_follow_player.progress = 0
 
 func launch_countdown() -> void:
-	# goal_label.visible = true
 	result_display.visible = true
-	goal_label.text = "%04.2f" % raptime
 	result_display.display_number = raptime
 	init_state()
 	Global.state = Global.LAUNCH
 	# countdown 3 seconds and then start
 	await get_tree().create_timer(3.0).timeout
 	raptime = 0
-	# goal_label.visible = false
 	result_display.visible = false
 	Global.state = Global.STARTED
 	rap_started.emit()
