@@ -109,6 +109,7 @@ rect = Rect2(-97.95, -100, 500, 300)
 script = ExtResource("2_52vh0")
 
 [node name="ResultDisplay" parent="." instance=ExtResource("6_kw5xp")]
+unique_name_in_owner = true
 offset_left = 14.0
 offset_top = -233.0
 offset_right = 54.0
