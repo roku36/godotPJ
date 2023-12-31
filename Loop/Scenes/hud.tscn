@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbm1e8gtik5rv"]
+[gd_scene load_steps=6 format=3 uid="uid://dbm1e8gtik5rv"]
 
 [ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="1_so4l0"]
+[ext_resource type="Shader" uid="uid://cg7iadu3ed2j7" path="res://Shaders/hud.tres" id="2_0xhan"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
 font_size = 30
@@ -12,6 +13,11 @@ shader_parameter/gradient_ease = 3.14
 shader_parameter/fill_ratio = 2.08165e-12
 shader_parameter/left_col = Color(0, 1, 1, 1)
 shader_parameter/right_col = Color(1, 0, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b87bd"]
+shader = ExtResource("2_0xhan")
+shader_parameter/ColorParameter = Color(1, 0, 0, 1)
+shader_parameter/rot_spd = 1.08
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -32,6 +38,7 @@ text = "test label"
 label_settings = SubResource("LabelSettings_5b1x8")
 
 [node name="CircleBar" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_86rn3")
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,3 +53,19 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(1, 0, 1, 1)
+
+[node name="CircleBar2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_b87bd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -107.0
+offset_right = 107.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.807843, 0, 0.792157, 1)
