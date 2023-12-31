@@ -53,8 +53,8 @@ _data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(1, 2.13163e-14), 0.0, 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.69955, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15113, 0.437337), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.69955, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")

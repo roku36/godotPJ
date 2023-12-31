@@ -347,7 +347,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-66.24, 232.32)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1760, 340)
@@ -385,10 +384,10 @@ environment = SubResource("Environment_ins2t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8p82s")
-offset_left = -177.0
-offset_top = 135.0
-offset_right = 209.0
-offset_bottom = 522.0
+offset_left = -380.0
+offset_top = 121.0
+offset_right = 6.0
+offset_bottom = 508.0
 color = Color(0.47451, 0.415686, 0.352941, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
@@ -407,10 +406,10 @@ offset_bottom = 516.0
 
 [node name="dodeca" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_odq64")
-offset_left = 49.0
-offset_top = -193.0
-offset_right = 1073.0
-offset_bottom = 831.0
+offset_left = 1005.0
+offset_top = -191.0
+offset_right = 2029.0
+offset_bottom = 833.0
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_157oc")
