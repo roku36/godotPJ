@@ -93,24 +93,6 @@ func move_to_follower() -> void:
 	var spd: float = spd_on_dist.sample(abs(YVec_dist)/300.0)
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 
-	# YVec_dist and velocity is same direction, add 1 to spd_on_dist
-	# var YVec_velocity: float = self.velocity.dot(followerDirYVec.normalized())
-	# print YVec_dist and YVec_velocity
-	if YVec_dist < 0:
-		self.get_node("Icon").modulate= Color.RED
-	else:
-		self.get_node("Icon").modulate= Color.GREEN
-	
-	if Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0:
-		self.get_node("ColorRect").color = Color.RED
-	else:
-		self.get_node("ColorRect").color = Color.GREEN
-		
-	# if (Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) == (YVec_dist > 0):
-	# if ((Vector2.from_angle(self.rotation).dot(followerDirYVec) < 0) and (YVec_dist < 0)) or \
-	# 	((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
-	# 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
-	
 	limit_width = level_selector.level_width * level_selector.level_width_curve.sample(level_selector.path_follow_player.progress_ratio)
 	var limit_ratio: float = limit_on_dist.sample(abs(YVec_dist)/limit_width)
 
