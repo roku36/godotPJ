@@ -8,6 +8,9 @@ extends Node
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
+
+var level_width: float = 0.0
+var level_width_curve: Curve
 #
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -51,6 +54,9 @@ func set_stage_num(value: int) -> int:
 		arrow_right.modulate = Color.TRANSPARENT
 	else:
 		arrow_right.modulate = Color.WHITE
+
+	self.level_width = levels[value].get_node("Line2D").width
+	self.level_width_curve = levels[value].get_node("Line2D").width_curve
 
 	# change_stage.emit(value)
 	Global.current_stage = value

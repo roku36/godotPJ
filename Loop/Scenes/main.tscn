@@ -53,8 +53,8 @@ _data = [Vector2(0.0898876, 30), 0.0, 0.0, 0, 0, Vector2(1, 2.13163e-14), 0.0, 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15113, 0.437337), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.69955, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.69955, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
@@ -93,10 +93,6 @@ gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradien
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
 trans_spd = 0.05
 metadata/_edit_lock_ = true
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-position = Vector2(-315, -67)
-rect = Rect2(-97.95, -100, 500, 300)
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")

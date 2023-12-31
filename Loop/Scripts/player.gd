@@ -111,6 +111,7 @@ func move_to_follower() -> void:
 	# 	((Vector2.from_angle(self.rotation).dot(followerDirYVec) > 0) and (YVec_dist > 0)):
 	# 	self.velocity += Vector2.from_angle(self.rotation) * 10.0
 	
+	limit_width = level_selector.level_width * level_selector.level_width_curve.sample(level_selector.path_follow_player.progress_ratio)
 	var limit_ratio: float = limit_on_dist.sample(abs(YVec_dist)/limit_width)
 
 	# if YVec_dist > 100 or YVec_dist < -100:
