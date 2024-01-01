@@ -70,6 +70,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_j8bsp"]
 resource_name = "default"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -89,7 +90,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(4.2),
+"times": PackedFloat32Array(2.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -118,3 +119,4 @@ trail_lifetime = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_atjn3")
 }
+autoplay = "default"
