@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbm1e8gtik5rv"]
+[gd_scene load_steps=10 format=3 uid="uid://dbm1e8gtik5rv"]
 
 [ext_resource type="Shader" path="res://Shaders/CircleBar.gdshader" id="1_so4l0"]
 [ext_resource type="Shader" uid="uid://cg7iadu3ed2j7" path="res://Shaders/hud.tres" id="2_0xhan"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="3_smbam"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b1x8"]
 font_size = 30
@@ -16,8 +17,20 @@ shader_parameter/right_col = Color(1, 0, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b87bd"]
 shader = ExtResource("2_0xhan")
-shader_parameter/ColorParameter = Color(1, 0, 0, 1)
-shader_parameter/rot_spd = 1.08
+shader_parameter/col_left = Color(0, 1, 1, 1)
+shader_parameter/col_right = Color(1, 0, 1, 1)
+shader_parameter/rot_spd = 1.0
+shader_parameter/rot_ratio = 1.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_48gnt"]
+color = Color(0.329412, 0.329412, 0.329412, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6jy3e"]
+color = Color(0, 1, 0, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_61nsp"]
+color = Color(0, 0, 0, 0)
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -54,7 +67,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 color = Color(1, 0, 1, 1)
 
-[node name="CircleBar2" type="ColorRect" parent="."]
+[node name="SpinDisk" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_b87bd")
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,4 +81,17 @@ offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-color = Color(0.807843, 0, 0.792157, 1)
+script = ExtResource("3_smbam")
+
+[node name="HSlider" type="HSlider" parent="."]
+visible = false
+offset_left = 391.0
+offset_top = 512.0
+offset_right = 768.0
+offset_bottom = 528.0
+theme_override_styles/slider = SubResource("StyleBoxLine_48gnt")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_6jy3e")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_61nsp")
+min_value = -5.0
+max_value = 5.0
+step = 0.1

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
+@onready var spin_disk: ColorRect = $"../HUD/SpinDisk"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var level_selector: Node = $"../LevelSelector"
 
@@ -24,6 +25,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	mousex_delta = lerp(mousex_delta, 0.0, 0.02)
 	circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
+	spin_disk.rotation_spd = mousex_delta / 50
 	if Global.state == Global.READY or Global.state == Global.TITLE or Global.state == Global.LAUNCH:
 		# set position to start of the curve
 		self.position = level_selector.road_path.curve.sample_baked(0)
