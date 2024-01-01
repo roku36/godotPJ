@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=30 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/WorldEnvironment.gd" id="2_ml7e0"]
 [ext_resource type="AudioStream" uid="uid://dph7fpbardl80" path="res://Audio/lava.wav" id="2_x06u6"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
-[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_qx3sb"]
 [ext_resource type="PackedScene" uid="uid://c6cpjift2ulo" path="res://Scenes/result_display.tscn" id="6_kw5xp"]
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
@@ -49,12 +48,12 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.418079, 30), 0.0, 0.0, 0, 0, Vector2(1, 4.63377), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.317797, 30), 0.0, 0.0, 0, 0, Vector2(0.762712, 5.69786), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.69955, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.772599, 0.404875), 1.76518, 1.76518, 0, 0, Vector2(0.834746, 1), 24.077, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
 shader = ExtResource("13_g6lgf")
@@ -121,14 +120,6 @@ visible = false
 visible = false
 
 [node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(-47.5, -52.5)
-enabled = false
-zoom = Vector2(100, 100)
-position_smoothing_speed = 10.0
-script = ExtResource("5_qx3sb")
 
 [node name="Player" parent="." instance=ExtResource("2_146rn")]
 position = Vector2(5, -15)

@@ -5,7 +5,6 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var titles: Node2D = $Titles
 @onready var scores: RichTextLabel = %Scores
-@onready var camera: Camera2D = $Camera2D
 @onready var level_selector: Node = $LevelSelector
 @onready var state_label: Label = %StateLabel
 @onready var rap_time_label: Label = %RapTimeLabel
@@ -30,7 +29,6 @@ func _ready() -> void:
 
 func _draw() -> void:
 	# pass
-	draw_circle(camera.target_point, 50, Color.BLUE)
 	draw_circle(affine_camera.target_point, 50, Color.RED)
 	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
