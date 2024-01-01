@@ -40,7 +40,7 @@ shader_parameter/gradient_path = SubResource("GradientTexture2D_pcqj5")
 shader_parameter/rough_noise = SubResource("NoiseTexture2D_8si1j")
 
 [sub_resource type="Curve" id="Curve_t3qhw"]
-_data = [Vector2(0, 0.573365), 0.0, 0.0, 0, 0, Vector2(0.254237, 0.0277051), 0.0, 0.0, 0, 0, Vector2(0.566384, 0.907253), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.573365), 0.0, 0.0, 0, 0, Vector2(0.25, 0.264659), 0.0, 0.0, 0, 0, Vector2(0.566384, 0.907253), 0.0, 0.0, 0, 0, Vector2(1, 0.346477), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [node name="Level1" type="Path2D"]

@@ -25,8 +25,8 @@ gradient = SubResource("Gradient_dxoh7")
 [sub_resource type="Environment" id="Environment_8xspm"]
 background_mode = 3
 glow_enabled = true
-glow_intensity = 1.81
-glow_strength = 1.07
+glow_intensity = 5.14
+glow_strength = 0.86
 glow_bloom = 0.13
 glow_blend_mode = 0
 adjustment_enabled = true
@@ -48,11 +48,11 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
 max_value = 30.0
-_data = [Vector2(0.317797, 30), 0.0, 0.0, 0, 0, Vector2(0.762712, 5.69786), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.169491, 30), 0.0, 0.0, 0, 0, Vector2(0.762712, 9.95746), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.772599, 0.404875), 1.76518, 1.76518, 0, 0, Vector2(0.834746, 1), 24.077, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.772599, 0.404875), 1.76518, 1.76518, 0, 0, Vector2(0.800847, 1), 24.077, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]

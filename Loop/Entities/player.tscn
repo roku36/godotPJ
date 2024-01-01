@@ -12,8 +12,8 @@ height = 18.0
 
 [sub_resource type="Gradient" id="Gradient_ipi8e"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.402247, 0.71236)
-colors = PackedColorArray(1, 1, 1, 1, 0.229535, 0.229535, 0.229535, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.233438, 0.71236)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.129412, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fc17j"]
 gradient = SubResource("Gradient_ipi8e")
@@ -43,9 +43,11 @@ scale_curve = SubResource("CurveTexture_2pkk2")
 turbulence_enabled = true
 
 [node name="Player" type="CharacterBody2D"]
+light_mask = 0
 script = ExtResource("1_hn671")
 
 [node name="Icon" type="Sprite2D" parent="."]
+light_mask = 0
 scale = Vector2(0.75, 0.375)
 texture = SubResource("CanvasTexture_tnsii")
 
