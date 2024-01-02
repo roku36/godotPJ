@@ -8,6 +8,7 @@ extends Node
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 @onready var ghost: Node2D = $"../Ghost"
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
+@onready var target_time_label: Label = %TargetTimeLabel
 
 var level_width: float = 0.0
 var level_width_curve: Curve
@@ -81,4 +82,17 @@ func update_scoreboard() -> void:
 	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
 	for i in range(Global.best_rap_time[Global.current_stage].size()):
 		scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
+	
+	# show target times
+	# in Global.target_times
+	# var target_times: Array[Dictionary] = [
+	# 	{"gold": 10.0, "silver": 15.0, "bronze": 20.0},
+	# 	{"gold": 11.0, "silver": 16.0, "bronze": 21.0},
+	# 	{"gold": 12.0, "silver": 17.0, "bronze": 22.0},
+	# 	{"gold": 13.0, "silver": 18.0, "bronze": 23.0},
+	# ]
+
+	target_time_label.text = ""
+	for key: String in Global.target_times[Global.current_stage].keys():
+		target_time_label.text += "%s: %s\n" % [key, Global.target_times[Global.current_stage][key]]
 

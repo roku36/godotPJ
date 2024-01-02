@@ -9,6 +9,17 @@ var current_stage: int = 0
 var best_replay_data: Array[Dictionary] = []
 var best_rap_time: Array[Array] = []
 
+# target times for each stage: 
+# dictionary key: gold, silver, bronze
+var target_times: Array[Dictionary] = [
+	{"gold": 10.0, "silver": 15.0, "bronze": 20.0},
+	{"gold": 11.0, "silver": 16.0, "bronze": 21.0},
+	{"gold": 12.0, "silver": 17.0, "bronze": 22.0},
+	{"gold": 13.0, "silver": 18.0, "bronze": 23.0},
+]
+
+
+
 func _ready() -> void:
 	for i in range(STAGE_NUM):
 		best_replay_data.append({

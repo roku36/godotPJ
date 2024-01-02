@@ -177,25 +177,35 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLabels" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="TargetTimeLabel" type="Label" parent="CanvasLabels"]
+unique_name_in_owner = true
+offset_left = 1017.0
+offset_top = 17.0
+offset_right = 1148.0
+offset_bottom = 92.0
+text = "Gold: 10.00
+Silver: 15.00
+Bronze: 20.00"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLabels"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StateLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="StateLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "state number"
 label_settings = SubResource("LabelSettings_hsyk1")
 
-[node name="RapTimeLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="RapTimeLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "rap time"
 label_settings = SubResource("LabelSettings_27npf")
 
-[node name="Scores" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
+[node name="Scores" type="RichTextLabel" parent="CanvasLabels/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
@@ -207,7 +217,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="DebugLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="DebugLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
