@@ -1,7 +1,7 @@
 extends Camera2D
 
 @onready var level_selector: Node = $"../LevelSelector"
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player: CharacterBody2D = %Player
 # Called when the node enters the scene tree for the first time.
 
 var target_point: Vector2 = Vector2.ZERO

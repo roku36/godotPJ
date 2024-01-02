@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var test_label: Label = $"../HUD/TestLabel"
 @onready var circle_bar: ColorRect = $"../HUD/CircleBar"
 @onready var spin_disk: ColorRect = $"../HUD/SpinDisk"
-@onready var ghost: Node2D = $"../Ghost"
+@onready var ghost: Node2D = %Ghost
 @onready var level_selector: Node = $"../LevelSelector"
 
 @export var acceleration: float = 500.0
@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var turn_speed: float = 0.1
 @export var spd_on_dist: Curve
 @export var limit_on_dist: Curve
+@export var limit_on_dist_bounce: Curve
 @export var limit_width: float = 100.0
 var impact: PackedScene = preload("res://Scenes/impact.tscn")
 
@@ -95,6 +96,7 @@ func move_to_follower() -> void:
 
 	limit_width = level_selector.level_width * level_selector.level_width_curve.sample(level_selector.path_follow_player.progress_ratio)
 	var limit_ratio: float = limit_on_dist.sample(abs(YVec_dist)/limit_width)
+	# var limit_ratio: float = limit_on_dist_bounce.sample(abs(YVec_dist)/limit_width)
 
 	var spd: float = spd_on_dist.sample(abs(YVec_dist)/limit_width)
 	self.velocity += Vector2.from_angle(self.rotation) * spd

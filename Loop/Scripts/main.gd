@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var test_label_2: Label = $"HUD/TestLabel2"
 @onready var hud: CanvasLayer = $"HUD"
-@onready var player: CharacterBody2D = $Player
+@onready var player: CharacterBody2D = %Player
 @onready var titles: Node2D = $Titles
 @onready var scores: RichTextLabel = %Scores
 @onready var level_selector: Node = $LevelSelector
@@ -28,9 +28,9 @@ func _ready() -> void:
 	pass
 
 func _draw() -> void:
-	# pass
-	draw_circle(affine_camera.target_point, 50, Color.RED)
-	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
+	pass
+	# draw_circle(affine_camera.target_point, 50, Color.RED)
+	# draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

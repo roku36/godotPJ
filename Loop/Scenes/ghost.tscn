@@ -5,6 +5,7 @@
 
 [node name="Ghost" type="Node2D"]
 modulate = Color(1, 1, 1, 0.47451)
+light_mask = 0
 script = ExtResource("1_6s37a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -31,4 +32,5 @@ offset_right = 51.0
 offset_bottom = 24.0
 
 [node name="Icon" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("2_sbh1m")

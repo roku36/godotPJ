@@ -6,9 +6,9 @@ extends Node
 @onready var background: Node2D = $"../Background"
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
-@onready var ghost: Node2D = $"../Ghost"
+@onready var ghost: Node2D = %Ghost
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
-@onready var target_time_label: Label = %TargetTimeLabel
+@onready var target_time_label: RichTextLabel = %TargetTimeLabel
 
 var level_width: float = 0.0
 var level_width_curve: Curve
@@ -94,5 +94,4 @@ func update_scoreboard() -> void:
 
 	target_time_label.text = ""
 	for key: String in Global.target_times[Global.current_stage].keys():
-		target_time_label.text += "%s: %s\n" % [key, Global.target_times[Global.current_stage][key]]
-
+		target_time_label.text += "[img=16]res://Textures/%s.svg[/img] %f\n" % [key, Global.target_times[Global.current_stage][key]]

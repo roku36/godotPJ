@@ -1,5 +1,5 @@
 extends Node2D
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player: CharacterBody2D = %Player
 
 var replay_data: Dictionary = {
 	"time": [],

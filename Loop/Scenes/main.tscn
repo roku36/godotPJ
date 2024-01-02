@@ -17,10 +17,11 @@
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
-[sub_resource type="Gradient" id="Gradient_dxoh7"]
+[sub_resource type="Gradient" id="Gradient_510yl"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q7r5s"]
-gradient = SubResource("Gradient_dxoh7")
+gradient = SubResource("Gradient_510yl")
 
 [sub_resource type="Environment" id="Environment_8xspm"]
 background_mode = 3
@@ -80,9 +81,6 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_x06u6")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
@@ -92,6 +90,20 @@ gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradien
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
 trans_spd = 0.05
 metadata/_edit_lock_ = true
+
+[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("2_146rn")]
+unique_name_in_owner = true
+position = Vector2(5, -15)
+turn_speed = 0.01
+spd_on_dist = SubResource("Curve_2bhjp")
+limit_on_dist = SubResource("Curve_um74a")
+limit_width = 500.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x06u6")
 
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("2_52vh0")
@@ -118,15 +130,6 @@ visible = false
 
 [node name="Level3" parent="levels" instance=ExtResource("10_l0o5c")]
 visible = false
-
-[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-
-[node name="Player" parent="." instance=ExtResource("2_146rn")]
-position = Vector2(5, -15)
-turn_speed = 0.01
-spd_on_dist = SubResource("Curve_2bhjp")
-limit_on_dist = SubResource("Curve_um74a")
-limit_width = 500.0
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
 visible = false
@@ -179,15 +182,14 @@ autowrap_mode = 0
 
 [node name="CanvasLabels" type="CanvasLayer" parent="."]
 
-[node name="TargetTimeLabel" type="Label" parent="CanvasLabels"]
+[node name="TargetTimeLabel" type="RichTextLabel" parent="CanvasLabels"]
 unique_name_in_owner = true
-offset_left = 1017.0
-offset_top = 17.0
-offset_right = 1148.0
-offset_bottom = 92.0
-text = "Gold: 10.00
-Silver: 15.00
-Bronze: 20.00"
+offset_left = 947.0
+offset_top = 8.0
+offset_right = 1202.0
+offset_bottom = 198.0
+bbcode_enabled = true
+text = "[img]res://Textures/icon.svg[/img]"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLabels"]
 offset_right = 40.0
