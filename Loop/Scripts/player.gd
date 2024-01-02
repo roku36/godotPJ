@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@onready var test_label: Label = $"../HUD/TestLabel"
-@onready var circle_bar: ColorRect = $"../HUD/CircleBar"
-@onready var spin_disk: ColorRect = $"../HUD/SpinDisk"
+@onready var test_label: Label = $"%HUD/TestLabel"
+@onready var circle_bar: ColorRect = $"%HUD/CircleBar"
+@onready var spin_disk: ColorRect = $"%HUD/SpinDisk"
 @onready var ghost: Node2D = %Ghost
-@onready var level_selector: Node = $"../LevelSelector"
+@onready var level_selector: Node = %LevelSelector
 
 @export var acceleration: float = 500.0
 @export var max_speed: float = 1000.0

@@ -91,10 +91,13 @@ colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1
 trans_spd = 0.05
 metadata/_edit_lock_ = true
 
-[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Ghost" parent="CanvasLayer" instance=ExtResource("4_q01vl")]
 unique_name_in_owner = true
 
-[node name="Player" parent="." instance=ExtResource("2_146rn")]
+[node name="Player" parent="CanvasLayer" instance=ExtResource("2_146rn")]
 unique_name_in_owner = true
 position = Vector2(5, -15)
 turn_speed = 0.01
@@ -106,6 +109,7 @@ limit_width = 500.0
 stream = ExtResource("2_x06u6")
 
 [node name="LevelSelector" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_52vh0")
 
 [node name="ResultDisplay" parent="." instance=ExtResource("6_kw5xp")]
@@ -132,6 +136,7 @@ visible = false
 visible = false
 
 [node name="HUD" parent="." instance=ExtResource("7_ltflu")]
+unique_name_in_owner = true
 visible = false
 
 [node name="Titles" type="Node2D" parent="."]
@@ -229,10 +234,10 @@ rotation = 0.490438
 ignore_rotation = false
 zoom = Vector2(0.49, 0.49)
 script = ExtResource("18_picnl")
-player_path = NodePath("../Player")
-ghost_path = NodePath("../Ghost")
+player_path = NodePath("../CanvasLayer/Player")
+ghost_path = NodePath("../CanvasLayer/Ghost")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
-[connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
-[connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
-[connection signal="rap_started" from="." to="Ghost" method="_on_main_rap_started"]
+[connection signal="goal_reached" from="." to="CanvasLayer/Ghost" method="_on_goal_reached"]
+[connection signal="new_record" from="." to="CanvasLayer/Ghost" method="_on_new_record"]
+[connection signal="rap_started" from="." to="CanvasLayer/Ghost" method="_on_main_rap_started"]
