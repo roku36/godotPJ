@@ -28,19 +28,16 @@ func _ready() -> void:
 	pass
 
 func _draw() -> void:
-	pass
-	# draw_circle(affine_camera.target_point, 50, Color.RED)
-	# draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
+	draw_circle(affine_camera.target_point, 50, Color.RED)
+	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	state_label.text = str(Global.state)
 	queue_redraw()
-	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
-	# show Global.state with text
-	if Input.is_action_just_pressed("restart"):
-		result_countdown()
+	state_label.text = str(Global.state)
+	# if Input.is_action_just_pressed("restart"):
+		# restart()
 	if Global.state == Global.RESULT:
 		pass
 	if Input.is_action_just_pressed("pause"):
@@ -49,7 +46,8 @@ func _process(delta: float) -> void:
 		Global.state = Global.TITLE
 		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
-		result_countdown()
+		Global.state = Global.STARTED
+		rap_started.emit()
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Global.state = Global.READY
@@ -81,8 +79,7 @@ func result_countdown() -> void:
 	await get_tree().create_timer(3.0).timeout
 	raptime = 0
 	result_display.visible = false
-	Global.state = Global.STARTED
-	rap_started.emit()
+	Global.state = Global.READY
 
 
 func _on_goal_reached() -> void:
