@@ -81,17 +81,16 @@ func update_scoreboard() -> void:
 	# e.g. "1st score: 30.00"
 	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
 	for i in range(Global.best_rap_time[Global.current_stage].size()):
-		scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
+		var prize: String = "none"
+		var raptime: float = Global.best_rap_time[Global.current_stage][i]
+		for medal: String in ["gold", "silver", "bronze"]:
+			# print("%f, %f" % [raptime, Global.target_times[Global.current_stage][medal]])
+			if raptime < Global.target_times[Global.current_stage][medal]:
+				prize = medal
+				break
+		# scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
+		scores.append_text("[img=16]res://Textures/%s.svg[/img] %f\n" % [prize, Global.best_rap_time[Global.current_stage][i]])
 	
-	# show target times
-	# in Global.target_times
-	# var target_times: Array[Dictionary] = [
-	# 	{"gold": 10.0, "silver": 15.0, "bronze": 20.0},
-	# 	{"gold": 11.0, "silver": 16.0, "bronze": 21.0},
-	# 	{"gold": 12.0, "silver": 17.0, "bronze": 22.0},
-	# 	{"gold": 13.0, "silver": 18.0, "bronze": 23.0},
-	# ]
-
 	target_time_label.text = ""
 	for key: String in Global.target_times[Global.current_stage].keys():
 		target_time_label.text += "[img=16]res://Textures/%s.svg[/img] %f\n" % [key, Global.target_times[Global.current_stage][key]]

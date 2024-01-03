@@ -87,6 +87,15 @@ func _on_goal_reached() -> void:
 	goal_fx.global_position = player.global_position
 	add_child(goal_fx)
 
+	# if raptime is better than target time, print the prize
+	var prize: String = "none"
+	for medal: String in ["gold", "silver", "bronze"]:
+		if raptime < Global.target_times[Global.current_stage][medal]:
+			prize = medal
+			break
+
+	print("Prize: " + str(prize))
+
 	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
 	bestRaptime.append(raptime)
 	bestRaptime.sort()
