@@ -40,8 +40,8 @@ func _process(delta: float) -> void:
 	# test_label_2.text = "\n" + str(Global.best_rap_time[0]) + "\n" + str(Global.best_rap_time[1]) + "\n" + str(Global.best_rap_time[2]) + "\n" + str(Global.best_rap_time[3])
 	# show Global.state with text
 	if Input.is_action_just_pressed("restart"):
-		launch_countdown()
-	if Global.state == Global.LAUNCH:
+		result_countdown()
+	if Global.state == Global.RESULT:
 		pass
 	if Input.is_action_just_pressed("pause"):
 		hud.visible = false
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		Global.state = Global.TITLE
 		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
-		launch_countdown()
+		result_countdown()
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Global.state = Global.READY
@@ -72,11 +72,11 @@ func init_state() -> void:
 	$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 	level_selector.path_follow_player.progress = 0
 
-func launch_countdown() -> void:
+func result_countdown() -> void:
 	result_display.visible = true
 	result_display.display_number = raptime
 	init_state()
-	Global.state = Global.LAUNCH
+	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
 	await get_tree().create_timer(3.0).timeout
 	raptime = 0
@@ -99,5 +99,5 @@ func _on_goal_reached() -> void:
 		bestRaptime.pop_back()
 	level_selector.update_scoreboard()
 	Global.best_rap_time[Global.current_stage] = bestRaptime
-	launch_countdown()
+	result_countdown()
 
