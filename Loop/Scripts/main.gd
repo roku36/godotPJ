@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 		Global.state = Global.TITLE
 		titles.visible = true
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
+		init_state()
 		Global.state = Global.STARTED
 		rap_started.emit()
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):

@@ -89,8 +89,8 @@ func update_scoreboard() -> void:
 				prize = medal
 				break
 		# scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
-		scores.append_text("[img=16]res://Textures/%s.svg[/img] %f\n" % [prize, Global.best_rap_time[Global.current_stage][i]])
+		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_rap_time[Global.current_stage][i]])
 	
 	target_time_label.text = ""
 	for key: String in Global.target_times[Global.current_stage].keys():
-		target_time_label.text += "[img=16]res://Textures/%s.svg[/img] %f\n" % [key, Global.target_times[Global.current_stage][key]]
+		target_time_label.text += "[img=16]res://Textures/%s.svg[/img] %.2f\n" % [key, Global.target_times[Global.current_stage][key]]
