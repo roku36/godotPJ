@@ -17,11 +17,10 @@
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
-[sub_resource type="Gradient" id="Gradient_510yl"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_x1q6v"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7r5s"]
-gradient = SubResource("Gradient_510yl")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_shk58"]
+gradient = SubResource("Gradient_x1q6v")
 
 [sub_resource type="Environment" id="Environment_8xspm"]
 background_mode = 3
@@ -31,7 +30,7 @@ glow_strength = 0.86
 glow_bloom = 0.13
 glow_blend_mode = 0
 adjustment_enabled = true
-adjustment_color_correction = SubResource("GradientTexture1D_q7r5s")
+adjustment_color_correction = SubResource("GradientTexture1D_shk58")
 
 [sub_resource type="Gradient" id="Gradient_qr8g3"]
 
