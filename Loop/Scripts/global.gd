@@ -18,6 +18,13 @@ var target_times: Array[Dictionary] = [
 	{"gold": 13.0, "silver": 18.0, "bronze": 23.0},
 ]
 
+var achievements: Array[Dictionary] = [
+	{"gold": false, "silver": false, "bronze": false},
+	{"gold": false, "silver": false, "bronze": false},
+	{"gold": false, "silver": false, "bronze": false},
+	{"gold": false, "silver": false, "bronze": false},
+]
+
 
 
 func _ready() -> void:

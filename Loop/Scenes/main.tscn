@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -49,6 +49,9 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 
 [sub_resource type="Curve" id="Curve_y42bb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_godsh"]
+colors = PackedColorArray(1, 0.6325, 0.55, 1, 1, 0, 1, 0)
 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
@@ -103,20 +106,24 @@ offset_right = 54.0
 offset_bottom = -193.0
 display_number = 12.26
 
-[node name="Trail" type="Line2D" parent="."]
+[node name="Trail2" type="Line2D" parent="."]
 top_level = true
+light_mask = 0
 z_index = 5
 points = PackedVector2Array(2016, 216)
 width_curve = SubResource("Curve_y42bb")
+gradient = SubResource("Gradient_godsh")
 script = ExtResource("5_sqn2k")
 MAX_QUEUE_LEN = 80
 trail_offset = Vector2(-30, 20)
 
-[node name="Trail2" type="Line2D" parent="."]
+[node name="Trail3" type="Line2D" parent="."]
 top_level = true
+light_mask = 0
 z_index = 5
 points = PackedVector2Array(2016, 216)
 width_curve = SubResource("Curve_y42bb")
+gradient = SubResource("Gradient_godsh")
 script = ExtResource("5_sqn2k")
 MAX_QUEUE_LEN = 80
 trail_offset = Vector2(-30, -20)

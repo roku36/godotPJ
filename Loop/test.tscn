@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://byqmavej1offv"]
+
+[ext_resource type="Texture2D" uid="uid://bds2ntjyv45th" path="res://Textures/gold.svg" id="1_58nq0"]
+[ext_resource type="Texture2D" uid="uid://cett2f7w8gduf" path="res://Textures/bronze.svg" id="2_ag56w"]
+[ext_resource type="Texture2D" uid="uid://bip0vcfcjoxae" path="res://Textures/silver.svg" id="3_i3iaa"]
+
+[sub_resource type="Shader" id="Shader_nuy3x"]
+code = "shader_type canvas_item;
+
+uniform vec4 shine_color : source_color = vec4(1.0);
+uniform float shine_speed : hint_range(0.0, 10.0, 0.1) = 1.0;
+uniform float shine_size : hint_range(0.01, 1.0, 0.01) = 0.01;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	float shine = step(1.0 - shine_size * 0.5, 0.5 + 0.5 * sin(UV.x - UV.y + TIME * shine_speed));
+	COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, shine * shine_color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ue05"]
+shader = SubResource("Shader_nuy3x")
+shader_parameter/shine_color = Color(1, 1, 0.92549, 0.631373)
+shader_parameter/shine_speed = 3.8
+shader_parameter/shine_size = 0.04
+
+[sub_resource type="Gradient" id="Gradient_q655y"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijl4m"]
+gradient = SubResource("Gradient_q655y")
+width = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.837607, 0.198718)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Gold" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2ue05")
+position = Vector2(59, 93)
+texture = ExtResource("1_58nq0")
+
+[node name="Bronze" type="Sprite2D" parent="."]
+position = Vector2(63, 229)
+texture = ExtResource("2_ag56w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Bronze"]
+position = Vector2(2, 30)
+energy = 2.0
+texture = SubResource("GradientTexture2D_ijl4m")
+height = 30.0
+
+[node name="Silver" type="Sprite2D" parent="."]
+position = Vector2(61, 160)
+texture = ExtResource("3_i3iaa")
