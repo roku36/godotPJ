@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dku6tgnvso8fr"]
+[gd_scene load_steps=11 format=3 uid="uid://dku6tgnvso8fr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hn671"]
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://Textures/icon.svg" id="2_7u1vp"]
 [ext_resource type="Texture2D" uid="uid://y4c4af8a1yb4" path="res://Textures/player.svg" id="2_qhg0w"]
+[ext_resource type="Texture2D" uid="uid://bds2ntjyv45th" path="res://Textures/gold.svg" id="4_e48rj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqwoq"]
 radius = 9.0
@@ -58,9 +59,14 @@ energy = 7.43
 texture = SubResource("GradientTexture2D_fc17j")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-44, 0)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_ihg7g")
 texture = ExtResource("2_7u1vp")
 lifetime = 2.0
 trail_lifetime = 10.0
+
+[node name="Gold" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_e48rj")

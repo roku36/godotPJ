@@ -84,11 +84,9 @@ func update_scoreboard() -> void:
 		var prize: String = "none"
 		var raptime: float = Global.best_rap_time[Global.current_stage][i]
 		for medal: String in ["gold", "silver", "bronze"]:
-			# print("%f, %f" % [raptime, Global.target_times[Global.current_stage][medal]])
 			if raptime < Global.target_times[Global.current_stage][medal]:
 				prize = medal
 				break
-		# scores.append_text("%d st score: %f\n" % [i, Global.best_rap_time[Global.current_stage][i]])
 		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_rap_time[Global.current_stage][i]])
 	
 	target_time_label.text = ""
