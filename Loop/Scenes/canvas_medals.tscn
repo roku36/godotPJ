@@ -1,17 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://chx1o78lfjyno"]
-
-[ext_resource type="Shader" path="res://Shaders/medal_shine.gdshader" id="1_5xofg"]
-[ext_resource type="Texture2D" uid="uid://bip0vcfcjoxae" path="res://Textures/silver.svg" id="2_vgbvu"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_40g1q"]
-shader = ExtResource("1_5xofg")
-shader_parameter/shine_color = Color(1, 1, 1, 1)
-shader_parameter/shine_speed = 2.0
-shader_parameter/shine_size = 0.01
+[gd_scene format=3 uid="uid://chx1o78lfjyno"]
 
 [node name="CanvasMedals" type="CanvasLayer"]
 
-[node name="Bronze" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_40g1q")
-position = Vector2(307, 230)
-texture = ExtResource("2_vgbvu")
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[img]res://Entities/bronze.tscn[/img]"
