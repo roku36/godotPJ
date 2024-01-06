@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@onready var target_time_container: VBoxContainer = $VBox
 @onready var medal_textures: Dictionary = {
 	"gold": $VBox/HBoxGold/TextureRect,
 	"silver": $VBox/HBoxSilver/TextureRect,
@@ -21,9 +22,9 @@ func _process(_delta: float) -> void:
 	pass
 	# when pressed enter key, anim medal
 	# if Input.is_action_just_pressed("ui_accept"):
-	# 	# anim_medal("Gold")
-	# 	anim_medal("Silver")
-	# 	# anim_medal("Bronze")
+	# 	# anim_medal("gold")
+	# 	anim_medal("silver")
+	# 	# anim_medal("bronze")
 
 func anim_medal(medal: String) -> void:
 	# emphasis effect using scale
@@ -41,10 +42,18 @@ func anim_medal(medal: String) -> void:
 
 
 	var tween: Tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(target_time_container, "scale", Vector2(1.0, 1.0), 0.3)
+	tween.parallel().tween_property(target_time_container, "position", Vector2(850, 230), 0.3)
+	tween.tween_interval(0.3)
 	tween.tween_property(medal_node, "scale", Vector2(1.2, 1.2), 0.1)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(medal_node, "scale", Vector2(1, 1), 0.1)
+	tween.tween_interval(1.0)
+	tween.tween_property(target_time_container, "scale", Vector2(0.4, 0.4), 0.3)
+	tween.parallel().tween_property(target_time_container, "position", Vector2(1000, 30), 0.3)
+
 
 func update_target_times() -> void:
 	if not is_node_ready():

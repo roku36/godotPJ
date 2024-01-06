@@ -45,11 +45,11 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_bsh00")
 
 [node name="VBox" type="VBoxContainer" parent="."]
-offset_left = 740.0
-offset_top = 254.0
-offset_right = 938.0
-offset_bottom = 469.0
-scale = Vector2(0.37, 0.37)
+offset_left = 1000.0
+offset_top = 30.0
+offset_right = 1198.0
+offset_bottom = 245.0
+scale = Vector2(0.4, 0.4)
 
 [node name="HBoxGold" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
