@@ -1,14 +1,14 @@
 extends CanvasLayer
 
-# array of node,
-# Gold
-# Silver
-# Bronze
-# $VBox/HBox/TextureRect/{{medal}}
+@onready var medal_textures: Dictionary = {
+	"gold": $VBox/HBoxGold/TextureRect,
+	"silver": $VBox/HBoxSilver/TextureRect,
+	"bronze": $VBox/HBoxBronze/TextureRect,
+}
 @onready var medal_labels: Dictionary = {
-	"Gold": $VBox/HBoxGold/TextureRect,
-	"Silver": $VBox/HBoxSilver/TextureRect,
-	"Bronze": $VBox/HBoxBronze/TextureRect,
+	"gold": $VBox/HBoxGold/Label,
+	"silver": $VBox/HBoxSilver/Label,
+	"bronze": $VBox/HBoxBronze/Label,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -18,23 +18,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	pass
 	# when pressed enter key, anim medal
-	if Input.is_action_just_pressed("ui_accept"):
-		# anim_medal("Gold")
-		anim_medal("Silver")
-		# anim_medal("Bronze")
+	# if Input.is_action_just_pressed("ui_accept"):
+	# 	# anim_medal("Gold")
+	# 	anim_medal("Silver")
+	# 	# anim_medal("Bronze")
 
 func anim_medal(medal: String) -> void:
 	# emphasis effect using scale
-	var medal_node: TextureRect = medal_labels[medal]
+	var medal_node: TextureRect = medal_textures[medal]
 	# if gold, make bronze and silver also active
 	# if silver, make bronze also active
 	medal_node.material.set_shader_parameter("active", true)
-	if medal == "Gold":
-		medal_labels["Silver"].material.set_shader_parameter("active", true)
-		medal_labels["Bronze"].material.set_shader_parameter("active", true)
-	elif medal == "Silver":
-		medal_labels["Bronze"].material.set_shader_parameter("active", true)
+	if medal == "gold":
+		medal_textures["silver"].material.set_shader_parameter("active", true)
+		medal_textures["bronze"].material.set_shader_parameter("active", true)
+	elif medal == "silver":
+		medal_textures["bronze"].material.set_shader_parameter("active", true)
 	
 	# write your code here.
 
@@ -44,4 +45,25 @@ func anim_medal(medal: String) -> void:
 	tween.tween_property(medal_node, "scale", Vector2(1.2, 1.2), 0.1)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(medal_node, "scale", Vector2(1, 1), 0.1)
+
+func update_target_times() -> void:
+	if not is_node_ready():
+		await ready
+	var achievement: String = Global.achievements[Global.current_stage]
+	for medal: String in ["gold", "silver", "bronze"]:
+		medal_labels[medal].text = "%.2f" % Global.target_times[Global.current_stage][medal]
+
+	for texture: TextureRect in medal_textures.values():
+		texture.material.set_shader_parameter("active", false)
+
+	if achievement == "gold":
+		medal_textures["gold"].material.set_shader_parameter("active", true)
+		medal_textures["silver"].material.set_shader_parameter("active", true)
+		medal_textures["bronze"].material.set_shader_parameter("active", true)
+	elif achievement == "silver":
+		medal_textures["silver"].material.set_shader_parameter("active", true)
+		medal_textures["bronze"].material.set_shader_parameter("active", true)
+	elif achievement == "bronze":
+		medal_textures["bronze"].material.set_shader_parameter("active", true)
+
 

@@ -10,6 +10,7 @@ extends Node
 @onready var ghost: Node2D = %Ghost
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
 @onready var target_time_label: RichTextLabel = %"CanvasLabels".get_node("%TargetTimeLabel")
+@onready var canvas_labels: CanvasLayer = %CanvasLabels
 
 var level_width: float = 0.0
 var level_width_curve: Curve
@@ -74,6 +75,7 @@ func set_stage_num(value: int) -> int:
 	path_follow_player.name = "PathFollowPlayer"
 	road_path.add_child(path_follow_player)
 	update_scoreboard()
+	canvas_labels.update_target_times()
 	return value 
 
 func update_scoreboard() -> void:

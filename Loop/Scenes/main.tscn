@@ -205,6 +205,7 @@ autowrap_mode = 0
 
 [node name="CanvasLabels" parent="." instance=ExtResource("17_06lwo")]
 unique_name_in_owner = true
+process_priority = 2
 
 [node name="AffineCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true

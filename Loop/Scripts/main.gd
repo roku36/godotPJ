@@ -4,6 +4,7 @@ extends Node2D
 @onready var hud: CanvasLayer = $"HUD"
 @onready var player: CharacterBody2D = %Player
 @onready var titles: Node2D = $Titles
+@onready var canvas_labels: CanvasLayer = %CanvasLabels
 @onready var scores: RichTextLabel = %"CanvasLabels".get_node("%Scores")
 @onready var level_selector: Node = $LevelSelector
 @onready var state_label: Label = %"CanvasLabels".get_node("%StateLabel")
@@ -96,6 +97,12 @@ func _on_goal_reached() -> void:
 			prize = medal
 			break
 
+	# if prize is better than Global.achievements_unlocked[Global.current_stage]
+	var tmp_prize: Array[String] = ["none", "bronze", "silver", "gold"]
+	if tmp_prize.find(prize) > tmp_prize.find(Global.achievements[Global.current_stage]):
+		Global.achievements[Global.current_stage] = prize
+		canvas_labels.anim_medal(prize)
+
 	print("Prize: " + str(prize))
 
 	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
@@ -108,4 +115,3 @@ func _on_goal_reached() -> void:
 	level_selector.update_scoreboard()
 	Global.best_rap_time[Global.current_stage] = bestRaptime
 	result_countdown()
-

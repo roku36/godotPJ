@@ -49,6 +49,7 @@ offset_left = 740.0
 offset_top = 254.0
 offset_right = 938.0
 offset_bottom = 469.0
+scale = Vector2(0.37, 0.37)
 
 [node name="HBoxGold" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
@@ -75,7 +76,7 @@ layout_mode = 2
 texture = ExtResource("3_d5813")
 stretch_mode = 2
 
-[node name="Label2" type="Label" parent="VBox/HBoxSilver"]
+[node name="Label" type="Label" parent="VBox/HBoxSilver"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -91,7 +92,7 @@ layout_mode = 2
 texture = ExtResource("4_pb7wm")
 stretch_mode = 2
 
-[node name="Label3" type="Label" parent="VBox/HBoxBronze"]
+[node name="Label" type="Label" parent="VBox/HBoxBronze"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
