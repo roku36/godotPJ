@@ -4,10 +4,10 @@ extends Node2D
 @onready var hud: CanvasLayer = $"HUD"
 @onready var player: CharacterBody2D = %Player
 @onready var titles: Node2D = $Titles
-@onready var scores: RichTextLabel = %Scores
+@onready var scores: RichTextLabel = %"CanvasLabels".get_node("%Scores")
 @onready var level_selector: Node = $LevelSelector
-@onready var state_label: Label = %StateLabel
-@onready var rap_time_label: Label = %RapTimeLabel
+@onready var state_label: Label = %"CanvasLabels".get_node("%StateLabel")
+@onready var rap_time_label: Label = %"CanvasLabels".get_node("%RapTimeLabel")
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 

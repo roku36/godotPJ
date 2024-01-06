@@ -2,13 +2,14 @@
 extends Node
 @onready var road_path: Path2D
 @onready var path_follow_player: PathFollow2D
-@onready var scores: RichTextLabel = %Scores
+# @onready var scores: RichTextLabel = %Scores
+@onready var scores: RichTextLabel = %"CanvasLabels".get_node("%Scores")
 @onready var background: Node2D = $"../Background"
 @onready var arrow_left: ColorRect = $"../Titles/HBoxContainer/arrowLeft"
 @onready var arrow_right: ColorRect = $"../Titles/HBoxContainer/arrowRight"
 @onready var ghost: Node2D = %Ghost
 @onready var world_env: WorldEnvironment = $"../WorldEnvironment"
-@onready var target_time_label: RichTextLabel = %TargetTimeLabel
+@onready var target_time_label: RichTextLabel = %"CanvasLabels".get_node("%TargetTimeLabel")
 
 var level_width: float = 0.0
 var level_width_curve: Curve

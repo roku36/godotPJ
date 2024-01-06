@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=32 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
+[ext_resource type="PackedScene" uid="uid://dhellu7gtocrp" path="res://Entities/canvas_labels.tscn" id="17_06lwo"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
@@ -74,17 +75,6 @@ shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
-[sub_resource type="LabelSettings" id="LabelSettings_hsyk1"]
-font_size = 20
-font_color = Color(0, 1, 0, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_27npf"]
-font_size = 20
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
@@ -128,17 +118,17 @@ script = ExtResource("5_sqn2k")
 MAX_QUEUE_LEN = 80
 trail_offset = Vector2(-30, -20)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="WorldEnvExclude" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Player" parent="CanvasLayer" instance=ExtResource("2_146rn")]
+[node name="Player" parent="WorldEnvExclude" instance=ExtResource("2_146rn")]
 unique_name_in_owner = true
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 limit_on_dist = SubResource("Curve_um74a")
 limit_width = 500.0
 
-[node name="Ghost" parent="CanvasLayer" instance=ExtResource("4_q01vl")]
+[node name="Ghost" parent="WorldEnvExclude" instance=ExtResource("4_q01vl")]
 unique_name_in_owner = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -213,48 +203,8 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CanvasLabels" type="CanvasLayer" parent="."]
-
-[node name="TargetTimeLabel" type="RichTextLabel" parent="CanvasLabels"]
+[node name="CanvasLabels" parent="." instance=ExtResource("17_06lwo")]
 unique_name_in_owner = true
-offset_left = 947.0
-offset_top = 8.0
-offset_right = 1202.0
-offset_bottom = 198.0
-bbcode_enabled = true
-text = "[img]res://Textures/icon.svg[/img]"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLabels"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StateLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "state number"
-label_settings = SubResource("LabelSettings_hsyk1")
-
-[node name="RapTimeLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "rap time"
-label_settings = SubResource("LabelSettings_27npf")
-
-[node name="Scores" type="RichTextLabel" parent="CanvasLabels/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 25
-bbcode_enabled = true
-text = "1: 32:0[b]0[/b]
-2: 36:00"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="DebugLabel" type="Label" parent="CanvasLabels/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="AffineCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -262,10 +212,10 @@ rotation = 0.490438
 ignore_rotation = false
 zoom = Vector2(0.49, 0.49)
 script = ExtResource("18_picnl")
-player_path = NodePath("../CanvasLayer/Player")
-ghost_path = NodePath("../CanvasLayer/Ghost")
+player_path = NodePath("../WorldEnvExclude/Player")
+ghost_path = NodePath("../WorldEnvExclude/Ghost")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
-[connection signal="goal_reached" from="." to="CanvasLayer/Ghost" method="_on_goal_reached"]
-[connection signal="new_record" from="." to="CanvasLayer/Ghost" method="_on_new_record"]
-[connection signal="rap_started" from="." to="CanvasLayer/Ghost" method="_on_main_rap_started"]
+[connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
+[connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
+[connection signal="rap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_rap_started"]
