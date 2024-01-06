@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhellu7gtocrp"]
+[gd_scene load_steps=11 format=3 uid="uid://dhellu7gtocrp"]
 
+[ext_resource type="Script" path="res://Scripts/canvas_labels.gd" id="1_bsh00"]
 [ext_resource type="Shader" path="res://Shaders/medal_shine.gdshader" id="1_h20dr"]
 [ext_resource type="Texture2D" uid="uid://bds2ntjyv45th" path="res://Textures/gold.svg" id="2_s8mwt"]
 [ext_resource type="Texture2D" uid="uid://bip0vcfcjoxae" path="res://Textures/silver.svg" id="3_d5813"]
@@ -10,18 +11,24 @@ shader = ExtResource("1_h20dr")
 shader_parameter/shine_color = Color(1, 1, 1, 1)
 shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
+shader_parameter/active = false
+shader_parameter/opacity = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n47qf"]
 shader = ExtResource("1_h20dr")
 shader_parameter/shine_color = Color(1, 1, 1, 1)
 shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
+shader_parameter/active = false
+shader_parameter/opacity = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnbka"]
 shader = ExtResource("1_h20dr")
 shader_parameter/shine_color = Color(1, 1, 1, 1)
 shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
+shader_parameter/active = false
+shader_parameter/opacity = 0.2
 
 [sub_resource type="LabelSettings" id="LabelSettings_hsyk1"]
 font_size = 20
@@ -35,52 +42,59 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [node name="CanvasLabels" type="CanvasLayer"]
+script = ExtResource("1_bsh00")
 
 [node name="VBox" type="VBoxContainer" parent="."]
-offset_left = 479.0
-offset_top = 223.0
-offset_right = 677.0
-offset_bottom = 438.0
+offset_left = 740.0
+offset_top = 254.0
+offset_right = 938.0
+offset_bottom = 469.0
 
-[node name="HBox" type="HBoxContainer" parent="VBox"]
+[node name="HBoxGold" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBox/HBox"]
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxGold"]
 material = SubResource("ShaderMaterial_fv60a")
 layout_mode = 2
 texture = ExtResource("2_s8mwt")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="VBox/HBox"]
+[node name="Label" type="Label" parent="VBox/HBoxGold"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 50
 text = "10.00"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBox"]
+[node name="HBoxSilver" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxSilver"]
 material = SubResource("ShaderMaterial_n47qf")
 layout_mode = 2
 texture = ExtResource("3_d5813")
 stretch_mode = 2
 
-[node name="Label2" type="Label" parent="VBox/HBoxContainer2"]
+[node name="Label2" type="Label" parent="VBox/HBoxSilver"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 50
 text = "10.00"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBox"]
+[node name="HBoxBronze" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBox/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="VBox/HBoxBronze"]
 material = SubResource("ShaderMaterial_vnbka")
 layout_mode = 2
 texture = ExtResource("4_pb7wm")
 stretch_mode = 2
 
-[node name="Label3" type="Label" parent="VBox/HBoxContainer3"]
+[node name="Label3" type="Label" parent="VBox/HBoxBronze"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 50
 text = "10.00"
 
