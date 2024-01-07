@@ -112,7 +112,7 @@ layout_mode = 2
 text = "state number"
 label_settings = SubResource("LabelSettings_hsyk1")
 
-[node name="RapTimeLabel" type="Label" parent="VBoxContainer"]
+[node name="LapTimeLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "rap time"

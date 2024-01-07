@@ -8,7 +8,7 @@ extends Node2D
 @onready var scores: RichTextLabel = %"CanvasLabels".get_node("%Scores")
 @onready var level_selector: Node = $LevelSelector
 @onready var state_label: Label = %"CanvasLabels".get_node("%StateLabel")
-@onready var rap_time_label: Label = %"CanvasLabels".get_node("%RapTimeLabel")
+@onready var lap_time_label: Label = %"CanvasLabels".get_node("%LapTimeLabel")
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 
@@ -16,12 +16,12 @@ extends Node2D
 const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
 
 var paused:bool = false
-var raptime:float = 0.0
+var laptime:float = 0.0
 var nearest_offset:float = 0.0
 
 signal goal_reached
 signal new_record
-signal rap_started
+signal lap_started
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
 		init_state()
 		Global.state = Global.STARTED
-		rap_started.emit()
+		lap_started.emit()
 	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Global.state = Global.READY
@@ -60,8 +60,8 @@ func _process(delta: float) -> void:
 	
 	# update time
 	if Global.state == Global.STARTED:
-		raptime += delta
-	rap_time_label.text = "%04.2f" % raptime
+		laptime += delta
+	lap_time_label.text = "%04.2f" % laptime
 	# Goal detection
 	if level_selector.path_follow_player.progress_ratio == 1.0:
 		goal_reached.emit()
@@ -75,12 +75,12 @@ func init_state() -> void:
 
 func result_countdown() -> void:
 	result_display.visible = true
-	result_display.display_number = raptime
+	result_display.display_number = laptime
 	init_state()
 	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
 	await get_tree().create_timer(3.0).timeout
-	raptime = 0
+	laptime = 0
 	result_display.visible = false
 	Global.state = Global.READY
 
@@ -89,11 +89,12 @@ func _on_goal_reached() -> void:
 	var goal_fx: GPUParticles2D = GOAL_PARTICLE.instantiate()
 	goal_fx.global_position = player.global_position
 	add_child(goal_fx)
+	Global.save_data()
 
-	# if raptime is better than target time, print the prize
+	# if laptime is better than target time, print the prize
 	var prize: String = "none"
 	for medal: String in ["gold", "silver", "bronze"]:
-		if raptime < Global.target_times[Global.current_stage][medal]:
+		if laptime < Global.target_times[Global.current_stage][medal]:
 			prize = medal
 			break
 
@@ -105,13 +106,13 @@ func _on_goal_reached() -> void:
 
 	print("Prize: " + str(prize))
 
-	var bestRaptime: Array[float] = Global.best_rap_time[Global.current_stage]
-	bestRaptime.append(raptime)
-	bestRaptime.sort()
-	if bestRaptime[0] == raptime:
+	var bestlaptime: Array[float] = Global.best_lap_time[Global.current_stage]
+	bestlaptime.append(laptime)
+	bestlaptime.sort()
+	if bestlaptime[0] == laptime:
 		new_record.emit()
-	while bestRaptime.size() > Global.REC_CAPACITY:
-		bestRaptime.pop_back()
+	while bestlaptime.size() > Global.REC_CAPACITY:
+		bestlaptime.pop_back()
 	level_selector.update_scoreboard()
-	Global.best_rap_time[Global.current_stage] = bestRaptime
+	Global.best_lap_time[Global.current_stage] = bestlaptime
 	result_countdown()

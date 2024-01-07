@@ -59,7 +59,7 @@ func play_recorded_data() -> void:
 	self.rotation = lerp_angle(best_replay_data["rotation"][current_index-1], best_replay_data["rotation"][current_index], t)
 	# show time, position, rotation of current_index to label
 	# test_label_2.text = str(current_index) + "\n" + str(best_replay_data["time"][current_index]) + "\n" + str(best_replay_data["position"][current_index])
-	# show bestraptime of each stages in row: for loop 0~3, Global.best_rap_time[0..3]
+	# show bestlaptime of each stages in row: for loop 0~3, Global.best_lap_time[0..3]
 
 
 func _on_goal_reached() -> void:
@@ -77,10 +77,10 @@ func _on_new_record() -> void:
 	# test_label_2.text = str(len(best_replay_data["time"])) + "\n" + str(len(replay_data["time"]))
 
 
-func _on_main_rap_started() -> void:
+func _on_main_lap_started() -> void:
 	current_time = 0
 	current_index = 0
-	if not Global.best_rap_time[Global.current_stage].is_empty():
+	if not Global.best_lap_time[Global.current_stage].is_empty():
 		playback_started = true
 	# initialize replay_data
 	reset_replay_data()

@@ -220,4 +220,3 @@ ghost_path = NodePath("../WorldEnvExclude/Ghost")
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
 [connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
-[connection signal="rap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_rap_started"]

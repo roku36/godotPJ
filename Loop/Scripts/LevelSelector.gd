@@ -82,11 +82,11 @@ func update_scoreboard() -> void:
 	# append top 5 scores
 	# e.g. "1st score: 30.00"
 	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
-	for i in range(Global.best_rap_time[Global.current_stage].size()):
+	for i in range(Global.best_lap_time[Global.current_stage].size()):
 		var prize: String = "none"
-		var raptime: float = Global.best_rap_time[Global.current_stage][i]
+		var laptime: float = Global.best_lap_time[Global.current_stage][i]
 		for medal: String in ["gold", "silver", "bronze"]:
-			if raptime < Global.target_times[Global.current_stage][medal]:
+			if laptime < Global.target_times[Global.current_stage][medal]:
 				prize = medal
 				break
-		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_rap_time[Global.current_stage][i]])
+		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_lap_time[Global.current_stage][i]])
