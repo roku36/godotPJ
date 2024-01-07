@@ -89,7 +89,6 @@ func _on_goal_reached() -> void:
 	var goal_fx: GPUParticles2D = GOAL_PARTICLE.instantiate()
 	goal_fx.global_position = player.global_position
 	add_child(goal_fx)
-	Global.save_data()
 
 	# if laptime is better than target time, print the prize
 	var prize: String = "none"
@@ -106,7 +105,7 @@ func _on_goal_reached() -> void:
 
 	print("Prize: " + str(prize))
 
-	var bestlaptime: Array[float] = Global.best_lap_time[Global.current_stage]
+	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
 	bestlaptime.append(laptime)
 	bestlaptime.sort()
 	if bestlaptime[0] == laptime:
@@ -116,3 +115,5 @@ func _on_goal_reached() -> void:
 	level_selector.update_scoreboard()
 	Global.best_lap_time[Global.current_stage] = bestlaptime
 	result_countdown()
+
+	Global.save_data()

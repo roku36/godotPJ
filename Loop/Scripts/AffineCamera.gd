@@ -2,7 +2,6 @@ extends Camera2D
 
 @export var player_path: NodePath
 @export var ghost_path: NodePath
-@onready var debug_label: Label = %DebugLabel
 @onready var level_selector: Node = $"../LevelSelector"
 
 var player: Node
