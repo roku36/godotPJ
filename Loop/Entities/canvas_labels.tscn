@@ -13,6 +13,7 @@ shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
 shader_parameter/active = false
 shader_parameter/opacity = 0.2
+shader_parameter/spin_rate = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n47qf"]
 shader = ExtResource("1_h20dr")
@@ -21,6 +22,7 @@ shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
 shader_parameter/active = false
 shader_parameter/opacity = 0.2
+shader_parameter/spin_rate = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnbka"]
 shader = ExtResource("1_h20dr")
@@ -29,6 +31,7 @@ shader_parameter/shine_speed = 1.0
 shader_parameter/shine_size = 0.01
 shader_parameter/active = false
 shader_parameter/opacity = 0.2
+shader_parameter/spin_rate = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_hsyk1"]
 font_size = 20
