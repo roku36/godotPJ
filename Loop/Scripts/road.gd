@@ -3,6 +3,11 @@ extends Path2D
 @onready var road_line : Line2D = $Line2D
 const goal = preload("res://Scenes/goal.tscn")
 
+@export var press_update: bool = false:
+	set(value):
+		press_update = false
+		update_road_line()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_road_line()
@@ -10,8 +15,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		update_road_line()
+	# when the road is updated
+
+	pass
+	# if Engine.is_editor_hint():
+	# 	update_road_line()
 
 func update_road_line() -> void:
 	# make tail point position same as head point position

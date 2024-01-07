@@ -57,7 +57,7 @@ func _input(event: InputEvent) -> void:
 			# add impact instance to the position
 			var impact_instance: Node2D = impact.instantiate()
 			impact_instance.global_position = closest_reflector.global_position
-			get_parent().add_child(impact_instance)
+			get_tree().root.add_child(impact_instance)
 
 
 func update_rotation(turn_input: float, delta: float) -> void:

@@ -1,23 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=34 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
 [ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="Script" path="res://Scripts/WorldEnvironment.gd" id="2_ml7e0"]
-[ext_resource type="AudioStream" uid="uid://dph7fpbardl80" path="res://Audio/lava.wav" id="2_x06u6"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Script" path="res://Scripts/Trail.gd" id="5_sqn2k"]
 [ext_resource type="PackedScene" uid="uid://c6cpjift2ulo" path="res://Scenes/result_display.tscn" id="6_kw5xp"]
 [ext_resource type="PackedScene" uid="uid://1ksnfui8mwlv" path="res://Levels/level0.tscn" id="6_vnsvh"]
 [ext_resource type="PackedScene" uid="uid://baqrqfm4yxwck" path="res://Levels/level1.tscn" id="6_wuisk"]
 [ext_resource type="PackedScene" uid="uid://dbm1e8gtik5rv" path="res://Scenes/hud.tscn" id="7_ltflu"]
+[ext_resource type="AudioStream" uid="uid://1y1ukydcuvi2" path="res://Audio/bgm.wav" id="8_qjiun"]
 [ext_resource type="PackedScene" uid="uid://gjuygdvv8hp3" path="res://Levels/level2.tscn" id="9_vwxht"]
 [ext_resource type="PackedScene" uid="uid://ceu8p1tm4bmfi" path="res://Levels/level3.tscn" id="10_l0o5c"]
 [ext_resource type="PackedScene" uid="uid://cs15hg0ty8to8" path="res://Scenes/logo.tscn" id="11_gggvu"]
 [ext_resource type="Shader" path="res://Scenes/arrow.gdshader" id="13_g6lgf"]
 [ext_resource type="PackedScene" uid="uid://dhellu7gtocrp" path="res://Entities/canvas_labels.tscn" id="17_06lwo"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
+[ext_resource type="Texture2D" uid="uid://cy4whlbhvhm4l" path="res://Textures/icons8-settings.svg" id="19_2q5w2"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -40,8 +41,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_shk58")
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_722ma"]
-offsets = PackedFloat32Array(0, 0.477778, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.878924, 0, 0.339689, 1, 1, 1, 1, 1)
+colors = PackedColorArray(7.05945e-08, 0.256079, 0.00346133, 1, 1, 0.677538, 0.717749, 1)
 
 [sub_resource type="Gradient" id="Gradient_32o80"]
 offsets = PackedFloat32Array(0, 0.133333, 0.238889, 0.366667, 0.466667, 0.577778, 0.677778, 0.788889, 0.894444, 1)
@@ -75,6 +75,18 @@ shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
+[sub_resource type="GDScript" id="GDScript_khg5s"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))
+"
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
 
@@ -82,6 +94,12 @@ script = ExtResource("1_pd7es")
 environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
 gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradient_migqc"), SubResource("Gradient_722ma"), SubResource("Gradient_32o80")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qjiun")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 
 [node name="Background" parent="." instance=ExtResource("2_inqlf")]
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
@@ -130,9 +148,6 @@ limit_width = 500.0
 
 [node name="Ghost" parent="WorldEnvExclude" instance=ExtResource("4_q01vl")]
 unique_name_in_owner = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_x06u6")
 
 [node name="LevelSelector" type="Node" parent="."]
 unique_name_in_owner = true
@@ -216,7 +231,27 @@ script = ExtResource("18_picnl")
 player_path = NodePath("../WorldEnvExclude/Player")
 ghost_path = NodePath("../WorldEnvExclude/Ghost")
 
+[node name="SETTINGS" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SETTINGS"]
+offset_left = 19.0
+offset_top = 588.0
+offset_right = 386.0
+offset_bottom = 736.0
+bbcode_enabled = true
+text = "制作: ろく
+[url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
+script = SubResource("GDScript_khg5s")
+
+[node name="TextureRect" type="TextureRect" parent="SETTINGS"]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 70.0
+offset_bottom = 68.0
+texture = ExtResource("19_2q5w2")
+
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
+[connection signal="meta_clicked" from="SETTINGS/RichTextLabel" to="SETTINGS/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
