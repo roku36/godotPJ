@@ -13,12 +13,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not Global.state == Global.STARTED:
+		queue.clear()
+		clear_points()
+		return
 	# get relatively 100 left from player positiion using player.rotation
 	# var pos: Vector2 = player.global_position
 	var pos: Vector2 = player.global_position + player.transform.basis_xform(trail_offset)
 	# var pos: Vector2 = player.global_transform.basis_xform(Vector2(20, 50))
 	# var pos: Vector2 = player.get_global_transform().basis_xform(Vector2(20, 50))
-
 
 	queue.push_front(pos)
 	if queue.size() > MAX_QUEUE_LEN:

@@ -10,9 +10,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	update_road_line()
+	if Engine.is_editor_hint():
+		update_road_line()
 
 func update_road_line() -> void:
+	# make tail point position same as head point position
+	var head_point: Vector2 = self.curve.get_point_position(0)
+	self.curve.set_point_position(self.curve.get_point_count() - 1, head_point)
+	var head_angle_out: Vector2 = self.curve.get_point_out(0)
+	curve.set_point_in(curve.get_point_count() - 1, -head_angle_out)
+	
+
 	road_line.clear_points()
 	var points: PackedVector2Array = self.curve.get_baked_points()
 
