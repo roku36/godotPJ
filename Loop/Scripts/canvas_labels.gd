@@ -12,6 +12,8 @@ extends CanvasLayer
 	"bronze": $VBox/HBoxBronze/Label,
 }
 
+var achieved_color: Color = Color.ORANGE
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -29,14 +31,8 @@ func _process(_delta: float) -> void:
 func anim_medal(medal: String) -> void:
 	# emphasis effect using scale
 	var medal_node: TextureRect = medal_textures[medal]
-	# if gold, make bronze and silver also active
-	# if silver, make bronze also active
-	medal_node.material.set_shader_parameter("active", true)
-	if medal == "gold":
-		medal_textures["silver"].material.set_shader_parameter("active", true)
-		medal_textures["bronze"].material.set_shader_parameter("active", true)
-	elif medal == "silver":
-		medal_textures["bronze"].material.set_shader_parameter("active", true)
+	# Global.achievements[Global.current_stage] = "silver"
+	update_target_times()
 	
 	# write your code here.
 
@@ -65,15 +61,23 @@ func update_target_times() -> void:
 
 	for texture: TextureRect in medal_textures.values():
 		texture.material.set_shader_parameter("active", false)
+	for label: Label in medal_labels.values():
+		label.modulate = Color(1.0, 1.0, 1.0, 0.7)
 
 	if achievement == "gold":
 		medal_textures["gold"].material.set_shader_parameter("active", true)
 		medal_textures["silver"].material.set_shader_parameter("active", true)
 		medal_textures["bronze"].material.set_shader_parameter("active", true)
+		medal_labels["gold"].modulate = achieved_color
+		medal_labels["silver"].modulate = achieved_color
+		medal_labels["bronze"].modulate = achieved_color
 	elif achievement == "silver":
 		medal_textures["silver"].material.set_shader_parameter("active", true)
 		medal_textures["bronze"].material.set_shader_parameter("active", true)
+		medal_labels["silver"].modulate = achieved_color
+		medal_labels["bronze"].modulate = achieved_color
 	elif achievement == "bronze":
 		medal_textures["bronze"].material.set_shader_parameter("active", true)
+		medal_labels["bronze"].modulate = achieved_color
 
 

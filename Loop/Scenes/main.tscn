@@ -133,6 +133,7 @@ unique_name_in_owner = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_x06u6")
+autoplay = true
 
 [node name="LevelSelector" type="Node" parent="."]
 unique_name_in_owner = true
