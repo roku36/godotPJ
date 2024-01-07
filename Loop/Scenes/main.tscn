@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=36 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -86,6 +86,29 @@ func _ready() -> void:
 func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
 "
+
+[sub_resource type="Shader" id="Shader_ppyy4"]
+code = "shader_type canvas_item;
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+	
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void fragment()
+{
+	vec2 rotated_uv = rotate(UV, vec2(0.5), TIME * 0.2);
+	COLOR = texture(TEXTURE, rotated_uv);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8e1y"]
+shader = SubResource("Shader_ppyy4")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -236,14 +259,15 @@ ghost_path = NodePath("../WorldEnvExclude/Ghost")
 [node name="RichTextLabel" type="RichTextLabel" parent="SETTINGS"]
 offset_left = 19.0
 offset_top = 588.0
-offset_right = 386.0
-offset_bottom = 736.0
+offset_right = 290.0
+offset_bottom = 649.0
 bbcode_enabled = true
 text = "制作: ろく
 [url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
 script = SubResource("GDScript_khg5s")
 
 [node name="TextureRect" type="TextureRect" parent="SETTINGS"]
+material = SubResource("ShaderMaterial_a8e1y")
 offset_left = 6.0
 offset_top = 4.0
 offset_right = 70.0

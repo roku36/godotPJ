@@ -46,6 +46,7 @@ point_count = 1
 scale = Vector2(1.01022, 1)
 curve = SubResource("Curve2D_m06sm")
 script = ExtResource("1_atel7")
+loop_road = null
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
