@@ -48,8 +48,9 @@ outline_color = Color(0, 0, 0, 1)
 [node name="CanvasLabels" type="CanvasLayer"]
 script = ExtResource("1_bsh00")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SE_medal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ryt7s")
+volume_db = 2.0
 
 [node name="VBox" type="VBoxContainer" parent="."]
 offset_left = 1000.0
