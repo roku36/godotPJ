@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=41 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://dhellu7gtocrp" path="res://Entities/canvas_labels.tscn" id="17_06lwo"]
 [ext_resource type="Script" path="res://Scripts/AffineCamera.gd" id="18_picnl"]
 [ext_resource type="Texture2D" uid="uid://cy4whlbhvhm4l" path="res://Textures/icons8-settings.svg" id="19_2q5w2"]
+[ext_resource type="Script" path="res://Scripts/Settings.gd" id="19_ipn1f"]
+[ext_resource type="Script" path="res://Scripts/audio_slider.gd" id="20_1aisu"]
+[ext_resource type="Texture2D" uid="uid://cpujdty8vo5g3" path="res://Textures/none.svg" id="21_u4qe3"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -75,6 +78,22 @@ shader = ExtResource("13_g6lgf")
 shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfvjx"]
+bg_color = Color(0, 0, 0, 0.584314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.152941)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lighq"]
+thickness = 7
+
 [sub_resource type="GDScript" id="GDScript_khg5s"]
 script/source = "extends RichTextLabel
 
@@ -87,7 +106,7 @@ func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
 "
 
-[sub_resource type="Shader" id="Shader_ppyy4"]
+[sub_resource type="Shader" id="Shader_36xo2"]
 code = "shader_type canvas_item;
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
 {
@@ -107,8 +126,8 @@ void fragment()
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8e1y"]
-shader = SubResource("Shader_ppyy4")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kul7t"]
+shader = SubResource("Shader_36xo2")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
@@ -118,11 +137,10 @@ environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
 gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradient_migqc"), SubResource("Gradient_722ma"), SubResource("Gradient_32o80")])
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qjiun")
 autoplay = true
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"music"
 
 [node name="Background" parent="." instance=ExtResource("2_inqlf")]
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
@@ -197,10 +215,9 @@ visible = false
 
 [node name="Titles" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.678431)
-metadata/_edit_lock_ = true
 
 [node name="Logo" parent="Titles" instance=ExtResource("11_gggvu")]
-position = Vector2(2.08165e-12, -700)
+position = Vector2(2.08165e-12, -778)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Titles"]
 custom_minimum_size = Vector2(400, 2.08165e-12)
@@ -254,9 +271,48 @@ script = ExtResource("18_picnl")
 player_path = NodePath("../WorldEnvExclude/Player")
 ghost_path = NodePath("../WorldEnvExclude/Ghost")
 
-[node name="SETTINGS" type="CanvasLayer" parent="."]
+[node name="Settings" type="CanvasLayer" parent="."]
+script = ExtResource("19_ipn1f")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SETTINGS"]
+[node name="Panel" type="Panel" parent="Settings"]
+offset_left = -300.0
+offset_bottom = 395.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfvjx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 96.0
+offset_right = 251.0
+offset_bottom = 309.0
+
+[node name="Label" type="Label" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+text = "BGM"
+
+[node name="HSlider_music" type="HSlider" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
+max_value = 2.0
+step = 0.001
+value = 0.47
+script = ExtResource("20_1aisu")
+bus_name = "music"
+
+[node name="Label2" type="Label" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="HSlider_sfx" type="HSlider" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
+max_value = 2.0
+step = 0.001
+value = 0.47
+script = ExtResource("20_1aisu")
+bus_name = "sfx"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
 offset_left = 19.0
 offset_top = 588.0
 offset_right = 290.0
@@ -266,16 +322,20 @@ text = "制作: ろく
 [url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
 script = SubResource("GDScript_khg5s")
 
-[node name="TextureRect" type="TextureRect" parent="SETTINGS"]
-material = SubResource("ShaderMaterial_a8e1y")
+[node name="TextureButton" type="TextureButton" parent="Settings"]
+material = SubResource("ShaderMaterial_kul7t")
 offset_left = 6.0
 offset_top = 4.0
 offset_right = 70.0
 offset_bottom = 68.0
-texture = ExtResource("19_2q5w2")
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("19_2q5w2")
+texture_pressed = ExtResource("21_u4qe3")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
-[connection signal="meta_clicked" from="SETTINGS/RichTextLabel" to="SETTINGS/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
+[connection signal="meta_clicked" from="Settings/RichTextLabel" to="Settings/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
+[connection signal="toggled" from="Settings/TextureButton" to="Settings" method="_on_texture_button_toggled"]

@@ -46,7 +46,6 @@ point_count = 4
 [node name="Level1" type="Path2D"]
 curve = SubResource("Curve2D_m06sm")
 script = ExtResource("1_60r11")
-loop_road = null
 metadata/_edit_group_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
