@@ -17,6 +17,7 @@ var target_times: Array[Dictionary] = [
 var best_replay_data: Array
 var best_lap_time: Array
 var achievements: Array
+var auto_start: bool = false
 
 
 func _ready() -> void:

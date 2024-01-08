@@ -230,6 +230,7 @@ limit_width = 500.0
 
 [node name="Ghost" parent="WorldEnvExclude" instance=ExtResource("4_q01vl")]
 unique_name_in_owner = true
+visible = false
 
 [node name="LevelSelector" type="Node" parent="."]
 unique_name_in_owner = true
@@ -322,10 +323,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qfvjx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 96.0
-offset_right = 251.0
-offset_bottom = 309.0
+offset_left = 41.0
+offset_top = 87.0
+offset_right = 265.0
+offset_bottom = 300.0
 
 [node name="Label" type="Label" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
@@ -333,6 +334,7 @@ text = "BGM"
 
 [node name="HSlider_music" type="HSlider" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
 max_value = 0.6
 step = 0.001
@@ -346,12 +348,18 @@ text = "SE"
 
 [node name="HSlider_se" type="HSlider" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
-max_value = 0.6
+max_value = 1.0
 step = 0.001
-value = 0.3
+value = 0.5
 script = ExtResource("20_1aisu")
 bus_name = "se"
+
+[node name="CheckBox" type="CheckBox" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "自動でスタート"
 
 [node name="ResetButton" type="Button" parent="Settings/Panel/VBoxContainer"]
 material = SubResource("ShaderMaterial_cn14p")
@@ -363,6 +371,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cdkf5")
 text = "データリセット
 （長押し）"
 script = ExtResource("22_cwjm1")
+click_duration_threshold = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
 offset_left = 19.0

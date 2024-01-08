@@ -120,9 +120,11 @@ func move_to_follower() -> void:
 
 func _on_main_lap_started() -> void:
 	se_boost.play()
+	self.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func _on_main_goal_reached() -> void:
 	se_boost.stop()
+	self.modulate = Color(1.0, 1.0, 1.0, 0.2)
 	se_goal.play()
 
