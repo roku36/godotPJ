@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var limit_on_dist_bounce: Curve
 @export var limit_width: float = 100.0
 @onready var se_boost: AudioStreamPlayer = $SE_Boost
+@onready var se_goal: AudioStreamPlayer = $SE_Goal
 
 var impact: PackedScene = preload("res://Scenes/impact.tscn")
 # get first effect of bus "se"
@@ -115,4 +116,13 @@ func move_to_follower() -> void:
 	# # 方向成分に減衰を適用
 	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
 	# self.velocity += (dir_component * 0.98) - dir_component
+
+
+func _on_main_lap_started() -> void:
+	se_boost.play()
+
+
+func _on_main_goal_reached() -> void:
+	se_boost.stop()
+	se_goal.play()
 

@@ -386,7 +386,9 @@ texture_normal = ExtResource("19_2q5w2")
 texture_pressed = ExtResource("21_u4qe3")
 
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
+[connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
+[connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
