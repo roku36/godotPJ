@@ -1,9 +1,9 @@
-extends TextureButton
+extends Button
 
 @export var click_duration_threshold: float = 0.5
 
-signal long_pressed()
-signal long_released()
+signal long_pressed
+signal long_released
 var __signal_sent: bool = false
 var __last_duration: float = -1
 var __current_duration: float = 0
@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	else:
 	# Emit the signal only once
 		if __signal_sent:
-			emit_signal('long_released')
+			long_released.emit()
 	
 		__signal_sent = false
 		__current_duration = 0.0
@@ -28,7 +28,7 @@ func _update_button() -> void:
 
 	if __last_duration > click_duration_threshold and not __signal_sent:
 		__signal_sent = true
-	emit_signal('long_pressed')
+		long_pressed.emit()
 
 	var value: float = 1.0 - clamp(__last_duration / click_duration_threshold, 0.0, 1.0)
 

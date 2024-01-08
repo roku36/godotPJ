@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dku6tgnvso8fr"]
+[gd_scene load_steps=11 format=3 uid="uid://dku6tgnvso8fr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hn671"]
 [ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://Textures/icon.svg" id="2_7u1vp"]
 [ext_resource type="Texture2D" uid="uid://y4c4af8a1yb4" path="res://Textures/player.svg" id="2_qhg0w"]
+[ext_resource type="AudioStream" uid="uid://bt8e354la3p21" path="res://Audio/boost.wav" id="4_pmagt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqwoq"]
 radius = 9.0
@@ -65,3 +66,8 @@ process_material = SubResource("ParticleProcessMaterial_ihg7g")
 texture = ExtResource("2_7u1vp")
 lifetime = 2.0
 trail_lifetime = 10.0
+
+[node name="SE_Boost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pmagt")
+autoplay = true
+bus = &"se_boost"

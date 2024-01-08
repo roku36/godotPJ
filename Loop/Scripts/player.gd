@@ -13,7 +13,12 @@ extends CharacterBody2D
 @export var limit_on_dist: Curve
 @export var limit_on_dist_bounce: Curve
 @export var limit_width: float = 100.0
+@onready var se_boost: AudioStreamPlayer = $SE_Boost
+
 var impact: PackedScene = preload("res://Scenes/impact.tscn")
+# get first effect of bus "se"
+var se_panner: AudioEffectPanner = AudioServer.get_bus_effect(AudioServer.get_bus_index("se_boost"), 0)
+# var velocity: Vector2 = Vector2.ZERO
 
 var mousex_delta:float = 0.0
 
@@ -95,10 +100,13 @@ func move_to_follower() -> void:
 	# self.velocity += Vector2.from_angle(self.rotation) * 30.0
 
 	limit_width = level_selector.level_width * level_selector.level_width_curve.sample(level_selector.path_follow_player.progress_ratio)
-	var limit_ratio: float = limit_on_dist.sample(abs(YVec_dist)/limit_width)
+	var dist_0_1: float = abs(YVec_dist) / limit_width
+	var limit_ratio: float = limit_on_dist.sample(dist_0_1)
 	# var limit_ratio: float = limit_on_dist_bounce.sample(abs(YVec_dist)/limit_width)
 
-	var spd: float = spd_on_dist.sample(abs(YVec_dist)/limit_width)
+	var spd: float = spd_on_dist.sample(dist_0_1)
+	se_boost.pitch_scale = remap(spd, spd_on_dist.min_value, spd_on_dist.max_value, 0.0, 1.0)
+	se_panner.pan = YVec_dist / limit_width
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 
 	if self.velocity.dot(followerDirYVec) * YVec_dist < 0:

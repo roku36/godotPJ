@@ -45,6 +45,7 @@ func anim_medal(medal: String) -> void:
 	tween.tween_interval(0.3)
 	tween.tween_property(medal_node, "scale", Vector2(1.2, 1.2), 0.1)
 	tween.tween_property(medal_node, "material:shader_parameter/spin_rate", TAU, 0.3)
+	tween.tween_property(medal_node, "material:shader_parameter/spin_rate", 0, 0.0)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(medal_node, "scale", Vector2(1, 1), 0.1)
 	tween.tween_interval(1.0)

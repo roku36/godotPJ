@@ -14,12 +14,15 @@ var target_times: Array[Dictionary] = [
 {"gold": 13.0, "silver": 18.0, "bronze": 23.0},
 ]
 
-var best_replay_data: Array = []
-var best_lap_time: Array = []
-var achievements: Array = ["none", "none", "none", "none"]
+var best_replay_data: Array
+var best_lap_time: Array
+var achievements: Array
 
 
 func _ready() -> void:
+	best_replay_data = []
+	best_lap_time = []
+	achievements = ["none", "none", "none", "none"]
 	for i in range(STAGE_NUM):
 		best_replay_data.append({
 				"time": [],
@@ -51,3 +54,9 @@ func load_data() -> void:
 		best_replay_data = file.get_var(true) as Array[Dictionary]
 		best_lap_time = file.get_var(true) as Array[Array]
 		achievements = file.get_var(true) as Array[String]
+
+func reset_data() -> void:
+	# delete save file
+	var dir: DirAccess = DirAccess.open("user://")
+	dir.remove(save_path)
+	_ready()

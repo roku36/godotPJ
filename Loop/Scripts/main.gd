@@ -103,7 +103,7 @@ func _on_goal_reached() -> void:
 		Global.achievements[Global.current_stage] = prize
 		canvas_labels.anim_medal(prize)
 
-	print("Prize: " + str(prize))
+	# print("Prize: " + str(prize))
 
 	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
 	bestlaptime.append(laptime)
@@ -117,3 +117,9 @@ func _on_goal_reached() -> void:
 	result_countdown()
 
 	Global.save_data()
+
+
+func _on_reset_button_long_pressed() -> void:
+	# print("reset!!!")
+	Global.reset_data()
+	canvas_labels.update_target_times()
