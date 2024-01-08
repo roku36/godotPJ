@@ -12,6 +12,8 @@ extends Node2D
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 @onready var se_reset: AudioStreamPlayer = $SE_reset
+@onready var se_record: AudioStreamPlayer = $SE_record
+@onready var se_new_record: AudioStreamPlayer = $SE_new_record
 
 
 const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
@@ -74,16 +76,24 @@ func init_state() -> void:
 	$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 	level_selector.path_follow_player.progress = 0
 
-func result_countdown() -> void:
+func result_countdown(is_new_record: bool) -> void:
 	result_display.visible = true
 	result_display.display_number = laptime
 	init_state()
 	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(1.0).timeout
+	if is_new_record:
+		se_new_record.play()
+	else:
+		se_record.play()
 	laptime = 0
 	result_display.visible = false
-	Global.state = Global.READY
+	if Global.auto_start:
+		init_state()
+		Global.state = Global.STARTED
+	else:
+		Global.state = Global.READY
 
 
 func _on_goal_reached() -> void:
@@ -115,9 +125,9 @@ func _on_goal_reached() -> void:
 		bestlaptime.pop_back()
 	canvas_labels.update_scoreboard()
 	Global.best_lap_time[Global.current_stage] = bestlaptime
-	result_countdown()
-
+	result_countdown(bestlaptime[0] == laptime)
 	Global.save_data()
+
 
 
 func _on_reset_button_long_pressed() -> void:

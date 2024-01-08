@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=51 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="Script" path="res://Scripts/WorldEnvironment.gd" id="2_ml7e0"]
 [ext_resource type="AudioStream" uid="uid://ubg3iig6nxmf" path="res://Audio/reset.wav" id="3_2fkmi"]
+[ext_resource type="AudioStream" uid="uid://df78vyyyajp47" path="res://Audio/result.wav" id="3_8maj4"]
+[ext_resource type="AudioStream" uid="uid://b231ipvfh04e8" path="res://Audio/result_new_record.wav" id="4_06y2s"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Script" path="res://Scripts/Trail.gd" id="5_sqn2k"]
 [ext_resource type="PackedScene" uid="uid://c6cpjift2ulo" path="res://Scenes/result_display.tscn" id="6_kw5xp"]
@@ -24,6 +26,7 @@
 [ext_resource type="Script" path="res://Scripts/audio_slider.gd" id="20_1aisu"]
 [ext_resource type="Texture2D" uid="uid://cpujdty8vo5g3" path="res://Textures/none.svg" id="21_u4qe3"]
 [ext_resource type="Script" path="res://Scripts/longpress_button.gd" id="22_cwjm1"]
+[ext_resource type="Script" path="res://Scripts/CheckBox_autostart.gd" id="24_us6bd"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -179,8 +182,17 @@ environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
 gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradient_migqc"), SubResource("Gradient_722ma"), SubResource("Gradient_32o80")])
 
+[node name="SE_record" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8maj4")
+bus = &"se"
+
+[node name="SE_new_record" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_06y2s")
+bus = &"se"
+
 [node name="SE_reset" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2fkmi")
+bus = &"se"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qjiun")
@@ -360,10 +372,11 @@ value = 0.5
 script = ExtResource("20_1aisu")
 bus_name = "se"
 
-[node name="CheckBox" type="CheckBox" parent="Settings/Panel/VBoxContainer"]
+[node name="CheckBox_autostart" type="CheckBox" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "自動でスタート"
+script = ExtResource("24_us6bd")
 
 [node name="ResetButton" type="Button" parent="Settings/Panel/VBoxContainer"]
 material = SubResource("ShaderMaterial_cn14p")
@@ -404,6 +417,7 @@ texture_pressed = ExtResource("21_u4qe3")
 [connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
+[connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
 [connection signal="meta_clicked" from="Settings/RichTextLabel" to="Settings/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
 [connection signal="toggled" from="Settings/TextureButton" to="Settings" method="_on_texture_button_toggled"]
