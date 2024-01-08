@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=45 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://cy4whlbhvhm4l" path="res://Textures/icons8-settings.svg" id="19_2q5w2"]
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="19_ipn1f"]
 [ext_resource type="Script" path="res://Scripts/audio_slider.gd" id="20_1aisu"]
+[ext_resource type="Texture2D" uid="uid://jau4cbew87ij" path="res://Textures/icon.svg" id="21_dui7a"]
 [ext_resource type="Texture2D" uid="uid://cpujdty8vo5g3" path="res://Textures/none.svg" id="21_u4qe3"]
+[ext_resource type="Script" path="res://Scripts/longpress_button.gd" id="22_cwjm1"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -93,6 +95,23 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_lighq"]
 thickness = 7
+
+[sub_resource type="Shader" id="Shader_nbv71"]
+code = "shader_type canvas_item;
+uniform float loading = 1.0;
+uniform float alpha = 0.8;
+
+void fragment() {
+	if ((1.0 - UV.x) < loading && loading < 1.0) {
+		COLOR.a *= alpha;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y12ft"]
+shader = SubResource("Shader_nbv71")
+shader_parameter/loading = 0.44
+shader_parameter/alpha = 0.5
 
 [sub_resource type="GDScript" id="GDScript_khg5s"]
 script/source = "extends RichTextLabel
@@ -311,6 +330,13 @@ step = 0.001
 value = 0.47
 script = ExtResource("20_1aisu")
 bus_name = "sfx"
+
+[node name="TextureButton" type="TextureButton" parent="Settings/Panel/VBoxContainer"]
+material = SubResource("ShaderMaterial_y12ft")
+layout_mode = 2
+texture_normal = ExtResource("21_dui7a")
+script = ExtResource("22_cwjm1")
+click_duration_threshold = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
 offset_left = 19.0
