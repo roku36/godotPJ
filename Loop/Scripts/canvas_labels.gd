@@ -12,6 +12,7 @@ extends CanvasLayer
 	"bronze": $VBox/HBoxBronze/Label,
 }
 @onready var se_medal: AudioStreamPlayer = $SE_medal
+@onready var scores: RichTextLabel = %Scores
 
 var achieved_color: Color = Color.ORANGE
 
@@ -54,10 +55,13 @@ func anim_medal(medal: String) -> void:
 	tween.tween_property(target_time_container, "scale", Vector2(0.4, 0.4), 0.3)
 	tween.parallel().tween_property(target_time_container, "position", Vector2(1000, 30), 0.3)
 
-
-func update_target_times() -> void:
+func update_labels() -> void:
 	if not is_node_ready():
 		await ready
+	update_target_times()
+	update_scoreboard()
+
+func update_target_times() -> void:
 	var achievement: String = Global.achievements[Global.current_stage]
 	for medal: String in ["gold", "silver", "bronze"]:
 		medal_labels[medal].text = "%.2f" % Global.target_times[Global.current_stage][medal]
@@ -84,3 +88,16 @@ func update_target_times() -> void:
 		medal_labels["bronze"].modulate = achieved_color
 
 
+func update_scoreboard() -> void:
+	scores.clear()
+	# append top 5 scores
+	# e.g. "1st score: 30.00"
+	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
+	for i in range(Global.best_lap_time[Global.current_stage].size()):
+		var prize: String = "none"
+		var laptime: float = Global.best_lap_time[Global.current_stage][i]
+		for medal: String in ["gold", "silver", "bronze"]:
+			if laptime < Global.target_times[Global.current_stage][medal]:
+				prize = medal
+				break
+		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_lap_time[Global.current_stage][i]])

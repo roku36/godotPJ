@@ -11,6 +11,7 @@ extends Node2D
 @onready var lap_time_label: Label = %"CanvasLabels".get_node("%LapTimeLabel")
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
+@onready var se_reset: AudioStreamPlayer = $SE_reset
 
 
 const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
@@ -112,7 +113,7 @@ func _on_goal_reached() -> void:
 		new_record.emit()
 	while bestlaptime.size() > Global.REC_CAPACITY:
 		bestlaptime.pop_back()
-	level_selector.update_scoreboard()
+	canvas_labels.update_scoreboard()
 	Global.best_lap_time[Global.current_stage] = bestlaptime
 	result_countdown()
 
@@ -121,5 +122,6 @@ func _on_goal_reached() -> void:
 
 func _on_reset_button_long_pressed() -> void:
 	# print("reset!!!")
+	se_reset.play()
 	Global.reset_data()
-	canvas_labels.update_target_times()
+	canvas_labels.update_labels()

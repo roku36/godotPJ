@@ -73,20 +73,6 @@ func set_stage_num(value: int) -> int:
 	path_follow_player.loop = false
 	path_follow_player.name = "PathFollowPlayer"
 	road_path.add_child(path_follow_player)
-	update_scoreboard()
-	canvas_labels.update_target_times()
+	canvas_labels.update_labels()
 	return value 
 
-func update_scoreboard() -> void:
-	scores.clear()
-	# append top 5 scores
-	# e.g. "1st score: 30.00"
-	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
-	for i in range(Global.best_lap_time[Global.current_stage].size()):
-		var prize: String = "none"
-		var laptime: float = Global.best_lap_time[Global.current_stage][i]
-		for medal: String in ["gold", "silver", "bronze"]:
-			if laptime < Global.target_times[Global.current_stage][medal]:
-				prize = medal
-				break
-		scores.append_text("[img=16]res://Textures/%s.svg[/img] %.2f\n" % [prize, Global.best_lap_time[Global.current_stage][i]])

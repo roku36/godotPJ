@@ -1,10 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=48 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
 [ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="Script" path="res://Scripts/WorldEnvironment.gd" id="2_ml7e0"]
+[ext_resource type="AudioStream" uid="uid://ubg3iig6nxmf" path="res://Audio/reset.wav" id="3_2fkmi"]
 [ext_resource type="PackedScene" uid="uid://jq2elfqgbp27" path="res://Scenes/ghost.tscn" id="4_q01vl"]
 [ext_resource type="Script" path="res://Scripts/Trail.gd" id="5_sqn2k"]
 [ext_resource type="PackedScene" uid="uid://c6cpjift2ulo" path="res://Scenes/result_display.tscn" id="6_kw5xp"]
@@ -177,6 +178,9 @@ script = ExtResource("1_pd7es")
 environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
 gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradient_migqc"), SubResource("Gradient_722ma"), SubResource("Gradient_32o80")])
+
+[node name="SE_reset" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2fkmi")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qjiun")
