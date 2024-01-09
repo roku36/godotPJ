@@ -182,10 +182,11 @@ script = ExtResource("1_pd7es")
 
 [node name="ResultDisplay" parent="CanvasDisplay" instance=ExtResource("6_kw5xp")]
 unique_name_in_owner = true
-offset_left = 696.0
-offset_top = 340.0
-offset_right = 736.0
-offset_bottom = 380.0
+visible = false
+offset_left = 437.0
+offset_top = 314.0
+offset_right = 477.0
+offset_bottom = 354.0
 display_number = 12.26
 
 [node name="SE_record" type="AudioStreamPlayer" parent="CanvasDisplay/ResultDisplay"]
