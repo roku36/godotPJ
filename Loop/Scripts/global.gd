@@ -19,6 +19,8 @@ var best_lap_time: Array
 var achievements: Array
 var auto_start: bool = false
 
+var nearest_offset: float = 0.1
+
 
 func _ready() -> void:
 	best_replay_data = []

@@ -187,18 +187,18 @@ offset_right = 736.0
 offset_bottom = 380.0
 display_number = 12.26
 
+[node name="SE_record" type="AudioStreamPlayer" parent="CanvasDisplay/ResultDisplay"]
+stream = ExtResource("3_8maj4")
+bus = &"se"
+
+[node name="SE_new_record" type="AudioStreamPlayer" parent="CanvasDisplay/ResultDisplay"]
+stream = ExtResource("4_06y2s")
+bus = &"se"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8xspm")
 script = ExtResource("2_ml7e0")
 gradients = Array[Gradient]([SubResource("Gradient_qr8g3"), SubResource("Gradient_migqc"), SubResource("Gradient_722ma"), SubResource("Gradient_32o80")])
-
-[node name="SE_record" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_8maj4")
-bus = &"se"
-
-[node name="SE_new_record" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_06y2s")
-bus = &"se"
 
 [node name="SE_reset" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2fkmi")

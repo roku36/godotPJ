@@ -12,8 +12,6 @@ extends Node2D
 @onready var affine_camera: Camera2D = %AffineCamera
 @onready var result_display: Control = %ResultDisplay
 @onready var se_reset: AudioStreamPlayer = $SE_reset
-@onready var se_record: AudioStreamPlayer = $SE_record
-@onready var se_new_record: AudioStreamPlayer = $SE_new_record
 
 
 const GOAL_PARTICLE = preload("res://Entities/goal_particle.tscn")
@@ -79,18 +77,15 @@ func init_state() -> void:
 	$"HUD/CircleBar".material.set_shader_parameter("fill_ratio", 0.0)
 	level_selector.path_follow_player.progress = 0
 
-func result_countdown(is_new_record: bool) -> void:
+func result_countdown(is_new_record: bool, is_near: bool) -> void:
 	# result_display.position = player.global_position
 	result_display.visible = true
 	result_display.display_number = laptime
 	init_state()
 	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
-	await get_tree().create_timer(1.0).timeout
-	if is_new_record:
-		se_new_record.play()
-	else:
-		se_record.play()
+	# await get_tree().create_timer(1.0).timeout
+	await result_display.roll_result(is_new_record, is_near)
 	laptime = 0
 	if Global.auto_start:
 		init_state()
@@ -109,16 +104,11 @@ func _on_goal_reached() -> void:
 	var prize: String = "none"
 	for medal: String in ["gold", "silver", "bronze"]:
 		if laptime < Global.target_times[Global.current_stage][medal]:
+			print(medal)
+			print(laptime)
+			print(Global.target_times[Global.current_stage][medal])
 			prize = medal
 			break
-
-	# if prize is better than Global.achievements_unlocked[Global.current_stage]
-	var tmp_prize: Array[String] = ["none", "bronze", "silver", "gold"]
-	if tmp_prize.find(prize) > tmp_prize.find(Global.achievements[Global.current_stage]):
-		Global.achievements[Global.current_stage] = prize
-		canvas_labels.anim_medal(prize)
-
-	# print("Prize: " + str(prize))
 
 	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
 	bestlaptime.append(laptime)
@@ -129,8 +119,15 @@ func _on_goal_reached() -> void:
 		bestlaptime.pop_back()
 	canvas_labels.update_scoreboard()
 	Global.best_lap_time[Global.current_stage] = bestlaptime
-	result_countdown(bestlaptime[0] == laptime)
 	Global.save_data()
+	await result_countdown(bestlaptime[0] == laptime, laptime - bestlaptime[0] < Global.nearest_offset)
+
+	# if prize is better than Global.achievements_unlocked[Global.current_stage]
+	var tmp_prize: Array[String] = ["none", "bronze", "silver", "gold"]
+	if tmp_prize.find(prize) > tmp_prize.find(Global.achievements[Global.current_stage]):
+		Global.achievements[Global.current_stage] = prize
+		canvas_labels.anim_medal(prize)
+
 
 
 
