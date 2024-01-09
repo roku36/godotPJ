@@ -13,6 +13,8 @@ extends Node
 
 var level_width: float = 0.0
 var level_width_curve: Curve
+
+signal stage_changed
 #
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
@@ -74,5 +76,6 @@ func set_stage_num(value: int) -> int:
 	path_follow_player.name = "PathFollowPlayer"
 	road_path.add_child(path_follow_player)
 	canvas_labels.update_labels()
+	stage_changed.emit()
 	return value 
 

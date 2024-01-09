@@ -146,3 +146,9 @@ func _on_escape_game() -> void:
 	Global.state = Global.TITLE
 	titles.visible = true
 	level_selector.path_follow_player.progress = 0
+
+
+func _on_level_selector_stage_changed() -> void:
+	match Global.state:
+		Global.STARTED:
+			init_state()

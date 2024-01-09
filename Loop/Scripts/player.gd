@@ -33,10 +33,8 @@ func _physics_process(delta: float) -> void:
 	mousex_delta = lerp(mousex_delta, 0.0, 0.02)
 	circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
 	spin_disk.rotation_spd = mousex_delta / 50
-	if Global.state == Global.READY or Global.state == Global.TITLE or Global.state == Global.RESULT:
+	# if Global.state == Global.READY or Global.state == Global.TITLE or Global.state == Global.RESULT:
 		# set position to start of the curve
-		self.position = level_selector.road_path.curve.sample_baked(0)
-		self.rotation = level_selector.road_path.curve.get_point_out(0).angle()
 	if Global.state == Global.STARTED:
 		check_closest_reflector()
 		velocity = velocity.limit_length(max_speed)
@@ -119,15 +117,26 @@ func move_to_follower() -> void:
 
 
 func _on_main_lap_started() -> void:
+	reset_position()
 	se_boost.play()
 	self.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func _on_main_goal_reached() -> void:
+	reset_position()
 	se_boost.stop()
 	self.modulate = Color(1.0, 1.0, 1.0, 0.2)
 	se_goal.play()
 
 
 func _on_main_escape_game() -> void:
+	reset_position()
 	se_boost.stop()
+
+func reset_position() -> void:
+	self.position = level_selector.road_path.curve.sample_baked(0)
+	self.rotation = level_selector.road_path.curve.get_point_out(0).angle()
+
+
+func _on_level_selector_stage_changed() -> void:
+	reset_position()

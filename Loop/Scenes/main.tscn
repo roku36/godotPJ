@@ -420,6 +420,8 @@ texture_pressed = ExtResource("21_u4qe3")
 [connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
 [connection signal="lap_started" from="." to="Ghost" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
+[connection signal="stage_changed" from="LevelSelector" to="." method="_on_level_selector_stage_changed"]
+[connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Player" method="_on_level_selector_stage_changed"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
 [connection signal="meta_clicked" from="Settings/RichTextLabel" to="Settings/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
