@@ -27,6 +27,7 @@ signal new_record
 signal lap_started
 signal escape_game
 signal restart_game
+signal enter_exit_title(is_enter: bool)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,9 +59,10 @@ func _process(delta: float) -> void:
 			Global.STARTED:
 				restart_game.emit()
 			Global.TITLE:
+				enter_exit_title.emit(false)
+				titles.visible = false
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				Global.state = Global.READY
-				titles.visible = false
 	
 	# update time
 	if Global.state == Global.STARTED:
@@ -78,7 +80,7 @@ func init_state() -> void:
 	level_selector.path_follow_player.progress = 0
 
 func result_countdown(is_new_record: bool) -> void:
-	$ResultDisplay.position = player.global_position
+	# result_display.position = player.global_position
 	result_display.visible = true
 	result_display.display_number = laptime
 	init_state()
@@ -90,7 +92,6 @@ func result_countdown(is_new_record: bool) -> void:
 	else:
 		se_record.play()
 	laptime = 0
-	result_display.visible = false
 	if Global.auto_start:
 		init_state()
 		Global.state = Global.STARTED
@@ -141,14 +142,22 @@ func _on_reset_button_long_pressed() -> void:
 
 
 func _on_escape_game() -> void:
+	result_display.visible = false
 	hud.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Global.state = Global.TITLE
+	enter_exit_title.emit(true)
 	titles.visible = true
 	level_selector.path_follow_player.progress = 0
 
 
 func _on_level_selector_stage_changed() -> void:
+	if not is_node_ready():
+		await ready
 	match Global.state:
 		Global.STARTED:
 			init_state()
+
+
+func _on_lap_started() -> void:
+	result_display.visible = false

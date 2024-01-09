@@ -139,18 +139,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="GDScript" id="GDScript_khg5s"]
-script/source = "extends RichTextLabel
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(str(meta))
-"
-
 [sub_resource type="Shader" id="Shader_36xo2"]
 code = "shader_type canvas_item;
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
@@ -174,8 +162,30 @@ void fragment()
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kul7t"]
 shader = SubResource("Shader_36xo2")
 
+[sub_resource type="GDScript" id="GDScript_khg5s"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))
+"
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
+
+[node name="CanvasDisplay" type="CanvasLayer" parent="."]
+
+[node name="ResultDisplay" parent="CanvasDisplay" instance=ExtResource("6_kw5xp")]
+unique_name_in_owner = true
+offset_left = 696.0
+offset_top = 340.0
+offset_right = 736.0
+offset_bottom = 380.0
+display_number = 12.26
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8xspm")
@@ -196,6 +206,7 @@ bus = &"se"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qjiun")
+volume_db = -10.0
 autoplay = true
 bus = &"music"
 
@@ -203,14 +214,6 @@ bus = &"music"
 colors = Array[Array]([[Color(1, 0, 0, 1), Color(0, 0, 0, 1)], [Color(0, 1, 1, 1), Color(0, 0.258824, 0, 1)], [Color(0, 0, 1, 1), Color(0.270588, 0.101961, 0.101961, 1)], [Color(1, 1, 0, 1), Color(0.113725, 0, 0, 1)]])
 trans_spd = 0.05
 metadata/_edit_lock_ = true
-
-[node name="ResultDisplay" parent="." instance=ExtResource("6_kw5xp")]
-unique_name_in_owner = true
-offset_left = 14.0
-offset_top = -233.0
-offset_right = 54.0
-offset_bottom = -193.0
-display_number = 12.26
 
 [node name="Trail2" type="Line2D" parent="."]
 top_level = true
@@ -378,6 +381,24 @@ focus_mode = 0
 text = "ゴール後自動でスタート"
 script = ExtResource("24_us6bd")
 
+[node name="Label3" type="Label" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+text = "マウス感度"
+
+[node name="HSlider_se2" type="HSlider" parent="Settings/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("20_1aisu")
+bus_name = "se"
+
+[node name="Spacing" type="Control" parent="Settings/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
+layout_mode = 2
+
 [node name="ResetButton" type="Button" parent="Settings/Panel/VBoxContainer"]
 material = SubResource("ShaderMaterial_cn14p")
 layout_mode = 2
@@ -390,17 +411,7 @@ text = "データリセット
 script = ExtResource("22_cwjm1")
 click_duration_threshold = 2.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
-offset_left = 19.0
-offset_top = 588.0
-offset_right = 290.0
-offset_bottom = 649.0
-bbcode_enabled = true
-text = "制作: ろく
-[url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
-script = SubResource("GDScript_khg5s")
-
-[node name="TextureButton" type="TextureButton" parent="Settings"]
+[node name="SettingButton" type="TextureButton" parent="Settings"]
 material = SubResource("ShaderMaterial_kul7t")
 offset_left = 6.0
 offset_top = 4.0
@@ -411,18 +422,30 @@ toggle_mode = true
 texture_normal = ExtResource("19_2q5w2")
 texture_pressed = ExtResource("21_u4qe3")
 
+[node name="Credits" type="RichTextLabel" parent="Settings"]
+offset_left = 19.0
+offset_top = 588.0
+offset_right = 290.0
+offset_bottom = 649.0
+bbcode_enabled = true
+text = "制作: ろく
+[url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
+script = SubResource("GDScript_khg5s")
+
+[connection signal="enter_exit_title" from="." to="Settings" method="_on_main_enter_exit_title"]
 [connection signal="escape_game" from="." to="." method="_on_escape_game"]
-[connection signal="escape_game" from="." to="WorldEnvExclude/Player" method="_on_main_escape_game"]
 [connection signal="escape_game" from="." to="Ghost" method="_on_main_escape_game"]
+[connection signal="escape_game" from="." to="WorldEnvExclude/Player" method="_on_main_escape_game"]
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
-[connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
 [connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
-[connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
+[connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
+[connection signal="lap_started" from="." to="." method="_on_lap_started"]
 [connection signal="lap_started" from="." to="Ghost" method="_on_main_lap_started"]
+[connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
 [connection signal="stage_changed" from="LevelSelector" to="." method="_on_level_selector_stage_changed"]
 [connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Player" method="_on_level_selector_stage_changed"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
-[connection signal="meta_clicked" from="Settings/RichTextLabel" to="Settings/RichTextLabel" method="_richtextlabel_on_meta_clicked"]
-[connection signal="toggled" from="Settings/TextureButton" to="Settings" method="_on_texture_button_toggled"]
+[connection signal="toggled" from="Settings/SettingButton" to="Settings" method="_on_texture_button_toggled"]
+[connection signal="meta_clicked" from="Settings/Credits" to="Settings/Credits" method="_richtextlabel_on_meta_clicked"]
