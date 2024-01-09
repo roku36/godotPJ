@@ -70,6 +70,7 @@ func _process(delta: float) -> void:
 		goal_reached.emit()
 
 func init_state() -> void:
+	laptime = 0
 	hud.visible = true
 	player.mousex_delta = 0.0
 	player.velocity = Vector2.ZERO
@@ -116,6 +117,7 @@ func _on_goal_reached() -> void:
 		got_medal = true
 
 	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
+	print(laptime)
 	bestlaptime.append(laptime)
 	bestlaptime.sort()
 	if bestlaptime[0] == laptime:

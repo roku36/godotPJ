@@ -49,7 +49,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_shk58")
 [sub_resource type="Gradient" id="Gradient_qr8g3"]
 
 [sub_resource type="Gradient" id="Gradient_migqc"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.79, 0.5609, 0.660177, 1, 0.370326, 0, 0.0325818, 1)
 
 [sub_resource type="Gradient" id="Gradient_722ma"]
 colors = PackedColorArray(7.05945e-08, 0.256079, 0.00346133, 1, 1, 0.677538, 0.717749, 1)
@@ -446,7 +446,7 @@ offset_right = 290.0
 offset_bottom = 649.0
 bbcode_enabled = true
 text = "制作: ろく
-[url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
+[url=\"https://icons8.com/icon/14099/settings\"]Settings[/url], [url=\"https://icons8.com/icon/98973/question-mark\"]Question[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
 script = SubResource("GDScript_khg5s")
 
 [node name="EscapeInstruction" type="Label" parent="Settings"]

@@ -25,7 +25,7 @@ text = "[tornado radius=2]
 このゲームはシンプルなレースゲームです。
 基本操作は[color=yellow]マウス[/color]と[color=yellow]スペースキー[/color]だけで行います。
 
-2周目以降は自分のベストタイムの[shake][color=cyan]ゴースト[/color][/shake]と現れます。
+2周目以降は自分のベストタイムの[shake][color=cyan]ゴースト[/color][/shake]が現れます。
 
 [color=yellow]マウスを左右[/color]に動かしてハンドルを切る
 [color=yellow]スペースキー[/color]を押してハンドルの回転を減速する

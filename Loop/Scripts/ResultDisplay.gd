@@ -32,7 +32,7 @@ func roll_result(is_new_record: bool, is_near: bool) -> void:
 	for i in range(reveal_length, 0, -1):
 		await get_tree().create_timer(0.03).timeout
 		for d_i in digits.size():
-			if i > reveal_interval *  d_i:
+			if i-1 > reveal_interval * d_i:
 			# if i - reveal_interval < digit_number_array.size():
 				digits[d_i].material.set_shader_parameter("Number", randi() % 10)
 			else:
@@ -50,9 +50,11 @@ func roll_result(is_new_record: bool, is_near: bool) -> void:
 
 
 func float_to_array(float_number: float) -> Array[int]:
+	print(float_number)
 	var tmp_int_num: int = int(float_number * 100)
 	var tmp_array: Array[int] = []
 	for i in range(digits.size()):
 		tmp_array.append(tmp_int_num % 10)
 		tmp_int_num /= 10
+	print(tmp_array)
 	return tmp_array
