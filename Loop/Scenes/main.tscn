@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=52 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cpujdty8vo5g3" path="res://Textures/none.svg" id="21_u4qe3"]
 [ext_resource type="Script" path="res://Scripts/longpress_button.gd" id="22_cwjm1"]
 [ext_resource type="Script" path="res://Scripts/CheckBox_autostart.gd" id="24_us6bd"]
+[ext_resource type="Script" path="res://Scripts/mouse_sensitivity_slider.gd" id="25_ecr67"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -385,15 +386,15 @@ script = ExtResource("24_us6bd")
 layout_mode = 2
 text = "マウス感度"
 
-[node name="HSlider_se2" type="HSlider" parent="Settings/Panel/VBoxContainer"]
+[node name="HSlider_mouse_sensitivity" type="HSlider" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_styles/slider = SubResource("StyleBoxLine_lighq")
-max_value = 1.0
+min_value = 0.2
+max_value = 3.0
 step = 0.001
-value = 0.5
-script = ExtResource("20_1aisu")
-bus_name = "se"
+value = 1.0
+script = ExtResource("25_ecr67")
 
 [node name="Spacing" type="Control" parent="Settings/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 50)

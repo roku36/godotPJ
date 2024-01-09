@@ -110,6 +110,13 @@ func _on_goal_reached() -> void:
 			prize = medal
 			break
 
+	var got_medal: bool = false
+	# if prize is better than Global.achievements_unlocked[Global.current_stage]
+	var tmp_prize: Array[String] = ["none", "bronze", "silver", "gold"]
+	if tmp_prize.find(prize) > tmp_prize.find(Global.achievements[Global.current_stage]):
+		Global.achievements[Global.current_stage] = prize
+		got_medal = true
+
 	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
 	bestlaptime.append(laptime)
 	bestlaptime.sort()
@@ -122,13 +129,8 @@ func _on_goal_reached() -> void:
 	Global.save_data()
 	await result_countdown(bestlaptime[0] == laptime, laptime - bestlaptime[0] < Global.nearest_offset)
 
-	# if prize is better than Global.achievements_unlocked[Global.current_stage]
-	var tmp_prize: Array[String] = ["none", "bronze", "silver", "gold"]
-	if tmp_prize.find(prize) > tmp_prize.find(Global.achievements[Global.current_stage]):
-		Global.achievements[Global.current_stage] = prize
+	if got_medal:
 		canvas_labels.anim_medal(prize)
-
-
 
 
 func _on_reset_button_long_pressed() -> void:

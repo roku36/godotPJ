@@ -20,6 +20,7 @@ var achievements: Array
 var auto_start: bool = false
 
 var nearest_offset: float = 0.1
+var mouse_sensitivity: float = 1.0
 
 
 func _ready() -> void:

@@ -43,6 +43,11 @@ func roll_result(is_new_record: bool, is_near: bool) -> void:
 	else:
 		se_record.play()
 
+	var final_time: float = 0.3
+	if is_new_record:
+		final_time = 1.0
+	await get_tree().create_timer(final_time).timeout
+
 
 func float_to_array(float_number: float) -> Array[int]:
 	var tmp_int_num: int = int(float_number * 100)

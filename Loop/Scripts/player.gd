@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		mousex_delta += event.relative.x
+		mousex_delta += event.relative.x * Global.mouse_sensitivity
 		# update test_label text to mousex_delta
 		test_label.text = str(mousex_delta)
 		# circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
