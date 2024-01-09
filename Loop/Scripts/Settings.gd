@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var panel: Panel = $Panel
 @onready var setting_button: TextureButton = $SettingButton
 @onready var credits: RichTextLabel = $Credits
+@onready var escape_instruction: Label = $EscapeInstruction
 
 func _ready() -> void:
 	pass
@@ -21,7 +22,9 @@ func _on_main_enter_exit_title(is_enter: bool) -> void:
 	# _on_texture_button_toggled(false)
 	if is_enter:
 		setting_button.visible = true
+		escape_instruction.visible = false
 		credits.visible = true
 	else:
 		setting_button.visible = false
 		credits.visible = false
+		escape_instruction.visible = true

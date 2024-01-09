@@ -30,7 +30,12 @@ func _ready() -> void:
 	velocity = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
-	mousex_delta = lerp(mousex_delta, 0.0, 0.02)
+	if Global.state == Global.STARTED:
+		if Input.is_action_pressed("start"):
+			self.mousex_delta *= 0.95
+
+	
+	mousex_delta = lerp(mousex_delta, 0.0, 0.01)
 	circle_bar.material.set_shader_parameter("fill_ratio", -mousex_delta/1000)
 	spin_disk.rotation_spd = mousex_delta / 50
 	# if Global.state == Global.READY or Global.state == Global.TITLE or Global.state == Global.RESULT:
@@ -104,7 +109,7 @@ func move_to_follower() -> void:
 	# var limit_ratio: float = limit_on_dist_bounce.sample(abs(YVec_dist)/limit_width)
 
 	var spd: float = spd_on_dist.sample(dist_0_1) * acceleration
-	se_boost.pitch_scale = remap(spd, 0.0, 1.0, 0.0, 1.0)
+	se_boost.pitch_scale = remap(spd_on_dist.sample(dist_0_1), 0.0, 1.0, 0.0, 1.0)
 	se_panner.pan = YVec_dist / limit_width
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 

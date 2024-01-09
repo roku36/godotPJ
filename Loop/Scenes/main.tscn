@@ -69,7 +69,7 @@ _data = [Vector2(0.14786, 1), 0.0, 0.0, 0, 0, Vector2(0.756809, 0.181355), 0.0, 
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.772599, 0.404875), 1.76518, 1.76518, 0, 0, Vector2(0.800847, 1), 24.077, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.457198, 0.350214), 1.76518, 1.76518, 0, 0, Vector2(0.542802, 1), 13.0007, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwbag"]
@@ -247,6 +247,7 @@ follow_viewport_enabled = true
 
 [node name="Player" parent="WorldEnvExclude" instance=ExtResource("2_146rn")]
 unique_name_in_owner = true
+acceleration = 40.0
 turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 limit_on_dist = SubResource("Curve_um74a")
@@ -432,6 +433,14 @@ bbcode_enabled = true
 text = "制作: ろく
 [url=\"https://icons8.com/icon/14099/settings\"]Settings[/url] icon by [url=\"https://icons8.com\"]Icons8[/url]"
 script = SubResource("GDScript_khg5s")
+
+[node name="EscapeInstruction" type="Label" parent="Settings"]
+visible = false
+offset_left = 15.0
+offset_top = 610.0
+offset_right = 200.0
+offset_bottom = 633.0
+text = "Escでタイトルに戻る"
 
 [connection signal="enter_exit_title" from="." to="Settings" method="_on_main_enter_exit_title"]
 [connection signal="escape_game" from="." to="." method="_on_escape_game"]
