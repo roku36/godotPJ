@@ -234,6 +234,10 @@ script = ExtResource("5_sqn2k")
 MAX_QUEUE_LEN = 80
 trail_offset = Vector2(-30, -20)
 
+[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
+unique_name_in_owner = true
+visible = false
+
 [node name="WorldEnvExclude" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -243,10 +247,6 @@ turn_speed = 0.01
 spd_on_dist = SubResource("Curve_2bhjp")
 limit_on_dist = SubResource("Curve_um74a")
 limit_width = 500.0
-
-[node name="Ghost" parent="WorldEnvExclude" instance=ExtResource("4_q01vl")]
-unique_name_in_owner = true
-visible = false
 
 [node name="LevelSelector" type="Node" parent="."]
 unique_name_in_owner = true
@@ -327,7 +327,7 @@ ignore_rotation = false
 zoom = Vector2(0.49, 0.49)
 script = ExtResource("18_picnl")
 player_path = NodePath("../WorldEnvExclude/Player")
-ghost_path = NodePath("../WorldEnvExclude/Ghost")
+ghost_path = NodePath("../Ghost")
 
 [node name="Settings" type="CanvasLayer" parent="."]
 script = ExtResource("19_ipn1f")
@@ -413,13 +413,13 @@ texture_pressed = ExtResource("21_u4qe3")
 
 [connection signal="escape_game" from="." to="." method="_on_escape_game"]
 [connection signal="escape_game" from="." to="WorldEnvExclude/Player" method="_on_main_escape_game"]
-[connection signal="escape_game" from="." to="WorldEnvExclude/Ghost" method="_on_main_escape_game"]
+[connection signal="escape_game" from="." to="Ghost" method="_on_main_escape_game"]
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
-[connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
+[connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
-[connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
-[connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
+[connection signal="lap_started" from="." to="Ghost" method="_on_main_lap_started"]
+[connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
 [connection signal="meta_clicked" from="Settings/RichTextLabel" to="Settings/RichTextLabel" method="_richtextlabel_on_meta_clicked"]

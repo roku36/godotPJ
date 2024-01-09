@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://jq2elfqgbp27"]
+[gd_scene load_steps=6 format=3 uid="uid://jq2elfqgbp27"]
 
 [ext_resource type="Script" path="res://Scripts/ghost.gd" id="1_6s37a"]
 [ext_resource type="Texture2D" uid="uid://iyvmpxoltgk3" path="res://Textures/ghost.svg" id="2_sbh1m"]
+[ext_resource type="Shader" path="res://Shaders/ghost.gdshader" id="2_ur06n"]
+[ext_resource type="Texture2D" uid="uid://cm736uk8vcsyb" path="res://Textures/hologram_lines.png" id="3_06yow"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tc41"]
+shader = ExtResource("2_ur06n")
+shader_parameter/baseColor = Color(0.356863, 0, 0.0156863, 0.160784)
+shader_parameter/speed = 5.0
+shader_parameter/linesColor = Color(0.105882, 0.196078, 0.0784314, 0)
+shader_parameter/linesColorIntensity = -22.65
+shader_parameter/hologramTextureTiling = Vector2(-7.43, 0.19)
+shader_parameter/hologramTexture = ExtResource("3_06yow")
 
 [node name="Ghost" type="Node2D"]
 modulate = Color(1, 1, 1, 0.47451)
@@ -33,4 +44,5 @@ offset_bottom = 24.0
 
 [node name="Icon" type="Sprite2D" parent="."]
 light_mask = 0
+material = SubResource("ShaderMaterial_0tc41")
 texture = ExtResource("2_sbh1m")
