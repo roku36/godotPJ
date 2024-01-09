@@ -9,7 +9,7 @@ var current_stage: int = 0
 
 var target_times: Array[Dictionary] = [
 {"gold": 10.0, "silver": 15.0, "bronze": 20.0},
-{"gold": 11.0, "silver": 16.0, "bronze": 21.0},
+{"gold": 40.0, "silver": 30.0, "bronze": 25.0},
 {"gold": 12.0, "silver": 17.0, "bronze": 22.0},
 {"gold": 13.0, "silver": 18.0, "bronze": 23.0},
 ]
@@ -19,7 +19,7 @@ var best_lap_time: Array
 var achievements: Array
 var auto_start: bool = false
 
-var nearest_offset: float = 0.1
+var nearest_offset: float = 0.01
 var mouse_sensitivity: float = 1.0
 
 

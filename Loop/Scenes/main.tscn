@@ -65,8 +65,7 @@ colors = PackedColorArray(1, 0.6325, 0.55, 1, 1, 0, 1, 0)
 
 [sub_resource type="Curve" id="Curve_2bhjp"]
 min_value = 2.13163e-14
-max_value = 30.0
-_data = [Vector2(0.169491, 30), 0.0, 0.0, 0, 0, Vector2(0.762712, 9.95746), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.14786, 1), 0.0, 0.0, 0, 0, Vector2(0.756809, 0.181355), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_um74a"]
@@ -446,6 +445,7 @@ script = SubResource("GDScript_khg5s")
 [connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
 [connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
 [connection signal="stage_changed" from="LevelSelector" to="." method="_on_level_selector_stage_changed"]
+[connection signal="stage_changed" from="LevelSelector" to="Ghost" method="_on_level_selector_stage_changed"]
 [connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Player" method="_on_level_selector_stage_changed"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]

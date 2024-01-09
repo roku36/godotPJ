@@ -92,7 +92,7 @@ func update_scoreboard() -> void:
 	scores.clear()
 	# append top 5 scores
 	# e.g. "1st score: 30.00"
-	scores.append_text("[b]Stage: %d[/b]\n" % Global.current_stage)
+	scores.append_text("[b]Stage: %d[/b]\n" % [Global.current_stage+1])
 	for i in range(Global.best_lap_time[Global.current_stage].size()):
 		var prize: String = "none"
 		var laptime: float = Global.best_lap_time[Global.current_stage][i]

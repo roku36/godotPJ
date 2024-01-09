@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var ghost: Node2D = %Ghost
 @onready var level_selector: Node = %LevelSelector
 
-@export var acceleration: float = 500.0
+@export var acceleration: float = 30.0
 @export var max_speed: float = 1000.0
 @export var turn_speed: float = 0.1
 @export var spd_on_dist: Curve
@@ -103,8 +103,8 @@ func move_to_follower() -> void:
 	var limit_ratio: float = limit_on_dist.sample(dist_0_1)
 	# var limit_ratio: float = limit_on_dist_bounce.sample(abs(YVec_dist)/limit_width)
 
-	var spd: float = spd_on_dist.sample(dist_0_1)
-	se_boost.pitch_scale = remap(spd, spd_on_dist.min_value, spd_on_dist.max_value, 0.0, 1.0)
+	var spd: float = spd_on_dist.sample(dist_0_1) * acceleration
+	se_boost.pitch_scale = remap(spd, 0.0, 1.0, 0.0, 1.0)
 	se_panner.pan = YVec_dist / limit_width
 	self.velocity += Vector2.from_angle(self.rotation) * spd
 
@@ -140,3 +140,4 @@ func reset_position() -> void:
 
 func _on_level_selector_stage_changed() -> void:
 	reset_position()
+	se_boost.stop()

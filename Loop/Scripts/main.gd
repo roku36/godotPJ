@@ -82,6 +82,7 @@ func result_countdown(is_new_record: bool, is_near: bool) -> void:
 	result_display.visible = true
 	result_display.display_number = laptime
 	init_state()
+	hud.visible = false
 	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
 	# await get_tree().create_timer(1.0).timeout
@@ -96,6 +97,7 @@ func result_countdown(is_new_record: bool, is_near: bool) -> void:
 
 
 func _on_goal_reached() -> void:
+	hud.visible = false
 	var goal_fx: GPUParticles2D = GOAL_PARTICLE.instantiate()
 	goal_fx.global_position = player.global_position
 	add_child(goal_fx)
@@ -104,9 +106,6 @@ func _on_goal_reached() -> void:
 	var prize: String = "none"
 	for medal: String in ["gold", "silver", "bronze"]:
 		if laptime < Global.target_times[Global.current_stage][medal]:
-			print(medal)
-			print(laptime)
-			print(Global.target_times[Global.current_stage][medal])
 			prize = medal
 			break
 

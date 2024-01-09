@@ -88,3 +88,8 @@ func _on_main_lap_started() -> void:
 func _on_main_escape_game() -> void:
 	playback_started = false
 	self.visible = false
+
+
+func _on_level_selector_stage_changed() -> void:
+	playback_started = false
+	self.visible = false
