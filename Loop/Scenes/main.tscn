@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=54 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://Scripts/longpress_button.gd" id="22_cwjm1"]
 [ext_resource type="Script" path="res://Scripts/CheckBox_autostart.gd" id="24_us6bd"]
 [ext_resource type="Script" path="res://Scripts/mouse_sensitivity_slider.gd" id="25_ecr67"]
+[ext_resource type="Texture2D" uid="uid://cklpyvcc6s2sn" path="res://Textures/icons8-question-60.png" id="28_rd6v4"]
 
 [sub_resource type="Gradient" id="Gradient_x1q6v"]
 
@@ -417,6 +418,16 @@ text = "データリセット
 script = ExtResource("22_cwjm1")
 click_duration_threshold = 2.0
 
+[node name="TextureButton" type="TextureButton" parent="Settings/Panel"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 16.0
+offset_right = 135.0
+offset_bottom = 76.0
+scale = Vector2(0.7, 0.7)
+focus_mode = 0
+texture_normal = ExtResource("28_rd6v4")
+
 [node name="SettingButton" type="TextureButton" parent="Settings"]
 material = SubResource("ShaderMaterial_kul7t")
 offset_left = 6.0
@@ -463,5 +474,6 @@ text = "Escでタイトルに戻る"
 [connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Player" method="_on_level_selector_stage_changed"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
+[connection signal="pressed" from="Settings/Panel/TextureButton" to="CanvasHelp" method="_on_texture_button_pressed"]
 [connection signal="toggled" from="Settings/SettingButton" to="Settings" method="_on_texture_button_toggled"]
 [connection signal="meta_clicked" from="Settings/Credits" to="Settings/Credits" method="_richtextlabel_on_meta_clicked"]

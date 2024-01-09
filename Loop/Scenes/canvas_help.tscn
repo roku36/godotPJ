@@ -15,6 +15,7 @@ color = Color(0, 0, 0, 0.52549)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
 clip_contents = false
+layout_mode = 0
 offset_left = 369.0
 offset_top = 218.0
 offset_right = 806.0
