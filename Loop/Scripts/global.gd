@@ -3,7 +3,7 @@ extends Node
 var save_path: String = "user://globals.save"
 # const stage num
 
-const STAGE_NUM = 4
+const STAGE_NUM = 3
 const REC_CAPACITY = 10
 var current_stage: int = 0
 

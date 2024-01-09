@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=19 format=3 uid="uid://cg7iadu3ed2j7"]
+[gd_resource type="VisualShader" load_steps=20 format=3 uid="uid://cg7iadu3ed2j7"]
 
 [ext_resource type="Script" path="res://addons/VisualShaderExtras/Shapes/Circle.gd" id="1_3rgd6"]
 [ext_resource type="Script" path="res://addons/VisualShaderExtras/Wave/SineWave.gd" id="2_vk31c"]
@@ -49,6 +49,10 @@ default_input_values = [1, -5.0, 2, 5.0, 3, 0.0, 4, 1.0]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_5mfcs"]
 parameter_name = "col_right"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_fkwpp"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
 
 [sub_resource type="VisualShaderNodeUVPolarCoord" id="VisualShaderNodeUVPolarCoord_jheh8"]
 output_port_for_preview = 0
@@ -104,6 +108,11 @@ void fragment() {
 	float n_out24p0 = rot_spd;
 
 
+// FloatOp:28
+	float n_in28p1 = 0.50000;
+	float n_out28p0 = n_out24p0 * n_in28p1;
+
+
 	float n_out26p0;
 // Remap:26
 	float n_in26p1 = -5.00000;
@@ -113,7 +122,7 @@ void fragment() {
 	{
 		float __input_range = n_in26p2 - n_in26p1;
 		float __output_range = n_in26p4 - n_in26p3;
-		n_out26p0 = n_in26p3 + __output_range * ((n_out24p0 - n_in26p1) / __input_range);
+		n_out26p0 = n_in26p3 + __output_range * ((n_out28p0 - n_in26p1) / __input_range);
 	}
 
 
@@ -148,7 +157,7 @@ void fragment() {
 // Expression:15
 	n_out15p0 = 0.0;
 	{
-		n_out15p0 = abs(n_out4p1 - 0.5) * n_out24p0;
+		n_out15p0 = abs(n_out4p1 - 0.5) * n_out28p0;
 	}
 
 
@@ -201,6 +210,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-679.364, 420.632)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(2200, 400)
@@ -233,11 +243,13 @@ nodes/fragment/18/position = Vector2(880, 1880)
 nodes/fragment/23/node = SubResource("VisualShaderNodeFloatParameter_15mir")
 nodes/fragment/23/position = Vector2(-900, 200)
 nodes/fragment/24/node = SubResource("VisualShaderNodeFloatParameter_pdtkh")
-nodes/fragment/24/position = Vector2(-1300, 2000)
+nodes/fragment/24/position = Vector2(-1640, 2220)
 nodes/fragment/25/node = SubResource("VisualShaderNodeMix_r3giu")
 nodes/fragment/25/position = Vector2(1780, 2020)
 nodes/fragment/26/node = SubResource("VisualShaderNodeRemap_kwerh")
 nodes/fragment/26/position = Vector2(580, 2640)
 nodes/fragment/27/node = SubResource("VisualShaderNodeColorParameter_5mfcs")
 nodes/fragment/27/position = Vector2(780, 2140)
-nodes/fragment/connections = PackedInt32Array(5, 0, 9, 1, 10, 0, 5, 3, 8, 0, 10, 1, 4, 2, 10, 0, 11, 0, 13, 0, 13, 0, 12, 2, 9, 0, 14, 0, 12, 0, 14, 1, 4, 1, 15, 0, 15, 0, 10, 2, 14, 0, 0, 1, 23, 0, 5, 0, 24, 0, 15, 1, 18, 0, 25, 0, 24, 0, 26, 0, 26, 0, 25, 2, 25, 0, 0, 0, 27, 0, 25, 1)
+nodes/fragment/28/node = SubResource("VisualShaderNodeFloatOp_fkwpp")
+nodes/fragment/28/position = Vector2(-1041.61, 2219.67)
+nodes/fragment/connections = PackedInt32Array(5, 0, 9, 1, 10, 0, 5, 3, 8, 0, 10, 1, 4, 2, 10, 0, 11, 0, 13, 0, 13, 0, 12, 2, 9, 0, 14, 0, 12, 0, 14, 1, 4, 1, 15, 0, 15, 0, 10, 2, 14, 0, 0, 1, 23, 0, 5, 0, 18, 0, 25, 0, 26, 0, 25, 2, 25, 0, 0, 0, 27, 0, 25, 1, 24, 0, 28, 0, 28, 0, 26, 0, 28, 0, 15, 1)

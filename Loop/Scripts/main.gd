@@ -58,7 +58,6 @@ func _process(delta: float) -> void:
 				restart_game.emit()
 			Global.TITLE:
 				enter_exit_title.emit(false)
-				titles.visible = false
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				Global.state = Global.READY
 	
@@ -145,7 +144,6 @@ func _on_escape_game() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Global.state = Global.TITLE
 	enter_exit_title.emit(true)
-	titles.visible = true
 	level_selector.path_follow_player.progress = 0
 
 
@@ -159,3 +157,10 @@ func _on_level_selector_stage_changed() -> void:
 
 func _on_lap_started() -> void:
 	result_display.visible = false
+
+
+func _on_enter_exit_title(is_enter: bool) -> void:
+	if is_enter:
+		titles.visible = true
+	else:
+		titles.visible = false

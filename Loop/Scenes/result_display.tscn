@@ -67,9 +67,9 @@ script = ExtResource("1_jw2mu")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 6.0
+offset_left = -2.0
 offset_top = -4.0
-offset_right = 293.0
+offset_right = 285.0
 offset_bottom = 114.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vgnuk")
 

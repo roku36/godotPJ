@@ -20,7 +20,7 @@ shader = ExtResource("2_0xhan")
 shader_parameter/col_left = Color(0, 1, 1, 1)
 shader_parameter/col_right = Color(1, 0, 1, 1)
 shader_parameter/rot_spd = 1.0
-shader_parameter/rot_ratio = 1.0
+shader_parameter/rot_ratio = 1.48
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_48gnt"]
 color = Color(0.329412, 0.329412, 0.329412, 1)

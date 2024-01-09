@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://sbf2rlyoqjuw"]
+
+[ext_resource type="Script" path="res://Scripts/canvas_help.gd" id="1_o7ca3"]
+
+[node name="CanvasHelp" type="CanvasLayer"]
+script = ExtResource("1_o7ca3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.52549)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+clip_contents = false
+offset_left = 369.0
+offset_top = 218.0
+offset_right = 806.0
+offset_bottom = 504.0
+bbcode_enabled = true
+text = "[tornado radius=2]
+このゲームはシンプルなレースゲームです。
+基本操作は[color=yellow]マウス[/color]と[color=yellow]スペースキー[/color]だけで行います。
+
+2周目以降は自分のベストタイムの[shake][color=cyan]ゴースト[/color][/shake]と現れます。
+
+[color=yellow]マウスを左右[/color]に動かしてハンドルを切る
+[color=yellow]スペースキー[/color]を押してハンドルの回転を減速する
+
+急カーブではスペースキーをうまく活用してください。
+[/tornado]
+
+[color=gray]クリックで閉じる[/color]"
+autowrap_mode = 0

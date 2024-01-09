@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=3 uid="uid://b2i6x10iatwum"]
+[gd_scene load_steps=53 format=3 uid="uid://b2i6x10iatwum"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pd7es"]
 [ext_resource type="Script" path="res://Scripts/LevelSelector.gd" id="2_52vh0"]
 [ext_resource type="PackedScene" uid="uid://dku6tgnvso8fr" path="res://Entities/player.tscn" id="2_146rn"]
+[ext_resource type="PackedScene" uid="uid://sbf2rlyoqjuw" path="res://Scenes/canvas_help.tscn" id="2_228qb"]
 [ext_resource type="PackedScene" uid="uid://dyjouyral0k31" path="res://Scenes/background.tscn" id="2_inqlf"]
 [ext_resource type="Script" path="res://Scripts/WorldEnvironment.gd" id="2_ml7e0"]
 [ext_resource type="AudioStream" uid="uid://ubg3iig6nxmf" path="res://Audio/reset.wav" id="3_2fkmi"]
@@ -176,6 +177,9 @@ func _richtextlabel_on_meta_clicked(meta: Variant) -> void:
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pd7es")
+
+[node name="CanvasHelp" parent="." instance=ExtResource("2_228qb")]
+layer = 6
 
 [node name="CanvasDisplay" type="CanvasLayer" parent="."]
 
@@ -442,6 +446,7 @@ offset_right = 200.0
 offset_bottom = 633.0
 text = "Escでタイトルに戻る"
 
+[connection signal="enter_exit_title" from="." to="." method="_on_enter_exit_title"]
 [connection signal="enter_exit_title" from="." to="Settings" method="_on_main_enter_exit_title"]
 [connection signal="escape_game" from="." to="." method="_on_escape_game"]
 [connection signal="escape_game" from="." to="Ghost" method="_on_main_escape_game"]

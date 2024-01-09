@@ -58,42 +58,5 @@ texture_mode = 2
 joint_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-clip_contents = false
-offset_left = -1105.7
-offset_top = 578.0
-offset_right = -884.7
-offset_bottom = 618.0
-bbcode_enabled = true
-text = "[tornado]マウス左右に動かしてハンドルを切る"
-autowrap_mode = 0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-clip_contents = false
-offset_left = 1287.84
-offset_top = 446.0
-offset_right = 1508.84
-offset_bottom = 486.0
-bbcode_enabled = true
-text = "[tornado]角でスペースを押して反射"
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="."]
-clip_contents = false
-offset_left = 21.7774
-offset_top = 149.0
-offset_right = 242.777
-offset_bottom = 189.0
-bbcode_enabled = true
-text = "[tornado]ベストタイムのゴーストと競う"
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="."]
-clip_contents = false
-offset_left = 49.4942
-offset_top = -112.0
-offset_right = 270.494
-offset_bottom = -72.0
-bbcode_enabled = true
-text = "[tornado]spaceで開始"
-
 [node name="Goal" parent="." instance=ExtResource("3_c37hp")]
 position = Vector2(187.088, 443)
