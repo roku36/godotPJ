@@ -13,6 +13,8 @@ config_version=5
 config/name="Loop"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.172549, 0.172549, 0.172549, 1)
+boot_splash/image="res://Textures/splashscreen.png"
 config/icon="res://Textures/icon.svg"
 
 [autoload]

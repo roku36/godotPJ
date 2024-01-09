@@ -84,3 +84,7 @@ func _on_main_lap_started() -> void:
 	# initialize replay_data
 	reset_replay_data()
 
+
+func _on_main_escape_game() -> void:
+	playback_started = false
+	self.visible = false

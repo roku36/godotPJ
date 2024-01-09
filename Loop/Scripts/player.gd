@@ -128,3 +128,6 @@ func _on_main_goal_reached() -> void:
 	self.modulate = Color(1.0, 1.0, 1.0, 0.2)
 	se_goal.play()
 
+
+func _on_main_escape_game() -> void:
+	se_boost.stop()

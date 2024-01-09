@@ -25,6 +25,8 @@ var nearest_offset:float = 0.0
 signal goal_reached
 signal new_record
 signal lap_started
+signal escape_game
+signal restart_game
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,9 +34,9 @@ func _ready() -> void:
 	pass
 
 func _draw() -> void:
-	pass
-	# draw_circle(affine_camera.target_point, 50, Color.RED)
-	# draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
+	# pass
+	draw_circle(affine_camera.target_point, 50, Color.RED)
+	draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,20 +48,19 @@ func _process(delta: float) -> void:
 	if Global.state == Global.RESULT:
 		pass
 	if Input.is_action_just_pressed("pause"):
-		hud.visible = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Global.state = Global.TITLE
-		titles.visible = true
-	if Global.state == Global.READY and Input.is_action_just_pressed("start"):
-		init_state()
-		Global.state = Global.STARTED
-		lap_started.emit()
-	if Global.state == Global.TITLE and Input.is_action_just_pressed("start"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		Global.state = Global.READY
-		# animation_player.play("titleToMain")
-		titles.visible = false
-		# unpause player
+		escape_game.emit()
+	if Input.is_action_just_pressed("start"):
+		match Global.state:
+			Global.READY:
+				init_state()
+				Global.state = Global.STARTED
+				lap_started.emit()
+			Global.STARTED:
+				restart_game.emit()
+			Global.TITLE:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				Global.state = Global.READY
+				titles.visible = false
 	
 	# update time
 	if Global.state == Global.STARTED:
@@ -77,6 +78,7 @@ func init_state() -> void:
 	level_selector.path_follow_player.progress = 0
 
 func result_countdown(is_new_record: bool) -> void:
+	$ResultDisplay.position = player.global_position
 	result_display.visible = true
 	result_display.display_number = laptime
 	init_state()
@@ -92,6 +94,7 @@ func result_countdown(is_new_record: bool) -> void:
 	if Global.auto_start:
 		init_state()
 		Global.state = Global.STARTED
+		lap_started.emit()
 	else:
 		Global.state = Global.READY
 
@@ -135,3 +138,11 @@ func _on_reset_button_long_pressed() -> void:
 	se_reset.play()
 	Global.reset_data()
 	canvas_labels.update_labels()
+
+
+func _on_escape_game() -> void:
+	hud.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Global.state = Global.TITLE
+	titles.visible = true
+	level_selector.path_follow_player.progress = 0

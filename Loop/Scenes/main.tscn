@@ -84,7 +84,7 @@ shader_parameter/arrow_col = Color(1, 1, 1, 1)
 shader_parameter/is_flipped = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfvjx"]
-bg_color = Color(0, 0, 0, 0.584314)
+bg_color = Color(0, 0.184314, 0.121569, 0.921569)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -375,7 +375,7 @@ bus_name = "se"
 [node name="CheckBox_autostart" type="CheckBox" parent="Settings/Panel/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-text = "自動でスタート"
+text = "ゴール後自動でスタート"
 script = ExtResource("24_us6bd")
 
 [node name="ResetButton" type="Button" parent="Settings/Panel/VBoxContainer"]
@@ -411,6 +411,9 @@ toggle_mode = true
 texture_normal = ExtResource("19_2q5w2")
 texture_pressed = ExtResource("21_u4qe3")
 
+[connection signal="escape_game" from="." to="." method="_on_escape_game"]
+[connection signal="escape_game" from="." to="WorldEnvExclude/Player" method="_on_main_escape_game"]
+[connection signal="escape_game" from="." to="WorldEnvExclude/Ghost" method="_on_main_escape_game"]
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
