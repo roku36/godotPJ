@@ -39,6 +39,10 @@ movie_writer/fps=10
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[gui]
+
+theme/custom_font="res://Fonts/mplus-1c-regular.ttf"
+
 [input]
 
 restart={
