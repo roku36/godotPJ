@@ -16,10 +16,10 @@ color = Color(0, 0, 0, 0.52549)
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
 clip_contents = false
 layout_mode = 0
-offset_left = 369.0
-offset_top = 218.0
-offset_right = 806.0
-offset_bottom = 504.0
+offset_left = 322.0
+offset_top = 196.0
+offset_right = 1049.0
+offset_bottom = 625.0
 bbcode_enabled = true
 text = "[tornado radius=2]
 このゲームはシンプルなレースゲームです。
@@ -27,10 +27,11 @@ text = "[tornado radius=2]
 
 2周目以降は自分のベストタイムの[shake][color=cyan]ゴースト[/color][/shake]が現れます。
 
+車体は自動で加速します。
 [color=yellow]マウスを左右[/color]に動かしてハンドルを切る
 [color=yellow]スペースキー[/color]を押してハンドルの回転を減速する
 
-急カーブではスペースキーをうまく活用してください。
+直進のときや急カーブの直後ではスペースキーをうまく活用してください。
 [/tornado]
 
 [color=gray]クリックで閉じる[/color]"

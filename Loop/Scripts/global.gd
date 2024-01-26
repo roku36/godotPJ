@@ -9,8 +9,8 @@ var current_stage: int = 0
 
 var target_times: Array[Dictionary] = [
 {"gold": 9.0, "silver": 12.0, "bronze": 18.0},
-{"gold": 20.0, "silver": 25.0, "bronze": 35.0},
-{"gold": 25.0, "silver": 30.0, "bronze": 40.0},
+{"gold": 22.0, "silver": 25.0, "bronze": 30.0},
+{"gold": 25.0, "silver": 28.0, "bronze": 35.0},
 {"gold": 13.0, "silver": 18.0, "bronze": 25.0},
 ]
 

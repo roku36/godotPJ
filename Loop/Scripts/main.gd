@@ -117,7 +117,7 @@ func _on_goal_reached() -> void:
 		got_medal = true
 
 	var bestlaptime: Array = Global.best_lap_time[Global.current_stage]
-	print(laptime)
+	# print(laptime)
 	bestlaptime.append(laptime)
 	bestlaptime.sort()
 	if bestlaptime[0] == laptime:

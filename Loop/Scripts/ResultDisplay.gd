@@ -50,11 +50,9 @@ func roll_result(is_new_record: bool, is_near: bool) -> void:
 
 
 func float_to_array(float_number: float) -> Array[int]:
-	print(float_number)
 	var tmp_int_num: int = int(float_number * 100)
 	var tmp_array: Array[int] = []
 	for i in range(digits.size()):
 		tmp_array.append(tmp_int_num % 10)
 		tmp_int_num /= 10
-	print(tmp_array)
 	return tmp_array
