@@ -244,12 +244,12 @@ script = ExtResource("5_sqn2k")
 MAX_QUEUE_LEN = 80
 trail_offset = Vector2(-30, -20)
 
-[node name="Ghost" parent="." instance=ExtResource("4_q01vl")]
-unique_name_in_owner = true
-visible = false
-
 [node name="WorldEnvExclude" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
+
+[node name="Ghost" parent="WorldEnvExclude" instance=ExtResource("4_q01vl")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Player" parent="WorldEnvExclude" instance=ExtResource("2_146rn")]
 unique_name_in_owner = true
@@ -338,7 +338,7 @@ ignore_rotation = false
 zoom = Vector2(0.49, 0.49)
 script = ExtResource("18_picnl")
 player_path = NodePath("../WorldEnvExclude/Player")
-ghost_path = NodePath("../Ghost")
+ghost_path = NodePath("../WorldEnvExclude/Ghost")
 
 [node name="Settings" type="CanvasLayer" parent="."]
 script = ExtResource("19_ipn1f")
@@ -461,17 +461,17 @@ text = "Escでタイトルに戻る"
 [connection signal="enter_exit_title" from="." to="." method="_on_enter_exit_title"]
 [connection signal="enter_exit_title" from="." to="Settings" method="_on_main_enter_exit_title"]
 [connection signal="escape_game" from="." to="." method="_on_escape_game"]
-[connection signal="escape_game" from="." to="Ghost" method="_on_main_escape_game"]
+[connection signal="escape_game" from="." to="WorldEnvExclude/Ghost" method="_on_main_escape_game"]
 [connection signal="escape_game" from="." to="WorldEnvExclude/Player" method="_on_main_escape_game"]
 [connection signal="goal_reached" from="." to="." method="_on_goal_reached"]
-[connection signal="goal_reached" from="." to="Ghost" method="_on_goal_reached"]
+[connection signal="goal_reached" from="." to="WorldEnvExclude/Ghost" method="_on_goal_reached"]
 [connection signal="goal_reached" from="." to="WorldEnvExclude/Player" method="_on_main_goal_reached"]
 [connection signal="lap_started" from="." to="." method="_on_lap_started"]
-[connection signal="lap_started" from="." to="Ghost" method="_on_main_lap_started"]
+[connection signal="lap_started" from="." to="WorldEnvExclude/Ghost" method="_on_main_lap_started"]
 [connection signal="lap_started" from="." to="WorldEnvExclude/Player" method="_on_main_lap_started"]
-[connection signal="new_record" from="." to="Ghost" method="_on_new_record"]
+[connection signal="new_record" from="." to="WorldEnvExclude/Ghost" method="_on_new_record"]
 [connection signal="stage_changed" from="LevelSelector" to="." method="_on_level_selector_stage_changed"]
-[connection signal="stage_changed" from="LevelSelector" to="Ghost" method="_on_level_selector_stage_changed"]
+[connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Ghost" method="_on_level_selector_stage_changed"]
 [connection signal="stage_changed" from="LevelSelector" to="WorldEnvExclude/Player" method="_on_level_selector_stage_changed"]
 [connection signal="toggled" from="Settings/Panel/VBoxContainer/CheckBox_autostart" to="Settings/Panel/VBoxContainer/CheckBox_autostart" method="_on_toggled"]
 [connection signal="long_pressed" from="Settings/Panel/VBoxContainer/ResetButton" to="." method="_on_reset_button_long_pressed"]
