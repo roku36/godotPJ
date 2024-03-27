@@ -116,10 +116,6 @@ func move_to_follower() -> void:
 	if self.velocity.dot(followerDirYVec) * YVec_dist < 0:
 		self.velocity -= followerDirYVec * (self.velocity.dot(followerDirYVec.normalized()) * limit_ratio)
 
-	# # 方向成分に減衰を適用
-	# var dir_component: Vector2 = self.velocity.dot(followerDirYVec.normalized()) * followerDirYVec.normalized()
-	# self.velocity += (dir_component * 0.98) - dir_component
-
 
 func _on_main_lap_started() -> void:
 	reset_position()

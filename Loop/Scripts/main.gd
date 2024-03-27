@@ -27,9 +27,7 @@ signal escape_game
 signal restart_game
 signal enter_exit_title(is_enter: bool)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# add level1.tscn scene as "road"
 	pass
 
 func _draw() -> void:
@@ -38,7 +36,6 @@ func _draw() -> void:
 	# draw_circle(level_selector.path_follow_player.position, 50, Color.GREEN)
 	# draw_line(player.position, player.position + player.velocity * 1.0, Color.RED, 10.0, false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw()
 	state_label.text = str(Global.state)

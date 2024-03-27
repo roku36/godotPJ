@@ -9,15 +9,12 @@ const goal = preload("res://Scenes/goal.tscn")
 		press_update = false
 		update_road_line()
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_road_line()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	# when the road is updated
-
 	pass
 	# if Engine.is_editor_hint():
 	# 	update_road_line()

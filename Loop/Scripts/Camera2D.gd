@@ -2,15 +2,10 @@ extends Camera2D
 
 @onready var level_selector: Node = $"../LevelSelector"
 @onready var player: CharacterBody2D = %Player
-# Called when the node enters the scene tree for the first time.
 
 var target_point: Vector2 = Vector2.ZERO
 
-func _ready() -> void:
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	target_point = (level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 1000) + player.position) / 2
 

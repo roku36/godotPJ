@@ -6,12 +6,10 @@ var queue: Array[Vector2] = []
 @export var MAX_QUEUE_LEN: int = 30
 @export var trail_offset: Vector2 = Vector2.ZERO
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if not Global.state == Global.STARTED:
 		queue.clear()
