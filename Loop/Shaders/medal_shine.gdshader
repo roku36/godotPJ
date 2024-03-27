@@ -34,7 +34,7 @@ void fragment() {
 		if (shine > 0.0)
 			COLOR = overlay(COLOR, shine_color);
 	} else {
-		// if not active, use opacity
+		// if inactive, make transparent
 		COLOR.a *= opacity;
 	}
 }
