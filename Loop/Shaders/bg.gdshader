@@ -25,7 +25,7 @@ void fragment()
 	c = 1.17-pow(c, 1.4);
 	vec4 color = vec4(pow(abs(c), 8.0));
 	color *= fg_color;
-    color = clamp(color + bg_color, 0.0, 1.0);
-    
+	color = clamp(color + bg_color, 0.0, 1.0);
+
 	COLOR = color;
 }

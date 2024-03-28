@@ -139,20 +139,6 @@ uniform float collision_bounce;
 uniform int sub_emitter_amount_at_end;
 uniform bool sub_emitter_keep_velocity;
 
-//-------------------- TODO
-// add minimum velocity tolerance to not move when velocity is only used for direction
-// add lifetime interp, to push all particles from outside to interpolate to end of lifetime
-// add y axis for color gradient as instance param
-// add emitter shape as instance param
-// add emitter scale + offset as instance param
-// scale multiplier as instance param
-// add domain boundaries, possibly as external stuff like attractors?
-// Add max velocity curve/ limiting to imitate damping in a more controlled way
-// size by speed range
-// linear velocity vec3 is local/world
-// velocity pivot in local space for both radial and orbit
-// offset for velocity moving over life
-
 
 
 vec4 grad(vec4 p) {

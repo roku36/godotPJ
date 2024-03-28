@@ -1,9 +1,9 @@
 extends WorldEnvironment
 
-# make export group of gradients
+# export group of gradients
 @export var gradients: Array[Gradient]
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _process(_delta: float) -> void:

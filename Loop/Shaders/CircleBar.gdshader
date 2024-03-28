@@ -24,7 +24,7 @@ void fragment() {
 		}else	{
 			COLOR.a = 0.0;
 		}
-	// not on ring
+	// not ring
 	} else { 
 		COLOR.a = 0.0;
 	}
