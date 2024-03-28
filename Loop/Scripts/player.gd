@@ -94,19 +94,15 @@ func move_to_follower() -> void:
 	var followerDirXVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation)
 	var followerDirYVec: Vector2 = Vector2.from_angle(level_selector.path_follow_player.rotation).rotated(PI/2)
 	var followerDist: Vector2 = level_selector.path_follow_player.position - self.position
-	# self.rotation = lerp_angle(self.rotation, followerDirXVec.angle(), 0.03)
-	# self.position += followerDirXVec * followerDist.dot(followerDirXVec)
 
 	var XVec_dist: float = -followerDist.dot(followerDirXVec.normalized())
 	var YVec_dist: float = followerDist.dot(followerDirYVec.normalized())
 	level_selector.path_follow_player.progress += XVec_dist * 0.5
 	level_selector.path_follow_player.progress_ratio = clamp(level_selector.path_follow_player.progress_ratio, 0.0, 1.0)
-	# self.velocity += Vector2.from_angle(self.rotation) * 30.0
 
 	limit_width = level_selector.level_width * level_selector.level_width_curve.sample(level_selector.path_follow_player.progress_ratio)
 	var dist_0_1: float = abs(YVec_dist) / limit_width
 	var limit_ratio: float = limit_on_dist.sample(dist_0_1)
-	# var limit_ratio: float = limit_on_dist_bounce.sample(abs(YVec_dist)/limit_width)
 
 	var spd: float = spd_on_dist.sample(dist_0_1) * acceleration
 	se_boost.pitch_scale = remap(spd_on_dist.sample(dist_0_1), 0.0, 1.0, 0.0, 1.0)

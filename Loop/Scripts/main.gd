@@ -39,8 +39,6 @@ func _draw() -> void:
 func _process(delta: float) -> void:
 	queue_redraw()
 	state_label.text = str(Global.state)
-	# if Input.is_action_just_pressed("restart"):
-		# restart()
 	if Global.state == Global.RESULT:
 		pass
 	if Input.is_action_just_pressed("pause"):
@@ -58,7 +56,7 @@ func _process(delta: float) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				Global.state = Global.READY
 	
-	# update time
+	# update laptime
 	if Global.state == Global.STARTED:
 		laptime += delta
 	lap_time_label.text = "%04.2f" % laptime
@@ -82,7 +80,6 @@ func result_countdown(is_new_record: bool, is_near: bool) -> void:
 	hud.visible = false
 	Global.state = Global.RESULT
 	# countdown 3 seconds and then start
-	# await get_tree().create_timer(1.0).timeout
 	await result_display.roll_result(is_new_record, is_near)
 	laptime = 0
 	if Global.auto_start:
@@ -131,7 +128,6 @@ func _on_goal_reached() -> void:
 
 
 func _on_reset_button_long_pressed() -> void:
-	# print("reset!!!")
 	se_reset.play()
 	Global.reset_data()
 	canvas_labels.update_labels()

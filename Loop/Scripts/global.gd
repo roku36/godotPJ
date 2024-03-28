@@ -24,6 +24,7 @@ var mouse_sensitivity: float = 1.0
 
 
 func _ready() -> void:
+	# initialize data
 	best_replay_data = []
 	best_lap_time = []
 	achievements = ["none", "none", "none", "none"]
@@ -34,15 +35,12 @@ func _ready() -> void:
 				"rotation": [],
 				})
 
-# best_lap_time[i].fill(-1)
 		var top_scores: Array[float] = []
-# for j in range(REC_CAPACITY):
-# 	top_scores.append(-1)
 		best_lap_time.append(top_scores)
 
 	load_data()
 
-# enum to set stage: title, ready, started
+# state enum
 enum {TITLE, READY, STARTED, RESULT}
 var state: int = TITLE
 
@@ -60,7 +58,7 @@ func load_data() -> void:
 		achievements = file.get_var(true) as Array[String]
 
 func reset_data() -> void:
-	# delete save file
+	# delete user save file
 	var dir: DirAccess = DirAccess.open("user://")
 	dir.remove(save_path)
 	_ready()

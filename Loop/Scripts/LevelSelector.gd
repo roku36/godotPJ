@@ -15,7 +15,7 @@ var level_width: float = 0.0
 var level_width_curve: Curve
 
 signal stage_changed
-#
+
 @export_range(0, Global.STAGE_NUM -1) var stage_num: int:
 	set (value):
 		stage_num = set_stage_num(value)
@@ -49,7 +49,7 @@ func set_stage_num(value: int) -> int:
 		else:
 			levels[i].visible = false 
 
-	# show/hide arrows
+	# show/hide arrows UI
 	if value == 0:
 		arrow_left.modulate = Color.TRANSPARENT
 	else:
@@ -70,7 +70,7 @@ func set_stage_num(value: int) -> int:
 	# background.col_transition(value)
 	world_env.change_env_gradient(value)
 	road_path = levels[value]
-	# add pathfollow2d 
+	# add pathfollow2d of player target
 	path_follow_player = PathFollow2D.new()
 	path_follow_player.loop = false
 	path_follow_player.name = "PathFollowPlayer"

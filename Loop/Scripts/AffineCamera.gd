@@ -20,10 +20,13 @@ func _process(delta: float) -> void:
 		self.zoom = self.zoom.lerp(Vector2(0.2, 0.2), 3.0 * delta)
 		self.rotation = lerp_angle(self.rotation, 0, 0.1)
 	else:
+		# if player is near goal, fix target point for zoom out effect
 		if level_selector.path_follow_player.progress_ratio > 0.9:
 			target_point = level_selector.road_path.curve.sample_baked(500)
 		else:
 			target_point = level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 500)
+
+		# follow player and ghost
 		var position1: Vector2 = global_transform.affine_inverse() * player.global_transform.origin
 		var position2: Vector2 = global_transform.affine_inverse() * target_point
 

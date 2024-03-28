@@ -9,8 +9,8 @@ var target_point: Vector2 = Vector2.ZERO
 func _process(delta: float) -> void:
 	target_point = (level_selector.road_path.curve.sample_baked(level_selector.path_follow_player.progress + 1000) + player.position) / 2
 
-	# move camera
 	if Global.state == Global.TITLE:
+		# lerp position to logo
 		self.position = self.position.lerp(Vector2.ZERO, 3.0 * delta)
 		self.zoom = self.zoom.lerp(Vector2(0.2, 0.2), 3.0 * delta)
 	elif Global.state == Global.STARTED:

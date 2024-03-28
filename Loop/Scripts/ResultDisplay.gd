@@ -8,6 +8,7 @@ extends Control
 func _ready() -> void:
 	pass
 
+# result display effect when player reached goal
 func roll_result(is_new_record: bool, is_near: bool) -> void:
 	var digit_number_array: Array[int] = float_to_array(display_number)
 	var reveal_interval: int = 5 

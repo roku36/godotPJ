@@ -4,8 +4,8 @@ uniform sampler2D rough_noise: hint_normal;
 uniform float ripple_count = 5.0;
 uniform float ripple_strength = 0.1;
 uniform float speed = 2.0;
-uniform float distortion_strength = 0.4 ; // add a new uniform to control the distortion strength
-uniform vec2 noise_aspect_ratio = vec2(1.0, 0.2); // add a new uniform for the aspect ratio
+uniform float distortion_strength = 0.4;
+uniform vec2 noise_aspect_ratio = vec2(1.0, 0.2);
 
 void fragment() {
     float distance = UV.x;

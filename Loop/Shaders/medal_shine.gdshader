@@ -25,12 +25,7 @@ void fragment() {
 	COLOR = texture(TEXTURE, UV);
 	if (active) {
 		float shine = step(1.0 - shine_size * 0.5, 0.5 + 0.5 * sin(UV.x - UV.y + TIME * shine_speed));
-		// COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, shine * shine_color.a);
-		// add shine
-		// COLOR.rgb = mix(2.0 * COLOR.rgb - shine_color.rgb, shine_color.rgb, shine);
 
-		//COLOR = mix(COLOR, shine_color, shine);
-		// use overlay blending instead
 		if (shine > 0.0)
 			COLOR = overlay(COLOR, shine_color);
 	} else {

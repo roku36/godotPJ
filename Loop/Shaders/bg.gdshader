@@ -8,6 +8,7 @@ uniform vec4[2] colorMap : source_color;
 uniform float intensity = .005;
 uniform vec2 size = vec2(1.0, 1.0); // New uniform for size/density
 
+// water effect for background
 void fragment() 
 {
 	vec2 aspect = vec2(1.0, SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x);
